@@ -1,0 +1,2602 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*#region Page*/
+
+.chartsContainerHeader {
+    width: 904px;
+    height: 26px;
+    margin-bottom: 18px;
+}
+
+    .chartsContainerHeader > div:first-child {
+        float: left;
+    }
+
+    .chartsContainerHeader > div:last-child {
+        float: right;
+    }
+
+        .chartsContainerHeader > div:last-child > button {
+            vertical-align: bottom;
+        }
+
+div#chartsContainer {
+    height: 565px;
+    z-index: 90;
+}
+
+/*#region Trading Tabs*/
+
+#tradingTabs {
+    line-height: 15px !important;
+    /*background: url('../images/menuBg.png') repeat-x 0 0;*/
+    width: 933px !important;
+    height: 34px;
+    border-bottom: 5px solid #C8A023;
+    float: left;
+}
+
+    #tradingTabs div {
+        float: right;
+        height: 28px;
+    }
+
+    #tradingTabs ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none !important;
+        text-align: left;
+        display: inline-block;
+        float: left;
+    }
+
+    #tradingTabs li {
+        list-style-type: none !important;
+        position: relative;
+        float: left;
+        left: -50px;
+        height: 33px;
+        width: 200px;
+        text-shadow: 1px 1px #ffffff;
+        background: url('../images/M_regular.png') no-repeat 0 0;
+    }
+
+        #tradingTabs li:first-child {
+            /*position:relative;*/
+            left: 0;
+            height: 33px;
+            width: 200px;
+            background: url('../images/M_regular.png') no-repeat 0 0;
+            z-index: 10;
+        }
+
+        #tradingTabs li:nth-child(2) {
+            /*position:relative;*/
+            left: -50px;
+            z-index: 9;
+        }
+
+            #tradingTabs li:nth-child(2) a {
+                padding-left: 45px;
+            }
+
+        #tradingTabs li:nth-child(3) {
+            left: -100px;
+            z-index: 8;
+        }
+
+            #tradingTabs li:nth-child(3) a {
+                padding-left: 40px;
+            }
+
+        #tradingTabs li:nth-child(4) {
+            left: -150px;
+            z-index: 7;
+            background: url('../images/M_regularBC.png') no-repeat 0 0;
+        }
+
+            #tradingTabs li:nth-child(4) a {
+                padding-left: 75px;
+            }
+
+    #tradingTabs .selected {
+        height: 33px;
+        width: 200px;
+        background: url('../images/M_selected.png') no-repeat 0 0 !important;
+        text-shadow: 1px 1px #FCE576;
+        z-index: 10 !important;
+    }
+
+    #tradingTabs .selected_R {
+        height: 33px;
+        width: 200px;
+        background: url('../images/chart/M_selected_R.png') no-repeat 0 0 !important;
+        text-shadow: 1px 1px #FCE576;
+        z-index: 10 !important;
+    }
+
+    #tradingTabs .selected_BC {
+        height: 33px;
+        width: 200px;
+        background: url('../images/chart/M_selected_BC.png') no-repeat 0 0 !important;
+        text-shadow: 1px 1px #FCE576;
+        z-index: 10 !important;
+    }
+
+    #tradingTabs li a {
+        padding-left: 30px;
+        color: black;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 32px !important;
+    }
+
+/*#endregion Trading Tabs*/
+
+/*#region SellOption*/
+
+.sellOptionPopup {
+    height: 300px;
+    width: 200px;
+    z-index: 1030 !important;
+}
+
+    .sellOptionPopup > button {
+        padding: 3px;
+        background-color: #FFAEA6;
+        border: 1px solid #A9A7A7;
+        /*Rounded Corners*/
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+    }
+
+        .sellOptionPopup > button:hover {
+            background-color: #FFCBC6;
+            border: 1px solid #D0CECE;
+            cursor: pointer;
+        }
+
+
+.sellOptionBtn {
+    padding: 3px;
+}
+
+/*#endregion SellOption*/
+
+/*#endregion Page*/
+
+/*#region Charts */
+
+.chartContainer {
+    /*position : relative;*/
+    position: absolute;
+    top: -4px;
+    left: 0px;
+    width: auto;
+    min-width: 450px;
+    z-index: 9;
+}
+
+.loadingDiv {
+    background-color: #134F6B;
+    width: auto;
+    height: auto;
+    text-align: center;
+    z-index: 10000;
+    min-height: 200px;
+    min-width: 400px;
+    color: #fff;
+}
+
+    .loadingDiv > span {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        text-align: center;
+        font-size: 26px;
+        padding-top: 116px;
+    }
+
+
+/*#region Chart Sizes */
+
+.bigChart {
+    position: relative;
+    top: 0;
+    height: 504px;
+    width: 933px;
+    /*margin-top: 11px;*/
+    /* Gradiant cross browser support*/
+    background: url(../images/chart/chartBBG.png?v=1) 0 0 repeat-x;
+    /* Gradiant cross browser support*/
+    /*Rounded Corners*/
+    -moz-border-radius-right: 6px;
+    border-radius-right: 6px;
+    /*border: 1px solid #A9A7A7;*/
+    /*border-top: 0!important;*/
+    border: 1px solid #d9d9d9;
+}
+
+div#chartsContainer > div.tinyChart:nth-child(odd) {
+    margin-right: 37px;
+}
+
+div#chartsContainer > div.tinyChart:nth-child(3) {
+    margin-bottom: 0;
+}
+
+div#chartsContainer > div.tinyChart:nth-child(4) {
+    margin-bottom: 0;
+}
+
+.tinyChart {
+    position: relative;
+    top: 0;
+    float: left;
+    height: 248px;
+    width: 448px;
+    margin: 0 0 15px;
+    /* Gradiant cross browser support*/
+    background-color: transparent; /* fallback color if gradients are not supported */
+    background: url(../images/chart/chartSBG.png?v=1) 0 0 repeat-x;
+    border: 1px solid #d9d9d9;
+}
+
+/*#endregion Chart Sizes*/
+
+/*#region Chart Footer*/
+
+.chartFooter_bigChart {
+    height: 126px;
+    position: absolute;
+    float: left;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background-image: url(../images/chart/footer_bg.png?v=1);
+}
+
+.chartFooter_tinyChart {
+    height: 90px;
+    position: absolute;
+    float: left;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background-image: url(../images/chart/footer_bgS.png?v=1);
+}
+
+/*#region Payout*/
+
+.chartPayout_bigChart_1 {
+    position: relative;
+    top: 7px;
+    left: 173px;
+    text-align: left;
+    width: 551px;
+    z-index: 101;
+    white-space: nowrap;
+    color: #fff;
+    text-align: center;
+}
+
+    .chartPayout_bigChart_1 > span {
+        color: #E9B816; /*#DBB83D;*/
+        font-weight: 800;
+        font-size: 45px;
+        font-family: Verdana, Arial;
+    }
+
+.chartPayout_bigChart_2 {
+    position: relative;
+    top: 7px;
+    left: 173px;
+    text-align: left;
+    width: 551px;
+    z-index: 101;
+    white-space: nowrap;
+    color: #fff;
+    text-align: center;
+}
+
+    .chartPayout_bigChart_2 > span {
+        color: #E9B816; /*#DBB83D;*/
+        font-weight: 800;
+        font-size: 45px;
+        font-family: Verdana, Arial;
+    }
+
+.chartPayout_bigChart_3 {
+    position: relative;
+    top: 33px;
+    left: 173px;
+    text-align: left;
+    width: 551px;
+    z-index: 101;
+    white-space: nowrap;
+    color: #fff;
+    text-align: center;
+}
+
+    .chartPayout_bigChart_3 > span {
+        color: #E9B816; /*#DBB83D;*/
+        font-weight: 800;
+        font-size: 45px;
+        font-family: Verdana, Arial;
+    }
+
+.chartPayout_bigChart_4 {
+    position: relative;
+    top: 7px;
+    left: 173px;
+    text-align: left;
+    width: 551px;
+    z-index: 101;
+    white-space: nowrap;
+    color: #fff;
+    text-align: center;
+}
+
+    .chartPayout_bigChart_4 > span {
+        color: #E9B816; /*#DBB83D;*/
+        font-weight: 800;
+        font-size: 45px;
+        font-family: Verdana, Arial;
+    }
+
+.chartPayout_bigChart_bid_1 {
+}
+
+    .chartPayout_bigChart_bid_1 > span {
+        color: #104661;
+        font-size: 18px;
+        font-family: verdana;
+        font-weight: 700;
+        text-align: left;
+        width: 264px;
+        position: absolute;
+        left: 15px;
+        top: 39px;
+        z-index: 101;
+    }
+
+.chartPayout_bigChart_bid_2 {
+}
+
+    .chartPayout_bigChart_bid_2 > span {
+        color: #104661;
+        font-size: 18px;
+        font-family: verdana;
+        font-weight: 700;
+        text-align: left;
+        width: 264px;
+        position: absolute;
+        left: 15px;
+        top: 39px;
+        z-index: 101;
+    }
+
+.chartPayout_bigChart_bid_3 {
+}
+
+    .chartPayout_bigChart_bid_3 > span {
+        color: #104661;
+        font-size: 33px;
+        font-family: verdana;
+        font-weight: 700;
+        text-align: left;
+        width: 340px;
+        position: absolute;
+        left: 15px;
+        top: 55px;
+        z-index: 101;
+    }
+
+.chartPayout_bigChart_bid_4 {
+}
+
+    .chartPayout_bigChart_bid_4 > span {
+        color: #104661;
+        font-size: 18px;
+        font-family: verdana;
+        font-weight: 700;
+        text-align: left;
+        width: 264px;
+        position: absolute;
+        left: 15px;
+        top: 44px;
+        z-index: 101;
+    }
+
+
+.chartPayout_tinyChart_1 {
+    width: 193px;
+    position: absolute;
+    left: 105px;
+    top: 4px;
+    color: #E9B816;
+    text-align: left;
+    font-size: 18px;
+    font-family: verdana, arial;
+    font-weight: 700;
+}
+
+    .chartPayout_tinyChart_1 > span {
+    }
+
+.chartPayout_tinyChart_2 {
+    width: 193px;
+    position: absolute;
+    left: 105px;
+    top: 4px;
+    color: #E9B816;
+    text-align: left;
+    font-size: 18px;
+    font-family: verdana, arial;
+    font-weight: 700;
+}
+
+    .chartPayout_tinyChart_2 > span {
+    }
+
+.chartPayout_tinyChart_3 {
+    width: 193px;
+    position: absolute;
+    left: 105px;
+    top: 32px;
+    color: #E9B816;
+    text-align: left;
+    font-size: 18px;
+    font-family: verdana, arial;
+    font-weight: 700;
+}
+
+    .chartPayout_tinyChart_3 > span {
+    }
+
+.chartPayout_tinyChart_4 {
+    width: 193px;
+    position: absolute;
+    left: 105px;
+    top: 4px;
+    color: #E9B816;
+    text-align: left;
+    font-size: 18px;
+    font-family: verdana, arial;
+    font-weight: 700;
+}
+
+    .chartPayout_tinyChart_4 > span {
+    }
+
+.chartPayout_tinyChart_bid_1 {
+}
+
+    .chartPayout_tinyChart_bid_1 > span {
+        color: transparent;
+    }
+
+.chartPayout_tinyChart_bid_2 {
+}
+
+    .chartPayout_tinyChart_bid_2 > span {
+        color: transparent;
+    }
+
+.chartPayout_tinyChart_bid_3 {
+}
+
+    .chartPayout_tinyChart_bid_3 > span {
+        color: transparent;
+    }
+
+.chartPayout_tinyChart_bid_4 {
+}
+
+    .chartPayout_tinyChart_bid_4 > span {
+        color: transparent;
+    }
+
+.tradingAmount_bigChart {
+    color: #104661;
+    font-weight: 700;
+    position: absolute;
+    left: 385px;
+    top: 24px;
+}
+
+.tradingAmount_tinyChart {
+    color: #104661;
+    font-weight: 400;
+    position: absolute;
+    font-size: 11px;
+    left: 5px;
+    top: 39px;
+}
+
+/*#endregion Payout*/
+/*#region Chart Assetname */
+.chartAssetname_tinyChart_1 {
+    position: relative;
+    left: 106px;
+    top: 30px;
+    color: #104661;
+    font-size: 11px;
+    text-decoration: underline;
+}
+
+.chartAssetname_tinyChart_2 {
+    position: relative;
+    left: 106px;
+    top: 30px;
+    color: #104661;
+    font-size: 11px;
+    text-decoration: underline;
+}
+
+.chartAssetname_tinyChart_3 {
+    position: relative;
+    left: 312px;
+    top: 25px;
+    color: #104661;
+    font-size: 11px;
+    width: 134px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.chartAssetname_tinyChart_4 {
+    position: relative;
+    left: 106px;
+    top: 30px;
+    color: #104661;
+    font-size: 11px;
+    text-decoration: underline;
+}
+
+.chartAssetname_bigChart_1 {
+    position: relative;
+    left: 739px;
+    top: -30px;
+    color: #104661;
+    font-size: 13px;
+    z-index: 101;
+    width: 192px;
+    text-align: center;
+}
+
+.chartAssetname_bigChart_2 {
+    position: relative;
+    left: 739px;
+    top: -30px;
+    color: #104661;
+    font-size: 13px;
+    z-index: 101;
+    width: 192px;
+    text-align: center;
+}
+
+.chartAssetname_bigChart_3 {
+    position: relative;
+    left: 739px;
+    top: -14px;
+    color: #104661;
+    font-size: 12px;
+    width: 192px;
+    text-align: center;
+}
+
+.chartAssetname_bigChart_4 {
+    position: relative;
+    left: 739px;
+    top: -30px;
+    color: #104661;
+    font-size: 13px;
+    z-index: 101;
+    width: 192px;
+    text-align: center;
+}
+
+.chartAssetname_tinyChart_bid_1 {
+    font-size: 11px;
+    position: relative;
+    top: 7px;
+    left: 5px;
+    color: #104661;
+    text-decoration: underline;
+}
+
+.chartAssetname_tinyChart_bid_2 {
+    font-size: 11px;
+    position: relative;
+    top: 7px;
+    left: 5px;
+    color: #104661;
+    text-decoration: underline;
+}
+
+.chartAssetname_tinyChart_bid_3 {
+    position: relative;
+    left: 312px;
+    top: 5px;
+    color: #104661;
+    font-size: 11px;
+    width: 134px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.chartAssetname_tinyChart_bid_4 {
+    font-size: 11px;
+    position: relative;
+    top: 7px;
+    left: 5px;
+    color: #104661;
+    text-decoration: underline;
+}
+
+.chartAssetname_bigChart_bid_1 {
+    font-size: 11px;
+    position: relative;
+    top: 28px;
+    left: 15px;
+    color: #104661;
+    font-weight: 700;
+}
+
+.chartAssetname_bigChart_bid_2 {
+    font-size: 11px;
+    position: relative;
+    top: 28px;
+    left: 15px;
+    color: #104661;
+    font-weight: 700;
+}
+
+.chartAssetname_bigChart_bid_3 {
+    font-size: 12px;
+    position: relative;
+    top: 29px;
+    left: 737px;
+    color: #104661;
+    z-index: 101;
+    width: 194px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.chartAssetname_bigChart_bid_4 {
+    font-size: 11px;
+    position: relative;
+    top: 28px;
+    left: 15px;
+    color: #104661;
+    font-weight: 700;
+}
+/*#endregion Chart Assetname */
+
+/*#region Chart Operation */
+
+.callBtn_bigChart {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    height: 48px;
+    width: 135px;
+    background: url(../images/Chart/CallPut.gif?v=1) 0 0;
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    z-index: 300;
+    cursor: pointer;
+}
+
+    .callBtn_bigChart:hover {
+        background-position: -135px 0;
+        background-color: transparent !important;
+    }
+
+.callBtn_bigChart_disabled {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    height: 48px;
+    width: 135px;
+    background: url(../images/Chart/CallPut.gif?v=1) -270px 0;
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    z-index: 300;
+    cursor: pointer;
+}
+
+.putBtn_bigChart {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    height: 48px;
+    width: 135px;
+    background: url(../images/Chart/CallPut.gif?v=1) 0 -48px;
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    z-index: 300;
+    cursor: pointer;
+}
+
+    .putBtn_bigChart:hover {
+        background-position: -135px -48px;
+        background-color: transparent !important;
+    }
+
+.putBtn_bigChart_disabled {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    height: 48px;
+    width: 135px;
+    background: url(../images/Chart/CallPut.gif?v=1) -270px -48px;
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    z-index: 300;
+    cursor: pointer;
+}
+
+.callBtn_tinyChart {
+    position: absolute;
+    top: 7px;
+    left: 0;
+    height: 31px;
+    width: 93px;
+    background: url(../images/Chart/CallPutS.gif?v=1) 0 0;
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    z-index: 300;
+    cursor: pointer;
+}
+
+    .callBtn_tinyChart:hover {
+        background-position: -93px 0;
+        background-color: transparent !important;
+    }
+
+.callBtn_tinyChart_disabled {
+    position: absolute;
+    top: 7px;
+    left: 0;
+    height: 31px;
+    width: 93px;
+    background: url(../images/Chart/CallPutS.gif?v=1) -186px 0;
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    z-index: 300;
+    cursor: pointer;
+}
+
+.putBtn_tinyChart {
+    position: absolute;
+    bottom: 7px;
+    left: 0;
+    height: 31px;
+    width: 93px;
+    background: url(../images/Chart/CallPutS.gif?v=1) 0 -31px;
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    z-index: 300;
+    cursor: pointer;
+}
+
+    .putBtn_tinyChart:hover {
+        background-position: -93px -31px;
+        background-color: transparent !important;
+    }
+
+.putBtn_tinyChart_disabled {
+    position: absolute;
+    bottom: 7px;
+    left: 0;
+    height: 31px;
+    width: 93px;
+    background: url(../images/Chart/CallPutS.gif?v=1) -186px -31px;
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    z-index: 300;
+    cursor: pointer;
+}
+
+
+/*#region Bid div */
+
+.bidDiv_bigChart {
+    background: transparent url(../images/chart/bidDiv_bigChartBG.png?v=2) no-repeat right 0;
+    position: absolute;
+    top: 0; /* chartOperation height + space*/
+    left: 0;
+    height: 126px !important;
+    width: 931px !important;
+}
+
+.bidDiv_tinyChart {
+    background: url(../images/chart/bidDiv_tinyChartBG.png?v=2) no-repeat 0 0;
+    position: absolute;
+    top: 0;
+    z-index: 301; /*over call/put buttons*/
+    border-left: 1px solid #cfcfcf;
+    box-shadow: -1px 0 #fff;
+}
+
+.bidDivClosebtn_tinyChart {
+    position: absolute;
+    top: 3px;
+    right: -5px;
+    height: 25px;
+    width: 25px;
+    background-image: url(../images/Chart/CloseS.png?v=1);
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.bidDivClosebtn_bigChart {
+    position: absolute;
+    top: 7px;
+    right: 0px;
+    height: 25px;
+    width: 25px;
+    background-image: url(../images/Chart/Close.png?v=1);
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.divDidHeader_bigChart {
+    position: absolute;
+    top: 4px;
+    width: 270px;
+    text-align: left;
+    font-weight: 800;
+    height: 18px;
+    margin-top: 3px;
+    font-size: 16px;
+    text-shadow: 1px 1px #fff;
+    left: 15px;
+}
+
+.divDidHeader_tinyChart {
+    width: 195px;
+    text-align: left;
+    font-weight: 800;
+    font-size: 12px;
+    margin-top: 10px;
+    position: absolute;
+    left: 5px;
+}
+
+.divBidAmount_bigChart {
+    position: absolute;
+    top: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: #fff;
+    position: absolute;
+    left: 400px;
+}
+
+.bidAmountContainer_bigChart {
+    position: absolute;
+    right: 213px;
+    top: 20px;
+    font-size: 20px;
+    color: #104661;
+    line-height: 16px;
+}
+
+.bidAmountContainer_tinyChart {
+    position: absolute;
+    right: 142px;
+    top: 33px;
+    font-size: 15px;
+    color: #104661;
+}
+
+.bidOperationInput_bigChart {
+    float: right;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 2px 6px;
+    width: 80px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.bidOperationInput_tinyChart {
+    width: 45px;
+    height: 14px;
+    margin-left: 3px;
+    padding: 1px 3px 2px;
+    font-size: 12px;
+    border: 0;
+    border: 1px solid #ccc;
+    text-align: right;
+    color: #104661;
+}
+
+.divBidButton_bigChart {
+    background: url(../images/chart/bidFooterButton_bg.png?v=1) no-repeat 0 0;
+    position: absolute;
+    width: 171px;
+    height: 41px;
+    right: 11px;
+    top: 75px;
+    font-size: 20px;
+    color: #1e2933;
+    font-weight: 700;
+    text-shadow: 1px 1px #ffe076;
+    border: none;
+}
+
+    .divBidButton_bigChart:hover {
+        background: url(../images/chart/bidFooterButton_bg.png?v=1) no-repeat 0 -41px;
+    }
+
+.divBidButton_bigChart_disabled {
+    background: url(../images/chart/bidFooterButton_bg.png?v=1) no-repeat -181px 0;
+    position: absolute;
+    width: 171px;
+    height: 41px;
+    right: 11px;
+    top: 75px;
+    font-size: 20px;
+    color: #555;
+    font-weight: 700;
+    text-shadow: 1px 1px #bbb;
+    border: none;
+}
+
+.divBidButton_tinyChart {
+    background-image: url(../images/chart/bidFooterButtonS_bg.png?v=1);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 121px;
+    height: 32px;
+    right: 5px;
+    top: 53px;
+    font-size: 17px;
+    color: #1e2933;
+    font-weight: 700;
+    text-shadow: 1px 1px #ffe076;
+    border: none;
+    background-color: transparent !important;
+}
+
+    .divBidButton_tinyChart:hover {
+        background-position: 0 -32px;
+    }
+
+
+.divBidButton_tinyChart_disabled {
+    background-image: url(../images/chart/bidFooterButtonS_bg.png?v=1);
+    background-position: -121px 0;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 121px;
+    height: 32px;
+    right: 5px;
+    top: 53px;
+    font-size: 17px;
+    color: #555;
+    font-weight: 700;
+    text-shadow: 1px 1px #bbb;
+    border: none;
+    background-color: transparent !important;
+}
+
+    .divBidButton_tinyChart_disabled:hover {
+        background-position: -121px -32px;
+    }
+
+.divBidCloseAbove_bigChart {
+    position: absolute;
+    bottom: 36px;
+    left: 385px;
+    color: #104661;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.divBidCloseAbove_tinyChart {
+    position: absolute;
+    bottom: 22px;
+    left: 5px;
+    color: #104661;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.divBidAboveAmount_bigChart_call {
+    position: absolute;
+    bottom: 12px;
+    right: 213px;
+    font-size: 18px;
+    color: #104661;
+    font-weight: 700;
+}
+
+.divBidAboveAmount_bigChart_put {
+    position: absolute;
+    bottom: 14px;
+    right: 213px;
+    font-size: 14px;
+    color: #104661;
+}
+
+.divBidAboveAmount_tinyChart_call {
+    position: absolute;
+    bottom: 3px;
+    right: 142px;
+    color: #104661;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.divBidBelowAmount_tinyChart_call {
+    position: absolute;
+    bottom: 16px;
+    right: 142px;
+    color: #104661;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.divBidAboveAmount_tinyChart_put {
+    position: absolute;
+    bottom: -5px;
+    right: 142px;
+    color: #104661;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.divBidBelowAmount_tinyChart_put {
+    position: absolute;
+    bottom: 18px;
+    right: 142px;
+    color: #104661;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.divBidCloseBelow_bigChart {
+    position: absolute;
+    bottom: 9px;
+    left: 385px;
+    font-size: 12px;
+    color: #104661;
+    line-height: 23px !important;
+    font-weight: 400;
+}
+
+.divBidCloseBelow_tinyChart {
+    position: absolute;
+    bottom: 7px;
+    left: 5px;
+    color: #104661;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.divBidBelowAmount_bigChart_call {
+    position: absolute;
+    bottom: 33px;
+    right: 213px;
+    color: #104661;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.divBidBelowAmount_bigChart_put {
+    position: absolute;
+    bottom: 32px;
+    right: 213px;
+    font-size: 18px;
+    color: #104661;
+    font-weight: 700;
+}
+
+.winSpan_bigChart {
+    color: #92b330;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.winSpan_tinyChart_call {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.winSpan_tinyChart_put {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.lossSpan_bigChart {
+    font-weight: 400;
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+    bottom: 2px;
+}
+
+.lossSpan_tinyChart_call {
+    font-weight: 400;
+    color: #104661;
+    font-size: 12px;
+    position: relative;
+    bottom: 2px;
+}
+
+.lossSpan_tinyChart_put {
+    font-weight: 400;
+    color: #104661;
+    font-size: 12px;
+    position: relative;
+    bottom: 9px;
+}
+
+/*#endregion Bid div*/
+
+/*#endregion Chart Operation */
+
+/*#region Price */
+
+.chartPrice_bigChart {
+    position: absolute;
+    top: 54px;
+    left: 10px;
+    min-width: 50px;
+    text-align: center;
+    height: 21px;
+    width: 135px;
+    z-index: 10;
+}
+
+    .chartPrice_bigChart > span {
+        height: 21px;
+        display: inline-block;
+        width: auto;
+        font-size: 16px;
+    }
+
+.chartPrice_bigChart_bid {
+    position: absolute;
+    right: 580px;
+    top: 9px;
+    z-index: 1000;
+}
+
+    .chartPrice_bigChart_bid > span {
+        height: 21px;
+
+        display: inline-block;
+        width: auto;
+        font-size: 16px;
+    }
+
+
+.chartPrice_tinyChart {
+    position: absolute;
+    top: 36px;
+    left: 4px;
+    min-width: 50px;
+    text-align: center;
+    height: 16px;
+    width: 87px;
+    z-index: 10;
+}
+
+    .chartPrice_tinyChart > span {
+        height: 21px;
+        display: inline-block;
+        width: auto;
+        font-size: 14px;
+    }
+
+.chartPrice_tinyChart_bid {
+    position: absolute;
+    top: 11px;
+    right: 141px;
+    min-width: 50px;
+    text-align: right;
+    height: 16px;
+    width: 87px;
+    z-index: 10;
+}
+
+    .chartPrice_tinyChart_bid > span {
+        height: 21px;
+        display: inline-block;
+        width: auto;
+        font-size: 13px;
+    }
+
+
+/*#endregion Price*/
+
+/*#region Clock*/
+
+.expiresIn_bigChart_1 {
+    position: absolute;
+    left: 744px;
+    top: 40px;
+    font-weight: 700;
+    color: #104661 !important;
+    z-index: 101;
+    width: 182px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.expiresIn_bigChart_2 {
+    position: absolute;
+    left: 744px;
+    top: 40px;
+    font-weight: 700;
+    color: #104661 !important;
+    z-index: 101;
+    width: 182px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.expiresIn_bigChart_3 {
+    position: absolute;
+    left: 744px;
+    top: 56px;
+    font-weight: 700;
+    color: #104661 !important;
+    z-index: 101;
+    width: 182px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.expiresIn_bigChart_4 {
+    position: absolute;
+    left: 744px;
+    top: 40px;
+    font-weight: 700;
+    color: #104661 !important;
+    z-index: 101;
+    width: 182px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.divClock_bigChart_1 {
+    position: absolute;
+    left: 744px;
+    top: 71px;
+    color: #fff !important;
+    z-index: 101;
+    width: 180px;
+    height: 41px;
+    background: url(../images/chart/clockBg_big.png?v=1) 0 0 no-repeat;
+    text-align: center;
+    line-height: 43px;
+    font-size: 16px;
+}
+
+.divClock_bigChart_2 {
+    position: absolute;
+    left: 744px;
+    top: 71px;
+    color: #fff !important;
+    z-index: 101;
+    width: 180px;
+    height: 41px;
+    background: url(../images/chart/clockBg_big.png?v=1) 0 0 no-repeat;
+    text-align: center;
+    line-height: 43px;
+    font-size: 16px;
+}
+
+.divClock_bigChart_3 {
+    display: none;
+    font-size: 16px;
+}
+
+.divClock_bigChart_4 {
+    position: absolute;
+    left: 744px;
+    top: 71px;
+    color: #fff !important;
+    z-index: 101;
+    width: 180px;
+    height: 41px;
+    background: url(../images/chart/clockBg_big.png?v=1) 0 0 no-repeat;
+    text-align: center;
+    line-height: 43px;
+    font-size: 16px;
+}
+
+.clockImg_bigChart {
+    /*position: absolute;
+    right: 150px;
+    top: 48px;
+    background: url(../images/chart/clockW.gif?v=1) no-repeat 0 0;
+    height: 30px;
+    width: 30px;
+    z-index: 110;*/
+}
+
+.clockImg_bigChart_lc {
+    /*position: absolute;
+    right: 126px;
+    top: 48px;
+    background: url(../images/chart/clockR.gif?v=1) no-repeat 0 0;
+    height: 30px;
+    width: 30px;
+    z-index: 110;*/
+}
+
+.expiresIn_bigChart_bid_1 {
+    position: absolute;
+    left: 750px;
+    top: 22px;
+    font-weight: 700;
+    color: #104661;
+    z-index: 101;
+    width: 170px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.expiresIn_bigChart_bid_2 {
+    position: absolute;
+    left: 750px;
+    top: 22px;
+    font-weight: 700;
+    color: #104661;
+    z-index: 101;
+    width: 170px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.expiresIn_bigChart_bid_3 {
+    position: absolute;
+    left: 750px;
+    top: 44px;
+    font-weight: 700;
+    color: #104661;
+    z-index: 101;
+    width: 170px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.expiresIn_bigChart_bid_4 {
+    position: absolute;
+    left: 750px;
+    top: 22px;
+    font-weight: 700;
+    color: #104661;
+    z-index: 101;
+    width: 170px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.divClock_bigChart_bid_1 {
+    position: absolute;
+    left: 750px;
+    top: 45px;
+    color: #104661 !important;
+    z-index: 101;
+    width: 170px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.divClock_bigChart_bid_2 {
+    position: absolute;
+    left: 750px;
+    top: 45px;
+    color: #104661 !important;
+    z-index: 101;
+    width: 170px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.divClock_bigChart_bid_3 {
+    position: absolute;
+    left: 750px;
+    top: 45px;
+    color: #104661 !important;
+    z-index: 101;
+    width: 170px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.divClock_bigChart_bid_4 {
+    position: absolute;
+    left: 750px;
+    top: 45px;
+    color: #104661 !important;
+    z-index: 101;
+    width: 170px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.clockImg_bigChart_bid {
+    /*position: absolute;
+    right: 149px;
+    top: 29px;
+    background: url(../images/chart/clockW_payout.gif?v=1) no-repeat 0 0;
+    height: 30px;
+    width: 30px;
+    z-index: 110;*/
+}
+
+.clockImg_bigChart_bid_lc {
+    /*position: absolute;
+    right: 149px;
+    top: 29px;
+    background: url(../images/chart/clockR_payout.gif?v=1) no-repeat 0 0;
+    height: 30px;
+    width: 30px;
+    z-index: 110;*/
+}
+
+.expiresIn_tinyChart_1 {
+    position: absolute;
+    left: 316px;
+    /*top: 34px;*/
+    font-weight: 700;
+    color: #104661;
+    width: 120px;
+    text-align: center;
+    line-height: 12px;
+    text-shadow: 1px 1px #fff;
+    bottom: 45px;
+}
+
+.expiresIn_tinyChart_2 {
+    position: absolute;
+    left: 316px;
+    /*top: 34px;*/
+    font-weight: 700;
+    color: #104661;
+    width: 120px;
+    text-align: center;
+    line-height: 12px;
+    text-shadow: 1px 1px #fff;
+    bottom: 45px;
+}
+
+.expiresIn_tinyChart_3 {
+    position: absolute;
+    left: 316px;
+    /*top: 34px;*/
+    font-weight: 700;
+    color: #104661;
+    width: 120px;
+    text-align: center;
+    line-height: 12px;
+    text-shadow: 1px 1px #fff;
+    bottom: 39px;
+}
+
+.expiresIn_tinyChart_4 {
+    position: absolute;
+    left: 316px;
+    /*top: 34px;*/
+    font-weight: 700;
+    color: #104661;
+    width: 120px;
+    text-align: center;
+    line-height: 12px;
+    text-shadow: 1px 1px #fff;
+    bottom: 45px;
+}
+
+.divClock_tinyChart_1 {
+    color: #104661 !important;
+    font-weight: 400;
+    position: absolute;
+    left: 316px;
+    top: 60px;
+    width: 120px;
+    text-align: center;
+    font-size: 14px;
+    font-family: Arial !important;
+}
+
+.divClock_tinyChart_2 {
+    color: #104661 !important;
+    font-weight: 400;
+    position: absolute;
+    left: 316px;
+    top: 60px;
+    width: 120px;
+    text-align: center;
+    font-size: 14px;
+    font-family: Arial !important;
+}
+
+.divClock_tinyChart_3 {
+    display: none;
+}
+
+.divClock_tinyChart_4 {
+    color: #104661 !important;
+    font-weight: 400;
+    position: absolute;
+    left: 316px;
+    top: 60px;
+    width: 120px;
+    text-align: center;
+    font-size: 14px;
+    font-family: Arial !important;
+}
+
+
+
+.expiresIn_tinyChart_bid_1 { /*----------------------------------------------------------------------------------*/
+    position: absolute;
+    left: 318px;
+    top: 7px;
+    font-weight: 700;
+    color: #104661;
+    width: 120px;
+    text-align: center;
+    line-height: 12px;
+    text-shadow: 1px 1px #fff;
+}
+
+.expiresIn_tinyChart_bid_2 { /*----------------------------------------------------------------------------------*/
+    position: absolute;
+    left: 318px;
+    top: 7px;
+    font-weight: 700;
+    color: #104661;
+    width: 120px;
+    text-align: center;
+    line-height: 12px;
+    text-shadow: 1px 1px #fff;
+}
+
+.expiresIn_tinyChart_bid_3 { /*----------------------------------------------------------------------------------*/
+    position: absolute;
+    left: 318px;
+    top: 34px;
+    font-weight: 700;
+    color: #104661;
+    width: 120px;
+    text-align: center;
+    line-height: 12px;
+    text-shadow: 1px 1px #fff;
+}
+
+.expiresIn_tinyChart_bid_4 { /*----------------------------------------------------------------------------------*/
+    position: absolute;
+    left: 318px;
+    top: 7px;
+    font-weight: 700;
+    color: #104661;
+    width: 120px;
+    text-align: center;
+    line-height: 12px;
+    text-shadow: 1px 1px #fff;
+}
+
+
+
+.divClock_tinyChart_bid_1 {
+    color: #104661 !important;
+    font-weight: 400;
+    position: absolute;
+    left: 318px;
+    top: 34px;
+    width: 120px;
+    text-align: center;
+    font-family: Arial !important;
+}
+
+.divClock_tinyChart_bid_2 {
+    color: #104661 !important;
+    font-weight: 400;
+    position: absolute;
+    left: 318px;
+    top: 34px;
+    width: 120px;
+    text-align: center;
+    font-family: Arial !important;
+}
+
+.divClock_tinyChart_bid_3 {
+    display: none;
+}
+
+.divClock_tinyChart_bid_4 {
+    color: #104661 !important;
+    font-weight: 400;
+    position: absolute;
+    left: 318px;
+    top: 34px;
+    width: 120px;
+    text-align: center;
+    font-family: Arial !important;
+}
+
+.clockImg_tinyChart_1 {
+    /*position: absolute;
+    right: 64px;
+    top: 40px;
+    background: url(../images/chart/clockWPayoutT.gif?v=1) no-repeat 0 0;
+    height: 20px;
+    width: 20px;
+    z-index: 110;*/
+}
+
+.clockImg_tinyChart_2 {
+    /*position: absolute;
+    right: 64px;
+    top: 40px;
+    background: url(../images/chart/clockWPayoutT.gif?v=1) no-repeat 0 0;
+    height: 20px;
+    width: 20px;
+    z-index: 110;*/
+}
+
+.clockImg_tinyChart_3 {
+    /*position: absolute;
+    right: 64px;
+    top: 40px;
+    background: url(../images/chart/clockWPayoutT.gif?v=1) no-repeat 0 0;
+    height: 20px;
+    width: 20px;
+    z-index: 110;*/
+}
+
+.clockImg_tinyChart_4 {
+    /*position: absolute;
+    right: 64px;
+    top: 40px;
+    background: url(../images/chart/clockWPayoutT.gif?v=1) no-repeat 0 0;
+    height: 20px;
+    width: 20px;
+    z-index: 110;*/
+}
+
+.clockImg_tinyChart_bid {
+    /*position: absolute;
+    right: 103px;
+    top: 23px;
+    background: url(../images/chart/clockWPayoutT.gif?v=1) no-repeat 0 0;
+    height: 20px;
+    width: 20px;
+    z-index: 110;
+    display: none;*/
+}
+
+.clockImg_tinyChart_lc {
+    /*position: absolute;
+    right: 104px;
+    top: 40px;
+    background: url(../images/chart/clockRPayoutT.gif?v=1) no-repeat 0 0;
+    height: 20px;
+    width: 20px;
+    z-index: 110;*/
+}
+
+.clockImg_tinyChart_bid_lc {
+    /*position: absolute;
+    right: 103px;
+    top: 23px;
+    background: url(../images/chart/clockRPayoutT.gif?v=1) no-repeat 0 0;
+    height: 20px;
+    width: 20px;
+    z-index: 110;*/
+}
+
+/*#endregion Clock*/
+
+/*#region Message*/
+
+.msgDiv_bigChart {
+    /*background-color: #6E6E6E;*/
+    background: url(../images/chart/footer_Bbg.png?v=1) 0 0 repeat-x;
+    position: absolute;
+    top: 0; /* chartOperation height + space*/
+    right: 0;
+    height: 126px !important;
+    width: 931px !important;
+    z-index: 1000;
+}
+
+.msgDiv_tinyChart {
+    /*background: url(../images/chart/errMsg_bgS.png?v=1) no-repeat;*/
+    background: url(../images/chart/footer_Sbg.png?v=1) 0 0 repeat-x;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 94px !important;
+    width: 446px !important;
+    z-index: 1000;
+}
+
+.msgCloseBtn_bigChart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 20px;
+    width: 20px;
+    background-image: url(../images/Chart/Close.png?v=1);
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.msgCloseBtn_tinyChart {
+    position: absolute;
+    top: 4px;
+    right: -3px;
+    height: 25px;
+    width: 25px;
+    background-image: url(../images/Chart/CloseS.png?v=1);
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.msgSpan_Info_bigChart {
+    position: absolute;
+    top: 35px;
+    left: 190px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 13px;
+    height: 80px;
+    width: 450px !important;
+    overflow: hidden;
+}
+
+.msgSpan_Info_tinyChart {
+    position: absolute;
+    top: 36px;
+    left: 125px;
+    color: #104661;
+    font-weight: 400;
+    font-size: 13px;
+    height: 47px;
+    width: 300px !important;
+    overflow: hidden;
+}
+
+.msgImg_Info_bigChart {
+    position: absolute;
+    bottom: 26px;
+    left: 100px;
+    height: 68px;
+    width: 76px;
+    background-image: url(../images/Chart/Info.png?v=1);
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+}
+
+.msgSpan_Error_bigChart {
+    position: absolute;
+    top: 45px;
+    left: 190px;
+    color: #104661;
+    font-weight: 400;
+    font-size: 13px;
+    height: 80px;
+    width: 500px !important;
+    overflow: hidden;
+}
+
+.msgSpan_Error_tinyChart {
+    position: absolute;
+    top: 36px;
+    left: 80px;
+    color: #104661;
+    font-weight: 400;
+    font-size: 13px;
+    height: 55px;
+    width: 320px !important;
+    overflow: hidden;
+}
+
+.msgSpan_CalcResult_tinyChart {
+    position: absolute;
+    top: 36px;
+    left: 80px;
+    color: #104661;
+    font-weight: 400;
+    font-size: 13px;
+    height: 55px;
+    width: 320px !important;
+    overflow: hidden;
+}
+
+.msgImg_Error_bigChart {
+    position: absolute;
+    bottom: 26px;
+    left: 100px;
+    height: 68px;
+    width: 68px;
+    background-image: url(../images/Chart/Error.png?v=1);
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+}
+
+.msgImg_CalcResult_bigChart {
+    position: absolute;
+    bottom: 26px;
+    left: 100px;
+    height: 68px;
+    width: 68px;
+    background-image: url(../images/Chart/calcResBig.png?v=1);
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+}
+
+.msgSpan_CalcResult_bigChart {
+    position: absolute;
+    top: 45px;
+    left: 190px;
+    color: #104661;
+    font-weight: 400;
+    font-size: 13px;
+    height: 80px;
+    width: 500px !important;
+    overflow: hidden;
+}
+
+.msgImg_Error_tinyChart {
+    position: absolute;
+    top: 26px;
+    left: 25px;
+    height: 47px;
+    width: 46px;
+    background-image: url(../images/Chart/ErrorS.png?v=1);
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+}
+
+.msgImg_CalcResult_tinyChart {
+    position: absolute;
+    top: 26px;
+    left: 25px;
+    height: 47px;
+    width: 46px;
+    background-image: url(../images/Chart/calcResS.png?v=1);
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+}
+
+.msgImg_Info_tinyChart {
+    position: absolute;
+    top: 26px;
+    left: 70px;
+    height: 49px;
+    width: 49px;
+    background-image: url(../images/Chart/InfoS.png?v=1);
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+}
+
+.msgSpan_Ticket_bigChart {
+    /*width: 400px;*/
+    color: #104661;
+    /*margin: auto;*/
+    position: absolute;
+    left: 30px;
+    top: 36px;
+    font-size: 16px;
+}
+
+.msgSpan_Ticket_tinyChart {
+    width: 364px !important;
+    color: #104661;
+    margin: auto;
+    position: absolute;
+    left: 36px;
+    top: 24px;
+}
+
+.msgImg_Ticket_bigChart {
+}
+
+.msgImg_Ticket_tinyChart {
+}
+
+
+.spanBold {
+    font-weight: 400 !important;
+    font-size: 14px;
+    padding-left: 3px;
+    color: #bbb;
+}
+
+/*#endregion Message*/
+
+/*#endregion Chart Footer*/
+
+/*#region Chart Header*/
+
+.chartHeader_bigChart {
+    height: 37px;
+    position: absolute;
+    float: left;
+    top: 0;
+    z-index: 10;
+    background: url(../images/chart/header_Bbg.png?v=1) 0 0 repeat-x;
+}
+
+.chartHeader_tinyChart {
+    height: 30px;
+    position: absolute;
+    float: left;
+    top: -1px;
+    opacity: 1;
+    z-index: 10;
+    background: url(../images/chart/header_Sbg.png?v=1) 0 1px repeat-x;
+}
+
+.toggleSizeButton_tinyChart {
+    position: absolute;
+    top: 7px;
+    right: 9px;
+    height: 19px;
+    width: 18px;
+    background-image: url(../images/Chart/ToggleSizeS.png?v=1);
+    background-position: 0 0;
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    z-index: 300;
+    cursor: pointer;
+}
+
+.toggleSizeButton_bigChart {
+    position: absolute;
+    top: 0;
+    left: 888px;
+    height: 37px;
+    width: 37px;
+    background-image: url(../images/Chart/ToggleSize.png?v=1);
+    background-position: 0 0;
+    text-decoration: none !important;
+    background-repeat: no-repeat;
+    z-index: 300;
+    cursor: pointer;
+    border-left: 1px solid #cfcfcf;
+}
+
+
+/*.toggleSizeButton:hover
+    {
+        background-position: -55px -36px;
+        background-color: transparent !important;
+    }*/
+
+
+/*#region Option Selector */
+
+.chartCategorySelector_bigChart {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    height: 37px;
+    z-index: 10;
+    font-size: 15px;
+    text-shadow: 1px 1px #fff;
+    border-right: 1px solid #fff;
+    line-height: 22px;
+}
+
+.chartCategorySelector_tinyChart {
+    position: absolute;
+    top: 1px; /* According to StockOptionChart.js > fnSetChartSize*/
+    left: 0; /* According to StockOptionChart.js > fnSetChartSize*/
+    width: 145px;
+    height: 29px;
+    /*border: 1px solid #A9A7A7;*/
+    z-index: 10;
+    font-size: 10px;
+    text-shadow: 1px 1px #fff;
+    /*background: yellow;*/
+    border-right: 1px solid #fff;
+    padding: 0 4px;
+    line-height: 15px;
+}
+
+.chartAssetSelector_bigChart {
+    position: absolute;
+    top: 0;
+    left: 200px;
+    width: 200px;
+    height: 37px;
+    z-index: 10;
+    font-size: 15px;
+    text-shadow: 1px 1px #fff;
+    border-right: 1px solid #fff;
+    border-left: 1px solid #cfcfcf;
+    line-height: 22px;
+}
+
+.chartAssetSelector_tinyChart {
+    position: absolute;
+    top: 1px; /* According to StockOptionChart.js > fnSetChartSize*/
+    left: 145px;
+    width: 145px;
+    height: 29px;
+    z-index: 10;
+    font-size: 10px;
+    text-shadow: 1px 1px #fff;
+    border-left: 1px solid #cfcfcf;
+    border-right: 1px solid #fff;
+    padding: 0 4px;
+    line-height: 15px;
+}
+
+.chartOptionSelector_bigChart {
+    position: absolute;
+    top: 0;
+    left: 698px;
+    width: 190px;
+    height: 37px;
+    z-index: 10;
+    font-size: 15px;
+    text-shadow: 1px 1px #fff;
+    border-right: 1px solid #fff;
+    line-height: 22px;
+}
+
+.chartOptionSelector_tinyChart {
+    position: absolute;
+    top: 1px; /* According to StockOptionChart.js > fnSetChartSize*/
+    left: 290px; /* According to StockOptionChart.js > fnSetChartSize*/
+    width: 120px;
+    height: 29px;
+    z-index: 10;
+    font-size: 10px;
+    text-shadow: 1px 1px #fff;
+    border-left: 1px solid #cfcfcf;
+    border-right: 1px solid #fff;
+    padding: 0 4px;
+    box-shadow: 1px 0 #cfcfcf;
+    line-height: 15px;
+}
+
+.optionDDLCaption_bigChart {
+    position: absolute;
+    top: 0;
+    left: 400px;
+    color: #929292;
+    font-size: 15px;
+    height: 37px !important;
+    width: 290px;
+    line-height: 35px;
+    text-align: right;
+    padding-right: 7px;
+    border-left: 1px solid #cfcfcf;
+}
+
+.optionDDLCaption_tinyChart {
+    display: none;
+}
+
+/*#endregion Option Selector
+
+/*#endregion Chart Header */
+
+/*#endregion Chart Header*/
+
+/*#region Zoom */
+
+.zoomBtnsDiv {
+    position: absolute;
+    top: 39px;
+    left: 9px;
+    z-index: 30;
+    color: #f2ce10;
+}
+
+    .zoomBtnsDiv > button {
+        margin-left: 3px;
+        padding: 1px;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+.zoomBtnSelected {
+    background-color: #92b330;
+    border: 1px solid #A9B818;
+    border-radius: 3px;
+    color: #fff;
+}
+
+/*#endregion Zoom */
+
+/*#region Investment Sum */
+
+.sumInvestWrap_bigChart {
+    color: #104661;
+    position: absolute;
+    top: 85px;
+    left: 175px;
+    font-size: 20px;
+    width: 230px;
+    margin-right: 30px;
+}
+
+.sumInvestWrap_bigChart_bid {
+    color: #104661;
+    position: absolute;
+    top: 68px;
+    left: 15px;
+    font-size: 16px;
+    z-index: 100;
+    width: 340px;
+}
+
+.sumInvestTxt_bigChart {
+    float: left;
+    font-size: 12px;
+    padding-top: 6px;
+    padding-right: 15px;
+    min-width: 120px;
+}
+
+.sumInvestPrice_bigChart {
+    float: right;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 2px 6px;
+    min-width: 99px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.sumPayoutWrap_bigChart {
+    color: #104661;
+    position: absolute;
+    top: 85px;
+    left: 490px;
+    font-size: 20px;
+    width: 230px;
+}
+
+.sumPayoutWrap_bigChart_bid {
+    color: #104661;
+    position: absolute;
+    top: 93px;
+    left: 15px;
+    font-size: 14px;
+    z-index: 100;
+    width: 340px;
+}
+
+.sumPayoutTxt_bigChart {
+    float: left;
+    font-size: 12px;
+    padding-top: 6px;
+    padding-right: 15px;
+    min-width: 120px;
+}
+
+.sumPayoutPrice_bigChart {
+    float: right;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 2px 6px;
+    min-width: 99px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.sumInvestWrap_tinyChart {
+    color: #104661;
+    position: absolute;
+    top: 44px;
+    left: 105px;
+    width: 190px;
+    font-size: 11px;
+}
+
+.sumInvestWrap_tinyChart_bid {
+    display: none;
+}
+
+.sumInvestTxt_tinyChart {
+    float: left;
+    position: relative;
+    top: 3px;
+}
+
+.sumInvestPrice_tinyChart {
+    float: right;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 2px 6px;
+    min-width: 70px;
+    text-align: right;
+}
+
+.sumPayoutWrap_tinyChart {
+    color: #104661;
+    position: absolute;
+    top: 65px;
+    left: 105px;
+    width: 190px;
+    font-size: 11px;
+}
+
+.sumPayoutWrap_tinyChart_bid {
+    display: none;
+}
+
+.sumPayoutTxt_tinyChart {
+    float: left;
+    position: relative;
+    top: 3px;
+}
+
+.sumPayoutPrice_tinyChart {
+    float: right;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 2px 6px;
+    min-width: 70px;
+    text-align: right;
+}
+
+/*#endregion Investment Sum */
+
+/*#region Chart Color Effects*/
+
+.currentPricePointsColor {
+    color: #E9B816;
+}
+
+.priceUpdateHighlight {
+    color: #929292;
+}
+
+.upColor {
+    color: #92b330;
+}
+
+.downColor {
+    color: #e9292d;
+}
+
+/*#endregion Chart Color Effects*/
+
+/*#endregion Charts*/
+
+/*#region SelectGroup*/
+
+.selectgroupIcon_bigChart {
+    background-image: url(../images/chart/dropDownIcon.png?v=1) !important;
+    margin-top: 14px;
+    width: 15px;
+    height: 7px;
+    z-index: 10000000;
+    position: absolute;
+    top: 3px;
+    right: 6px;
+    ;
+}
+
+.selectgroupIcon_tinyChart {
+    background: url(../images/chart/dropDownIconS.png?v=1) no-repeat !important;
+    margin-top: 8px;
+    width: 15px;
+    height: 7px;
+    z-index: 10000000;
+    position: absolute;
+    top: 3px;
+    right: 0;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    border: 1px solid transparent !important;
+    background: transparent !important;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+    border: 1px solid transparent !important;
+    background: transparent !important;
+    text-decoration: none !important;
+}
+
+.ui-selectgroup {
+    display: block;
+    /*overflow: hidden;*/
+    position: relative;
+    width: auto;
+    text-decoration: none;
+}
+
+.ui-selectgroup-copy {
+    display: block;
+    padding: 5px;
+    height: 14px;
+    color: #d2ac2e;
+    background: transparent !important;
+    width: 140px;
+    overflow: hidden;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    border: 0px solid transparent !important;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+    border: none !important;
+}
+
+.selectgroupCopy_tinyChart {
+    display: block;
+    padding: 5px 3px 0 0;
+    height: 14px;
+    color: #104661;
+    background: transparent !important;
+    width: 95px;
+    overflow: hidden;
+}
+
+
+.selectgroupCopy_bigChart {
+    display: block;
+    padding: 5px 5px 10px 5px;
+    height: 14px;
+    color: #d2ac2e;
+    background: transparent !important;
+    width: 140px;
+    overflow: hidden;
+    color: #104661;
+}
+
+
+.ui-selectgroup-icon {
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+.ui-selectgroup-group {
+    width: 138px !important;
+}
+
+.ui-selectgroup-group {
+    position: absolute;
+    z-index: 400;
+}
+
+.ui-selectgroup-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 400;
+}
+
+    .ui-selectgroup-list li {
+        border-bottom: 1px solid white !important;
+    }
+
+        .ui-selectgroup-list li:hover {
+            border-bottom: 1px solid white !important;
+        }
+
+    .ui-selectgroup-list .ui-state-hover {
+        /*border-right: none;
+        border-left: none;*/
+        font-weight: normal;
+    }
+
+    .ui-selectgroup-list .ui-state-active {
+        border-bottom: 1px solid white !important;
+    }
+
+    .ui-selectgroup-list a {
+        display: block;
+        padding: 5px;
+        text-decoration: none !important;
+    }
+
+.ui-selectgroup-optgroup {
+    padding: 0 0 0 5px;
+}
+
+    .ui-selectgroup-optgroup span {
+        display: block;
+        padding: 5px 0;
+    }
+
+    .ui-selectgroup-optgroup ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .ui-selectgroup-optgroup li {
+        padding: 0 0 0 10px;
+        margin: 0 0 0 -5px;
+    }
+
+.ui-state-default .ui-icon {
+    background-image: url(../images/chart/dropDownIcon.png?v=1) !important;
+    margin-top: 11px;
+    width: 21px;
+    height: 9px;
+}
+
+/*.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
+    background-image: url(../images/chart/dropDownIcon.png?v=1)!important;
+    margin-top: 11px;
+    width: 21px;
+    height: 9px;
+}
+
+.ui-icon-triangle-1-s {
+    background-position: 0 0;
+}*/
+
+.ui-widget-content /*dropList bg*/ {
+    color: #888 /*{fcContent}*/;
+    /*background: rgba(230, 230, 230, 0.9)!important;*/
+}
+
+    .ui-widget-content:hover /*dropList bg*/ {
+        color: #222 !important /*{fcContent}*/;
+    }
+
+    .ui-widget-content a /*dropList text-color*/ {
+        color: #104661 /*{fcContent}*/;
+    }
+
+        .ui-widget-content a:hover {
+            color: #239DCA /*{fcContent}*/;
+        }
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+    color: #104661 !important /*{fcActive}*/;
+    text-decoration: none;
+    background: rgba(145, 145, 145, 0.3) !important;
+    font-weight: 700;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+    border: none;
+    border-bottom: 1px solid transparent /*{borderColorActive}*/;
+    font-weight: normal /*{fwDefault}*/;
+    color: #212121 /*{fcActive}*/;
+}
+
+
+.allTradesBtn {
+    position: relative;
+    top: 1px;
+    left: 20px;
+    color: #104661 !important;
+    z-index: 1;
+    border-right: 1px solid #fff !important;
+    padding-right: 19px;
+}
+
+.PastExpiriesBtn {
+    position: relative;
+    top: 1px;
+    left: 40px;
+    color: #104661 !important;
+    z-index: 1;
+    border-right: 1px solid #fff !important;
+    padding-right: 19px;
+}
+
+
+/*#endregion SelectGroup*/
+
+/*#region JQGrid (Jquery Override)*/
+
+.ui-state-hover {
+    color: #fff !important;
+}
+
+.ui-widget-header {
+    border: 1px solid #fff;
+    background: url(../images/chart/tradingTableBG.png?v=1) 0 0 repeat-x !important;
+    color: #104661;
+    font-weight: 400 !important;
+}
+
+.ui-dialog-buttonset {
+    margin-top: 10px;
+    vertical-align: bottom;
+    padding: 3px 15px;
+    color: #484848;
+    background: url(../images/bg_btn_assets.png?v=1) top left repeat-x;
+    font-size: 12px;
+    border-radius: 3px;
+    webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border: 1px solid #dbb83d;
+    cursor: pointer;
+    font-weight: 700;
+    text-align: center;
+    max-width: 600px;
+    float: right;
+    text-shadow: 1px 1px #ffe781;
+}
+
+.ui-widget-content {
+    border: none !important;
+}
+
+.ui-jqgrid .ui-jqgrid-view {
+    border: 1px solid #d9d9d9 !important;
+}
+
+.ui-jqgrid .ui-jqgrid-sortable {
+    color: #104661 !important;
+}
+
+.ui-corner-bottom {
+    border-bottom-left-radius: 0 !important /*{cornerRadius}*/;
+    border-bottom-right-radius: 0 !important /*{cornerRadius}*/;
+}
+
+.ui-state-disabled,
+.ui-widget-content .ui-state-disabled,
+.ui-widget-header .ui-state-disabled {
+    opacity: 1 !important;
+    filter: Alpha(Opacity=100) !important;
+    background-image: none !important;
+}
+
+    .ui-state-disabled a,
+    .ui-widget-content .ui-state-disabled a,
+    .ui-widget-header .ui-state-disabled a {
+        color: rgba(16, 70, 97, 0.5) !important;
+    }
+
+.ui-state-highlight {
+    color: #104661 !important;
+}
+
+ui-jqgrid .ui-jqgrid-btable {
+    margin-left: 10px !important;
+}
+
+/*#endregion JQGrid (Jquery Override)*/
