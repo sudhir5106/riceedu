@@ -35,6 +35,13 @@ $getCourse=$db->ExecuteQuery("SELECT * FROM course_master WHERE Course_Id=".$_GE
         </div>
         
         <div class="form-group">
+          <label class="control-label col-sm-3 mandatory" for="application_fee">Application Fees <span>*</span>:</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control input-sm" id="application_fee" name="application_fee" placeholder="Application Fees" value="<?php echo $getCourse[1]['Application_Fee']; ?>" />
+          </div>
+        </div>
+
+        <div class="form-group">
           <label class="control-label col-sm-3 mandatory" for="learning_fee">Learning Fees <span>*</span>:</label>
           <div class="col-sm-3">
             <input type="text" class="form-control input-sm" id="learning_fee" name="learning_fee" placeholder="Learning Fees" value="<?php echo $getCourse[1]['Learning_Fee']; ?>" />

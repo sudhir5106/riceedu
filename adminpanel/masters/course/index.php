@@ -27,6 +27,13 @@ include(PATH_ADMIN_INCLUDE.'/header.php');
         </div>
         
         <div class="form-group">
+          <label class="control-label col-sm-3 mandatory" for="application_fee">Application Fees <span>*</span>:</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control input-sm" id="application_fee" name="application_fee" placeholder="Application Fees"  />
+          </div>
+        </div>
+        
+        <div class="form-group">
           <label class="control-label col-sm-3 mandatory" for="learning_fee">Learning Fees <span>*</span>:</label>
           <div class="col-sm-3">
             <input type="text" class="form-control input-sm" id="learning_fee" name="learning_fee" placeholder="Learning Fees"  />

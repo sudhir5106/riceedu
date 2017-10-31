@@ -5,7 +5,7 @@ include(PATH_ADMIN_INCLUDE.'/header.php');
 $db = new DBConn();
 
 // get all list of employee 
-$getCourse=$db->ExecuteQuery("SELECT Course_Id, Course_Name, Learning_Fee, Registration_Fee, Exam_Fee
+$getCourse=$db->ExecuteQuery("SELECT Course_Id, Course_Name, Application_Fee, Learning_Fee, Registration_Fee, Exam_Fee
 FROM course_master
 ");
 
@@ -41,6 +41,7 @@ FROM course_master
             <tr class="success">
               <th>Sno.</th>
               <th>Course Name</th>
+              <th>Application Fees</th>
               <th>Learning Fees</th>
               <th>Registration Fees</th>
               <th>Exam Fees</th>
@@ -56,6 +57,7 @@ FROM course_master
             <tr>
               <td><?php echo $i;?></td>
               <td><?php echo $getCourseVal['Course_Name'];?></td>
+              <td><?php echo $getCourseVal['Application_Fee'];?></td>
               <td><?php echo $getCourseVal['Learning_Fee'];?></td>
               <td><?php echo $getCourseVal['Registration_Fee'];?></td>
               <td><?php echo $getCourseVal['Exam_Fee'];?></td>

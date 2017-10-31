@@ -1,8 +1,8 @@
 <?php
 include('../../config.php'); 
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
-include(PATH_CM_INCLUDE.'/header.php');
 $db = new DBConn();
+include(PATH_CM_INCLUDE.'/header.php');
 
 // get all list of students 
 $getstudent=$db->ExecuteQuery("SELECT Student_Id, DATE_FORMAT(Reg_Date,'%d-%m-%Y') AS Reg_Date, Application_No, Student_Code, Student_Name, Password,  Father_Name, Aadhaar_No, Course_Name, Mode, Session, Address, Block_Name, District_Name, State_Name, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status

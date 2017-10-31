@@ -1,8 +1,9 @@
 <?php
 include('../../config.php'); 
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
-include(PATH_CM_INCLUDE.'/header.php');
 $db = new DBConn();
+include(PATH_CM_INCLUDE.'/header.php');
+
 
 
 // get all list of employee 

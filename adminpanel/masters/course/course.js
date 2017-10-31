@@ -12,6 +12,10 @@ $(document).ready(function(){
 				required: true,
 				CourseNameExist:true
 			},
+			application_fee:{
+				required: true,
+				number: true
+			},
 			learning_fee: 
 			{ 
 				required: true,
@@ -45,6 +49,10 @@ $(document).ready(function(){
 			{ 
 				required: true,
 				EditCourseNameExist:true
+			},
+			application_fee:{
+				required: true,
+				number: true
 			},
 			learning_fee: 
 			{ 
@@ -149,6 +157,7 @@ $(document).ready(function(){
 			var formdata = new FormData();
 			formdata.append('type', "addCourse");
 			formdata.append('course_name', $("#course_name").val());
+			formdata.append('application_fee', $("#application_fee").val());
 			formdata.append('learning_fee', $("#learning_fee").val());
 			formdata.append('registration_fee', $("#registration_fee").val());
 			formdata.append('exam_fee', $("#exam_fee").val());
@@ -190,6 +199,7 @@ $(document).ready(function(){
 			formdata.append('type', "editCourse");
 			formdata.append('id', $("#id").val());
 			formdata.append('course_name', $("#course_name").val());
+			formdata.append('application_fee', $("#application_fee").val());
 			formdata.append('learning_fee', $("#learning_fee").val());
 			formdata.append('registration_fee', $("#registration_fee").val());
 			formdata.append('exam_fee', $("#exam_fee").val());

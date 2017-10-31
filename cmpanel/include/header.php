@@ -39,6 +39,16 @@
 	text-align:center;
 }
 </style>
+
+<?php 
+
+require_once(PATH_LIBRARIES.'/classes/DBConn.php');
+$db = new DBConn();
+
+$cmImg=$db->ExecuteQuery("SELECT EMP_Image FROM employee_master WHERE EMP_Code = (SELECT CM_Emp_Code FROM cm_login WHERE CM_Id =".$_SESSION['cmid'].")"); 
+
+?>
+
 <div class="col-md-3 left_col">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;"> <a href="index.php" class="site_title"><i class="fa fa-laptop"></i> <span>CM Panel</span></a> </div>
@@ -46,7 +56,7 @@
     
     <!-- menu prile quick info -->
     <div class="profile">
-      <div class="profile_pic"> <img src="<?php echo PATH_IMAGE?>/img.jpg" alt="..." class="img-circle profile_img"> </div>
+      <div class="profile_pic"> <img src="<?php echo PATH_DATA_IMAGE ?>/employee/thumb/<?php echo $cmImg[1]['EMP_Image'] ?>" alt="..." class="img-circle profile_img"> </div>
       <div class="profile_info"> <span>Welcome,</span>
         <h2><?php echo $_SESSION['cmname']?></h2>
       </div>
@@ -93,7 +103,7 @@
     <nav class="" role="navigation">
       <div class="nav toggle"> <a id="menu_toggle"><i class="fa fa-bars"></i></a> </div>
       <ul class="nav navbar-nav navbar-right">
-        <li style="padding-right:10px"> <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="<?php echo PATH_IMAGE?>/img.jpg" alt=""><?php echo $_SESSION['cmname']?> <span class=" fa fa-angle-down"></span> </a>
+        <li style="padding-right:10px"> <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="<?php echo PATH_DATA_IMAGE ?>/employee/thumb/<?php echo $cmImg[1]['EMP_Image'] ?>" alt=""><?php echo $_SESSION['cmname']?> <span class=" fa fa-angle-down"></span> </a>
           <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
             <li><a href="#" id="logoff"><i class="fa fa-sign-out pull-right"></i> Log Out</a> </li>
           </ul>

@@ -1,8 +1,9 @@
 <?php
 include('../../config.php'); 
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
-include(PATH_CM_INCLUDE.'/header.php');
 $db = new DBConn();
+include(PATH_CM_INCLUDE.'/header.php');
+
 
 // get all list of Notice /
 $getnotice=$db->ExecuteQuery("SELECT Notice_Id, DATE_FORMAT(Notice_Date,'%d-%m-%Y') AS Notice_Date, Notice, Student_Name, Student_Code

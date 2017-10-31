@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2017 at 12:58 PM
+-- Generation Time: Oct 31, 2017 at 05:46 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin_login` (
 --
 
 INSERT INTO `admin_login` (`Login_Id`, `Login_Name`, `Login_Pwd`, `Login_Ip`, `Last_Login_Date`) VALUES
-(1, 'admin', 'france', '::1', '2017-08-13 22:19:25');
+(1, 'admin', 'france', '::1', '2017-10-31 21:46:28');
 
 -- --------------------------------------------------------
 
@@ -129,6 +129,7 @@ INSERT INTO `cm_login` (`CM_Id`, `Center_Code`, `DM_Emp_Code`, `CM_Emp_Code`, `C
 CREATE TABLE `course_master` (
   `Course_Id` smallint(6) NOT NULL,
   `Course_Name` varchar(50) NOT NULL,
+  `Application_Fee` int(11) NOT NULL,
   `Learning_Fee` int(11) NOT NULL,
   `Registration_Fee` int(11) NOT NULL,
   `Exam_Fee` int(11) NOT NULL
@@ -138,8 +139,9 @@ CREATE TABLE `course_master` (
 -- Dumping data for table `course_master`
 --
 
-INSERT INTO `course_master` (`Course_Id`, `Course_Name`, `Learning_Fee`, `Registration_Fee`, `Exam_Fee`) VALUES
-(2, 'BCA', 15000, 1000, 1000);
+INSERT INTO `course_master` (`Course_Id`, `Course_Name`, `Application_Fee`, `Learning_Fee`, `Registration_Fee`, `Exam_Fee`) VALUES
+(2, 'BCA', 100, 15000, 1000, 1000),
+(4, 'MCA', 100, 25000, 1000, 1000);
 
 -- --------------------------------------------------------
 
@@ -833,7 +835,8 @@ CREATE TABLE `fees_payment` (
 INSERT INTO `fees_payment` (`Payment_Id`, `Payment_Date`, `Paid_Amt`, `Payment_Mode`, `Cheque_DD_No`, `Transaction_No`, `Which_Bank_Cheque_DD`, `Student_Id`, `CM_Id`) VALUES
 (2, '2017-08-12 14:30:48', 500, 1, '', '', '', 1, 3),
 (3, '2017-08-12 14:32:34', 1000, 2, '12345', '', 'Axis Bank', 1, 3),
-(4, '2017-08-12 14:33:13', 5000, 3, '', '654987321654', '', 1, 3);
+(4, '2017-08-12 14:33:13', 5000, 3, '', '654987321654', '', 1, 3),
+(5, '2017-10-30 13:32:11', 500, 1, '', '', '', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -1161,7 +1164,7 @@ ALTER TABLE `cm_login`
 -- AUTO_INCREMENT for table `course_master`
 --
 ALTER TABLE `course_master`
-  MODIFY `Course_Id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Course_Id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `district_master`
 --
@@ -1181,7 +1184,7 @@ ALTER TABLE `employee_master`
 -- AUTO_INCREMENT for table `fees_payment`
 --
 ALTER TABLE `fees_payment`
-  MODIFY `Payment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Payment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `ho_notice`
 --
@@ -1240,7 +1243,7 @@ ALTER TABLE `district_master`
 -- Constraints for table `fees_payment`
 --
 ALTER TABLE `fees_payment`
-  ADD CONSTRAINT `fees_payment_ibfk_1` FOREIGN KEY (`student_Id`) REFERENCES `student_master` (`Student_Id`),
+  ADD CONSTRAINT `fees_payment_ibfk_1` FOREIGN KEY (`Student_Id`) REFERENCES `student_master` (`Student_Id`),
   ADD CONSTRAINT `fees_payment_ibfk_2` FOREIGN KEY (`CM_Id`) REFERENCES `cm_login` (`CM_Id`);
 
 --

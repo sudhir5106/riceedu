@@ -52,8 +52,8 @@ if($_POST['type']=="EditCourseNameExist")
 ///*******************************************************
 if($_POST['type']=="addCourse")
 {		
-	$tblfield=array('Course_Name','Learning_Fee','Registration_Fee','Exam_Fee');
-	$tblvalues=array($_POST['course_name'], $_POST['learning_fee'], $_POST['registration_fee'], $_POST['exam_fee']);
+	$tblfield=array('Course_Name','Application_Fee','Learning_Fee','Registration_Fee','Exam_Fee');
+	$tblvalues=array($_POST['course_name'], $_POST['application_fee'], $_POST['learning_fee'], $_POST['registration_fee'], $_POST['exam_fee']);
 	$res=$db->valInsert("course_master",$tblfield,$tblvalues);
 	if(empty($res))
 	{
@@ -66,13 +66,13 @@ if($_POST['type']=="addCourse")
 }
 
 ///*******************************************************
-/// Edit Center
+/// Edit Course //////////////////////////////////////////
 ///*******************************************************
 if($_POST['type']=="editCourse")
 {
 	$tblname="course_master";
-	$tblfield=array('Course_Name','Learning_Fee','Registration_Fee','Exam_Fee');
-	$tblvalues=array($_POST['course_name'], $_POST['learning_fee'], $_POST['registration_fee'], $_POST['exam_fee']);
+	$tblfield=array('Course_Name','Application_Fee','Learning_Fee','Registration_Fee','Exam_Fee');
+	$tblvalues=array($_POST['course_name'], $_POST['application_fee'], $_POST['learning_fee'], $_POST['registration_fee'], $_POST['exam_fee']);
 	$condition="Course_Id=".$_POST['id'];
 	$res=$db->updateValue($tblname,$tblfield,$tblvalues,$condition);
 	
@@ -87,7 +87,7 @@ if($_POST['type']=="editCourse")
 }
 
 ///*******************************************************
-/// Delete row from course_master table
+/// Delete row from course_master table //////////////////
 ///*******************************************************
 if($_POST['type']=="delete")
 {
@@ -111,6 +111,7 @@ if($_POST['type']=="searchByCourseName")
             <tr class='success'>
               <th>Sno.</th>
               <th>Course Name</th>
+              <th>Application Fees</th>
               <th>Learning Fees</th>
               <th>Registration Fees</th>
               <th>Exam Fees</th>
@@ -122,7 +123,7 @@ if($_POST['type']=="searchByCourseName")
 	
 	if(!empty($res)){
 		foreach($res as $val){
-			echo "<tr><td>".$i."</td><td>".$val['Course_Name']."</td><td>".$val['Learning_Fee']."</td><td>".$val['Registration_Fee']."</td><td>".$val['Exam_Fee']."</td>
+			echo "<tr><td>".$i."</td><td>".$val['Course_Name']."</td><td>".$val['Application_Fee']."</td><td>".$val['Learning_Fee']."</td><td>".$val['Registration_Fee']."</td><td>".$val['Exam_Fee']."</td>
 			
 			<td><a id='editbtn' class='btn btn-success btn-sm' href='edit_course.php?id='".$val['Course_Id']."'><span class='glyphicon glyphicon-edit'></span> Edit </a>
 					<button type='button' class='btn btn-danger btn-sm delete' id='".$val['Course_Id']."' name='delete'> <span class='glyphicon glyphicon-trash'></span> Delete </button></td>
