@@ -1,5 +1,8 @@
 <?php 
 
+require_once(PATH_LIBRARIES.'/classes/DBConn.php');
+$db = new DBConn();
+
 	require_once(PATH_STUDENT_INCLUDE.'/head.php');
 	//Check Here If Admin is authorised or not
 	if(empty($_SESSION['sid']))
@@ -39,6 +42,9 @@
 	text-align:center;
 }
 </style>
+
+<?php $StudentImg=$db->ExecuteQuery("SELECT Photo FROM student_master WHERE Student_Id=".$_SESSION['sid']); ?>
+
 <div class="col-md-3 left_col">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;"> <a href="index.php" class="site_title"><i class="fa fa-laptop"></i> <span>Student Panel</span></a> </div>
@@ -46,7 +52,7 @@
     
     <!-- menu prile quick info -->
     <div class="profile">
-      <div class="profile_pic"> <img src="<?php echo PATH_IMAGE?>/img.jpg" alt="..." class="img-circle profile_img"> </div>
+      <div class="profile_pic"> <img src="<?php echo PATH_DATA_IMAGE."/student/".$StudentImg[1]['Photo']; ?>" alt="..." class="img-circle profile_img"> </div>
       <div class="profile_info"> <span>Welcome,</span>
         <h2><?php echo $_SESSION['sname']?></h2>
       </div>
@@ -84,7 +90,7 @@
     <nav class="" role="navigation">
       <div class="nav toggle"> <a id="menu_toggle"><i class="fa fa-bars"></i></a> </div>
           <ul class="nav navbar-nav navbar-right">
-            <li style="padding-right:10px;"> <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="<?php echo PATH_IMAGE?>/img.jpg" alt=""><?php echo $_SESSION['sname']?> <span class=" fa fa-angle-down"></span> </a>
+            <li style="padding-right:10px;"> <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="<?php echo PATH_DATA_IMAGE."/student/".$StudentImg[1]['Photo']; ?>" alt=""><?php echo $_SESSION['sname']?> <span class=" fa fa-angle-down"></span> </a>
               <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
                 <li><a href="#" id="logoff"><i class="fa fa-sign-out pull-right"></i> Log Out</a> </li>
               </ul>

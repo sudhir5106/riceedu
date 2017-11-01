@@ -24,7 +24,7 @@ if($_POST['type']=="getStudentInfo")
 {
 	 if(!empty($_POST['student_code'])){
 	 	
-		$sql_student="SELECT Student_Id, Student_Name, Father_Name, Mother_Name, Photo, Course_Name, Learning_Fee, Registration_Fee, Exam_Fee, CASE WHEN Mode='regular' THEN 'Regular' WHEN Mode='online' THEN 'Online' WHEN Mode='private' THEN 'Private' END AS Mode, Session, About_Fee_Deposite, CASE WHEN Mode='regular' THEN (Learning_Fee + Registration_Fee + Exam_Fee) WHEN Mode='online' THEN (Learning_Fee + Registration_Fee + Exam_Fee) WHEN Mode='private' THEN Exam_Fee END AS Total_Fees, (SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=(SELECT Student_Id FROM student_master WHERE Student_Code=".$_POST['student_code'].")) AS Paid_Amt
+		$sql_student="SELECT Student_Id, Student_Name, Father_Name, Mother_Name, Photo, Course_Name, Application_Fee, Learning_Fee, Registration_Fee, Exam_Fee, CASE WHEN Mode='regular' THEN 'Regular' WHEN Mode='online' THEN 'Online' WHEN Mode='private' THEN 'Private' END AS Mode, Session, About_Fee_Deposite, CASE WHEN Mode='regular' THEN (Application_Fee + Learning_Fee + Registration_Fee + Exam_Fee) WHEN Mode='online' THEN (Application_Fee + Learning_Fee + Registration_Fee + Exam_Fee) WHEN Mode='private' THEN Exam_Fee END AS Total_Fees, (SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=(SELECT Student_Id FROM student_master WHERE Student_Code=".$_POST['student_code'].")) AS Paid_Amt
 		FROM student_master s
 		
 		LEFT JOIN course_master c ON s.Course_Id = c.Course_Id
@@ -110,6 +110,11 @@ if($_POST['type']=="getStudentInfo")
 						<div class="col-sm-8"><span class="label label-info">'.$res[1]['Mode'].'</span></div>
 					</div>';
 					if($res[1]['Mode']!="Private"){ echo'
+
+					<div style="height:30px;">
+						<div class="col-sm-4"><strong>Application Fees</strong>: </div>
+						<div class="col-sm-8">'.$res[1]['Application_Fee'].'</div>
+					</div>
 					<div style="height:30px;">
 						<div class="col-sm-4"><strong>Learning Fees</strong>: </div>
 						<div class="col-sm-8">'.$res[1]['Learning_Fee'].'</div>
@@ -124,6 +129,10 @@ if($_POST['type']=="getStudentInfo")
 					</div>';
 					}
 					if($res[1]['Mode']=="Private"){ echo'
+					<div style="height:30px;">
+						<div class="col-sm-4"><strong>Application Fees</strong>: </div>
+						<div class="col-sm-8">'.$res[1]['Application_Fee'].'</div>
+					</div>
 					<div style="height:30px;">
 						<div class="col-sm-4"><strong>Exam Fees</strong>: </div>
 						<div class="col-sm-8">'.$res[1]['Exam_Fee'].'</div>

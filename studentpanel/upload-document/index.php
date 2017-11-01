@@ -1,8 +1,9 @@
 <?php
 include('../../config.php'); 
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
-include(PATH_STUDENT_INCLUDE.'/header.php');
 $db = new DBConn();
+
+include(PATH_STUDENT_INCLUDE.'/header.php');
 
 ?>
 <script type="text/javascript" src="document.js"></script>

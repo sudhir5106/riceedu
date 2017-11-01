@@ -5440,3 +5440,4 @@ color: #D1D1D1 !important;
 .signature img{width:80%;}
 .sign-head{padding-top:20px;}
 .data-row{height:25px; font-size:11pt;}
+.table>tfoot>tr>td{background:#17a2b8; color:#fff;}

@@ -1,9 +1,9 @@
 <?php
 include('../../config.php'); 
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
-include(PATH_STUDENT_INCLUDE.'/header.php');
 $db = new DBConn();
 
+include(PATH_STUDENT_INCLUDE.'/header.php');
 
 // get all list of student document 
 $getdoc=$db->ExecuteQuery("SELECT Doc_Id, Doc_Name, Doc_File FROM student_document

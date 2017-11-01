@@ -1,8 +1,9 @@
 <?php
 include('../../config.php'); 
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
-include(PATH_STUDENT_INCLUDE.'/header.php');
 $db = new DBConn();
+
+include(PATH_STUDENT_INCLUDE.'/header.php');
 
 // get all list of student documents 
 $getdoc=$db->ExecuteQuery("SELECT Doc_Id, Doc_Name, Doc_File FROM student_document
@@ -13,7 +14,7 @@ WHERE Student_Id =".$_SESSION['sid']);
 <div>
   <div class="page-title">
     <div class="title_left">
-      <h3><i class="glyphicon glyphicon-list"></i> List of Students</h3>
+      <h3><i class="glyphicon glyphicon-list"></i> List of Documents</h3>
     </div>
   </div>
   
@@ -36,7 +37,7 @@ WHERE Student_Id =".$_SESSION['sid']);
                   <th>Sno.</th>
                   <th>Document Name</th>
                   <th>File</th>                 
-                  <th>Action</th>
+                  <!--<th>Action</th>-->
                 </tr>
               </thead>
               <tbody>
@@ -47,8 +48,8 @@ WHERE Student_Id =".$_SESSION['sid']);
                   <td><?php echo $i;?></td>
                   <td><?php echo $getdocVal['Doc_Name']; ?></td>
                   <td><img width="50px;" src="<?php echo PATH_DATA_DOC ?>/student-doc/thumb/<?php echo $getdocVal['Doc_File'];?>" alt="" /></td>
-                  <td><button type="button" id="editbtn" class="btn btn-success btn-xs" onClick="window.location.href='edit.php?id=<?php echo $getdocVal['Doc_Id'];?>'" > <span class="glyphicon glyphicon-edit"></span> </button>
-                    <button type="button" class="btn btn-danger btn-xs delete" id="<?php echo $getdocVal['Doc_Id']; ?>" name="delete"> <span class="glyphicon glyphicon-trash"></span> </button></td>
+                  <!--<td><button type="button" id="editbtn" class="btn btn-success btn-xs" onClick="window.location.href='edit.php?id=<?php echo $getdocVal['Doc_Id'];?>'" > <span class="glyphicon glyphicon-edit"></span> </button>
+                    <button type="button" class="btn btn-danger btn-xs delete" id="<?php echo $getdocVal['Doc_Id']; ?>" name="delete"> <span class="glyphicon glyphicon-trash"></span> </button></td>-->
                 </tr>
                 <?php $i++;} ?>
               </tbody>

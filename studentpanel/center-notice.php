@@ -1,8 +1,10 @@
 <?php 
 include('../config.php');
-require_once(PATH_STUDENT_INCLUDE.'/header.php');
+
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
 $db = new DBConn();
+
+require_once(PATH_STUDENT_INCLUDE.'/header.php');
 
 $GetNotice = $db->ExecuteQuery("SELECT DATE_FORMAT(Notice_Date,'%d-%M-%Y') AS Notice_Date, Notice
 

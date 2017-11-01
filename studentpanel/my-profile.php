@@ -1,8 +1,10 @@
 <?php 
 include('../config.php');
-require_once(PATH_STUDENT_INCLUDE.'/header.php');
+
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
 $db = new DBConn();
+
+require_once(PATH_STUDENT_INCLUDE.'/header.php');
 
 $GetStudentInfo = $db->ExecuteQuery("SELECT *, DATE_FORMAT(Reg_Date,'%d-%M-%Y') AS DOJ, DATE_FORMAT(DOB,'%d-%M-%Y') AS DateOfBirth , Block_Name, District_Name, State_Name, CASE WHEN Gender=1 THEN 'Male' ELSE 'Female' END Sex, CASE WHEN Phisical_Status=1 THEN 'Normal' ELSE 'Physically Challenged' END Phisical_Status, CASE WHEN Approval_Status=0 THEN 'Pending' ELSE 'Approved' END Approval_Status, CASE WHEN Status=0 THEN 'Blocked' ELSE 'Active' END Status, Entry_No
 
