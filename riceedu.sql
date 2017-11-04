@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2017 at 05:46 PM
+-- Generation Time: Nov 04, 2017 at 03:01 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin_login` (
 --
 
 INSERT INTO `admin_login` (`Login_Id`, `Login_Name`, `Login_Pwd`, `Login_Ip`, `Last_Login_Date`) VALUES
-(1, 'admin', 'france', '::1', '2017-10-31 21:46:28');
+(1, 'admin', 'france', '::1', '2017-11-03 16:02:14');
 
 -- --------------------------------------------------------
 
@@ -129,7 +129,6 @@ INSERT INTO `cm_login` (`CM_Id`, `Center_Code`, `DM_Emp_Code`, `CM_Emp_Code`, `C
 CREATE TABLE `course_master` (
   `Course_Id` smallint(6) NOT NULL,
   `Course_Name` varchar(50) NOT NULL,
-  `Application_Fee` int(11) NOT NULL,
   `Learning_Fee` int(11) NOT NULL,
   `Registration_Fee` int(11) NOT NULL,
   `Exam_Fee` int(11) NOT NULL
@@ -139,9 +138,8 @@ CREATE TABLE `course_master` (
 -- Dumping data for table `course_master`
 --
 
-INSERT INTO `course_master` (`Course_Id`, `Course_Name`, `Application_Fee`, `Learning_Fee`, `Registration_Fee`, `Exam_Fee`) VALUES
-(2, 'BCA', 100, 15000, 1000, 1000),
-(4, 'MCA', 100, 25000, 1000, 1000);
+INSERT INTO `course_master` (`Course_Id`, `Course_Name`, `Learning_Fee`, `Registration_Fee`, `Exam_Fee`) VALUES
+(2, 'BCA', 15000, 1000, 1000);
 
 -- --------------------------------------------------------
 
@@ -796,19 +794,22 @@ CREATE TABLE `employee_master` (
   `EMP_Salary` int(11) NOT NULL,
   `Posting_Place` varchar(50) NOT NULL,
   `Duty_Time` varchar(50) NOT NULL,
-  `Visiting_Date_Place` varchar(50) NOT NULL
+  `Visiting_Date_Place` varchar(50) NOT NULL,
+  `emp_sign` varchar(100) NOT NULL COMMENT '//emp signature_name'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee_master`
 --
 
-INSERT INTO `employee_master` (`EMP_Id`, `EMP_Code`, `EMP_Name`, `DOJ`, `EMP_Designation`, `EMP_Image`, `State_Id`, `District_Id`, `Block_Id`, `EMP_Address`, `EMP_Contact`, `EMP_Email`, `EMP_Salary`, `Posting_Place`, `Duty_Time`, `Visiting_Date_Place`) VALUES
-(1, 'AB00001', 'V Sudhir', '2017-06-28', 'Regional Manager', '1498819685.jpg', 7, 152, 1, 'Kaledonia 1st Floor, Office No-26, Sahar Road', '9826396462', 'sudhir5106@gmail.com', 50000, 'Bhilai', '10AM to 6PM', '28.06.2017 Bhilai'),
-(2, 'AB00002', 'V Manasa', '2017-06-30', 'District Manager', '1498819700.jpg', 7, 152, 6, 'sd asdfa sdf asdf asdf asdf', '9479256604', 's@gmail.com', 30000, 'Durg', '10AM to 6PM', '01.07.2017 Bhilai'),
-(4, 'AB00003', 'Jagjit Singh', '2017-07-05', 'Regional Manager', '1499262954.jpg', 7, 152, 4, 'dfas asfd asdf asdf ', '9826396462', 'jagjit@gmail.com', 50000, 'Raigarh', '10AM to 6PM', 'zxdasdf'),
-(5, 'AB00004', 'Dr. Sandeep Dave', '2017-07-06', 'Regional Manager', '1499352383.jpg', 7, 152, 11, 'sd asdf asdf asdf asdfafds', '9479256605', 'sandeep@gmail.com', 50000, 'Bhilai', '10AM to 6PM', '07.07.2017 Bhilai'),
-(6, 'AB00005', 'Rakesh Nair', '2017-07-06', 'Center Manager', '1499358967.jpg', 7, 152, 1, 'asdf asdf asdf asdf asdfasf dasfd', '9826138203', 'nair_bhilai@gmail.com', 10000, 'Raigarh', '10AM to 6PM', '07.07.2017 Bhilai');
+INSERT INTO `employee_master` (`EMP_Id`, `EMP_Code`, `EMP_Name`, `DOJ`, `EMP_Designation`, `EMP_Image`, `State_Id`, `District_Id`, `Block_Id`, `EMP_Address`, `EMP_Contact`, `EMP_Email`, `EMP_Salary`, `Posting_Place`, `Duty_Time`, `Visiting_Date_Place`, `emp_sign`) VALUES
+(1, 'AB00001', 'V Sudhir', '2017-06-28', 'Regional Manager', '1498819685.jpg', 7, 152, 1, 'Kaledonia 1st Floor, Office No-26, Sahar Road', '9826396462', 'sudhir5106@gmail.com', 50000, 'Bhilai', '10AM to 6PM', '28.06.2017 Bhilai', ''),
+(2, 'AB00002', 'V Manasa', '2017-06-30', 'District Manager', '1498819700.jpg', 7, 152, 6, 'sd asdfa sdf asdf asdf asdf', '9479256604', 's@gmail.com', 30000, 'Durg', '10AM to 6PM', '01.07.2017 Bhilai', ''),
+(4, 'AB00003', 'Jagjit Singh', '2017-07-05', 'Regional Manager', '1499262954.jpg', 7, 152, 4, 'dfas asfd asdf asdf ', '9826396462', 'jagjit@gmail.com', 50000, 'Raigarh', '10AM to 6PM', 'zxdasdf', ''),
+(5, 'AB00004', 'Dr. Sandeep Dave', '2017-07-06', 'Regional Manager', '1499352383.jpg', 7, 152, 11, 'sd asdf asdf asdf asdfafds', '9479256605', 'sandeep@gmail.com', 50000, 'Bhilai', '10AM to 6PM', '07.07.2017 Bhilai', ''),
+(6, 'AB00005', 'Rakesh Nair', '2017-07-06', 'Center Manager', '1499358967.jpg', 7, 152, 1, 'asdf asdf asdf asdf asdfasf dasfd', '9826138203', 'nair_bhilai@gmail.com', 10000, 'Raigarh', '10AM to 6PM', '07.07.2017 Bhilai', ''),
+(7, 'AB001', 'SDFSDF', '2017-11-02', 'Regional Manager', '1509610157.jpg', 7, 152, 7, 'xcgvsdfgsd', '1234567890', 'richa.sach.meshram@gmail.com', 1200, 'sdfasd', '10AM to 6PM', '28.06.2017 Bhilai', ''),
+(8, 'fdghdf', 'ghdgdf', '2017-11-02', 'Regional Manager', '1509610443.jpg', 7, 152, 11, 'cvhdh', '1234567890', 'richameshram1988@gmail.com', 1234, 'urtuy', '10am to 6 pm', 'hdfg', '1509610443.jpg');
 
 -- --------------------------------------------------------
 
@@ -835,8 +836,7 @@ CREATE TABLE `fees_payment` (
 INSERT INTO `fees_payment` (`Payment_Id`, `Payment_Date`, `Paid_Amt`, `Payment_Mode`, `Cheque_DD_No`, `Transaction_No`, `Which_Bank_Cheque_DD`, `Student_Id`, `CM_Id`) VALUES
 (2, '2017-08-12 14:30:48', 500, 1, '', '', '', 1, 3),
 (3, '2017-08-12 14:32:34', 1000, 2, '12345', '', 'Axis Bank', 1, 3),
-(4, '2017-08-12 14:33:13', 5000, 3, '', '654987321654', '', 1, 3),
-(5, '2017-10-30 13:32:11', 500, 1, '', '', '', 1, 3);
+(4, '2017-08-12 14:33:13', 5000, 3, '', '654987321654', '', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -1029,7 +1029,7 @@ CREATE TABLE `student_master` (
 --
 
 INSERT INTO `student_master` (`Student_Id`, `Reg_Date`, `Application_No`, `Student_Code`, `Password`, `Student_Name`, `DOB`, `Gender`, `Father_Name`, `Mother_Name`, `Religion`, `Caste`, `Phisical_Status`, `Aadhaar_No`, `Education`, `Course_Id`, `Mode`, `Session`, `About_Fee_Deposite`, `Block_Id`, `Address`, `Pincode`, `Contact_No`, `Email`, `Bank_Name`, `Account_No`, `Bank_Address`, `IFSC_Code`, `Photo`, `Signature`, `Gaurdian_Signature`, `CM_Id`, `Reference`, `Registration_No`, `Entry_No`, `Approval_Status`, `Status`) VALUES
-(1, '2017-07-31', 1, 4376, 'JIuwsR', 'v sudhir', '1984-01-09', 1, 'v gandhi', 'v saroja', 'Hindu', 'OBC', 2, '123456781234', 'Diploma', 2, 'regular', 'january', 'The student will pay in 4 installments, First 3 installment will be 20%-20% and the last installment will be 40% which he will pay in august month, because he belongs to very poor family that is why we gave him the time to pay the fees. ', 6, 'asdf adsf asdf ', '490020', '9826396462', 's@gmail.com', 'Axis Bank', '214010100136631', 'Supela, Bhilai, Chhattisgarh', 'UTIB0000214', '1501511959.jpg', '1501511959.jpg', '1501511959.jpg', 3, 'Naresh Sahu', 295566, 298523, 1, 1);
+(1, '2017-07-31', 1, 4376, 'student', 'v sudhir', '1984-01-09', 1, 'v gandhi', 'v saroja', 'Hindu', 'OBC', 2, '123456781234', 'Diploma', 2, 'regular', 'january', 'The student will pay in 4 installments, First 3 installment will be 20%-20% and the last installment will be 40% which he will pay in august month, because he belongs to very poor family that is why we gave him the time to pay the fees. ', 6, 'asdf adsf asdf ', '490020', '9826396462', 's@gmail.com', 'Axis Bank', '214010100136631', 'Supela, Bhilai, Chhattisgarh', 'UTIB0000214', '1501511959.jpg', '1501511959.jpg', '1501511959.jpg', 3, 'Naresh Sahu', 295566, 298523, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -1164,7 +1164,7 @@ ALTER TABLE `cm_login`
 -- AUTO_INCREMENT for table `course_master`
 --
 ALTER TABLE `course_master`
-  MODIFY `Course_Id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Course_Id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `district_master`
 --
@@ -1179,12 +1179,12 @@ ALTER TABLE `dm_login`
 -- AUTO_INCREMENT for table `employee_master`
 --
 ALTER TABLE `employee_master`
-  MODIFY `EMP_Id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `EMP_Id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `fees_payment`
 --
 ALTER TABLE `fees_payment`
-  MODIFY `Payment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Payment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `ho_notice`
 --
@@ -1243,7 +1243,7 @@ ALTER TABLE `district_master`
 -- Constraints for table `fees_payment`
 --
 ALTER TABLE `fees_payment`
-  ADD CONSTRAINT `fees_payment_ibfk_1` FOREIGN KEY (`Student_Id`) REFERENCES `student_master` (`Student_Id`),
+  ADD CONSTRAINT `fees_payment_ibfk_1` FOREIGN KEY (`student_Id`) REFERENCES `student_master` (`Student_Id`),
   ADD CONSTRAINT `fees_payment_ibfk_2` FOREIGN KEY (`CM_Id`) REFERENCES `cm_login` (`CM_Id`);
 
 --

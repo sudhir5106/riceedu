@@ -29,7 +29,7 @@
   <script src="<?php echo PATH_JS_LIBRARIES ?>/jquery.min.js"></script>
   <script src="<?php echo PATH_JS_LIBRARIES ?>/jquery-ui.js"></script>
   <script src="<?php echo PATH_JS_LIBRARIES ?>/nprogress.js"></script>
-
+<script src="<?php echo PATH_JS_LIBRARIES ?>/jquery.validate.js"></script>
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
         <![endif]-->

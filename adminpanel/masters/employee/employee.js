@@ -12,6 +12,13 @@ $(document).ready(function(){
 				required: true,
 				extension: "jpg|png|jpeg|gif",
 			},
+
+
+			fileupload_sign:
+			{
+				required: true,
+				extension: "jpg|png|jpeg|gif",
+			},
 			emp_name: 
 			{ 
 				required: true,
@@ -277,13 +284,13 @@ $(document).ready(function(){
 			var formdata = new FormData();
 			formdata.append('type', "getBlocks");
 			formdata.append('districtId', $("#district").val());
-	
+	   
 			var x;
 			$.ajax({
 			   type: "POST",
 			   url: "employee_curd.php",
 			   data:formdata,
-			   success: function(data){ //alert(data);
+			   success: function(data){ alert(data);
 				   $('#block').html(data);
 			   },
 			   cache: false,
@@ -307,6 +314,7 @@ $(document).ready(function(){
 			var formdata = new FormData();
 			formdata.append('type', "addEmployee");
 			formdata.append('file', $('input[id=fileupload]')[0].files[0]);
+			formdata.append('file_sign', $('input[id=fileupload_sign]')[0].files[0]);
 			formdata.append('emp_code', $("#emp_code").val());
 			formdata.append('emp_name', $("#emp_name").val());
 			formdata.append('designation', $("#designation").val());

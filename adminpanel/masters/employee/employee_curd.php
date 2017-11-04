@@ -76,7 +76,29 @@ if($_POST['type']=="addEmployee")
 	$tmp = $_FILES['file']['tmp_name'];
 	
 	
-	if(move_uploaded_file($tmp, $path.$actual_image_name))
+    
+	/////////////////////////////////
+	// Code for employee  photo
+	/////////////////////////////////
+	$path_sign = ROOT."/data_images/employee/signature";
+	$path_sign1 = ROOT."/data_images/employee/signature/thumb/";
+	
+	
+	$name_sign = $_FILES['file_sign']['name'];
+	$image_sign=explode('.',$name_sign);
+	$actual_image_name_sign = time().'.'.$image[1]; // rename the file name
+	$tmp_sign = $_FILES['file_sign']['tmp_name'];
+	
+
+
+
+
+
+
+
+
+
+	if(move_uploaded_file($tmp, $path.$actual_image_name) &&  move_uploaded_file($tmp_sign, $path_sign.$actual_image_name_sign))
 	{
 		
 		///////////////////////////////////////////////////////////
@@ -86,9 +108,21 @@ if($_POST['type']=="addEmployee")
 		$resizeObj1 -> resizeImage(200, 200, 'auto');
 		$resizeObj1 -> saveImage($path1.$actual_image_name, 100);
 		
-		$res=mysql_query("INSERT INTO employee_master (DOJ, EMP_Code, EMP_Name, EMP_Designation, EMP_Image, State_Id, District_Id, Block_Id, EMP_Address, EMP_Contact, EMP_Email, EMP_Salary, Posting_Place, Duty_Time, Visiting_Date_Place) 			
+
+
+    ///////////////////////////////////////////////////////////
+		// move the image in the data_images/addmision thumb folder
+		///////////////////////////////////////////////////////////
+		$resizeObj1 = new resize($path_sign.$actual_image_name_sign);
+		$resizeObj1 -> resizeImage(200, 200, 'auto');
+		$resizeObj1 -> saveImage($path_sign1.$actual_image_name_sign, 100);
+
+
+
+
+		$res=mysql_query("INSERT INTO employee_master (DOJ, EMP_Code, EMP_Name, EMP_Designation, EMP_Image, State_Id, District_Id, Block_Id, EMP_Address, EMP_Contact, EMP_Email, EMP_Salary, Posting_Place, Duty_Time, Visiting_Date_Place,emp_sign) 			
 			
-		VALUES (NOW(), '".$_REQUEST['emp_code']."', '".$_REQUEST['emp_name']."', '".$_REQUEST['designation']."', '".$actual_image_name."', ".$_REQUEST['state'].", ".$_REQUEST['district'].", ".$_REQUEST['block'].", '".$_REQUEST['address']."', '".$_REQUEST['contact_no']."', '".$_REQUEST['email']."', '".$_REQUEST['salary']."', '".$_REQUEST['posting_place']."', '".$_REQUEST['duty_time']."', '".$_REQUEST['Visiting_Date_Place']."')");
+		VALUES (NOW(), '".$_REQUEST['emp_code']."', '".$_REQUEST['emp_name']."', '".$_REQUEST['designation']."', '".$actual_image_name."', ".$_REQUEST['state'].", ".$_REQUEST['district'].", ".$_REQUEST['block'].", '".$_REQUEST['address']."', '".$_REQUEST['contact_no']."', '".$_REQUEST['email']."', '".$_REQUEST['salary']."', '".$_REQUEST['posting_place']."', '".$_REQUEST['duty_time']."', '".$_REQUEST['Visiting_Date_Place']."','".$actual_image_name_sign."')");
 		
 		
 		if(!$res)

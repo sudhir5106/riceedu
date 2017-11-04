@@ -110,10 +110,10 @@ if($_POST['type']=="checkStudentLogin")
 	if(!empty($result)){
 		
 		if($result[1]['Status']==1){
-			
+			  $_SESSION['user_code']=$result[1]['Student_Id'];;
 			$_SESSION['sid']=$result[1]['Student_Id'];
 			$_SESSION['sname']=$result[1]['Student_Name'];
-			
+		   
 			echo "true";	
 		}
 		else{

@@ -31,6 +31,18 @@ $getStates=$db->ExecuteQuery("SELECT * FROM state_master ");
                 <input class="col-md-8" type="file" id="fileupload" name="fileupload">
            </div>
         </div>
+
+      <div class="form-group">
+            <label class="col-md-4 control-label mandatory" for="filebutton">Employee Signature <span>*</span>:</label>
+            <div class="col-md-4">
+                <label class="col-md-4 control-label" for="fileupload_sign"><span class="glyphicon glyphicon-picture" style="font-size:50pt;"></span></label>
+                <input class="col-md-8" type="file" id="fileupload_sign" name="fileupload_sign">
+           </div>
+        </div>
+
+
+
+
         
         <div class="form-group">
           <label class="control-label col-sm-4 mandatory" for="emp_code">Employee Code <span>*</span>:</label>
