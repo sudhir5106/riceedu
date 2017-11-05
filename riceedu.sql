@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2017 at 03:01 PM
+-- Generation Time: Nov 05, 2017 at 09:01 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -129,6 +129,7 @@ INSERT INTO `cm_login` (`CM_Id`, `Center_Code`, `DM_Emp_Code`, `CM_Emp_Code`, `C
 CREATE TABLE `course_master` (
   `Course_Id` smallint(6) NOT NULL,
   `Course_Name` varchar(50) NOT NULL,
+  `Application_Fee` int(11) NOT NULL,
   `Learning_Fee` int(11) NOT NULL,
   `Registration_Fee` int(11) NOT NULL,
   `Exam_Fee` int(11) NOT NULL
@@ -138,8 +139,8 @@ CREATE TABLE `course_master` (
 -- Dumping data for table `course_master`
 --
 
-INSERT INTO `course_master` (`Course_Id`, `Course_Name`, `Learning_Fee`, `Registration_Fee`, `Exam_Fee`) VALUES
-(2, 'BCA', 15000, 1000, 1000);
+INSERT INTO `course_master` (`Course_Id`, `Course_Name`, `Application_Fee`, `Learning_Fee`, `Registration_Fee`, `Exam_Fee`) VALUES
+(2, 'BCA', 100, 15000, 1000, 1000);
 
 -- --------------------------------------------------------
 

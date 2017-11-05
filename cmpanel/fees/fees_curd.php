@@ -30,8 +30,8 @@ if($_POST['type']=="getStudentInfo")
 		LEFT JOIN course_master c ON s.Course_Id = c.Course_Id
 		WHERE Student_Code=".$_POST['student_code']." AND CM_Id=".$_SESSION['cmid']; 
 	 	$res=$db->ExecuteQuery($sql_student);
-		
-		$getfees=$db->ExecuteQuery("SELECT Payment_Id, DATE_FORMAT(Payment_Date,'%d-%m-%Y') AS Payment_Date, Paid_Amt, CASE WHEN Payment_Mode=1 THEN 'CASH' WHEN Payment_Mode=2 THEN 'CHEQUE/DD' WHEN Payment_Mode=3 THEN 'NEFT' END AS Payment_Mode, Cheque_DD_No, Transaction_No, Which_Bank_Cheque_DD FROM fees_payment WHERE Student_Id=".$res[1]['Student_Id']);
+
+	 	$getfees=$db->ExecuteQuery("SELECT Payment_Id, DATE_FORMAT(Payment_Date,'%d-%m-%Y') AS Payment_Date, Paid_Amt, CASE WHEN Payment_Mode=1 THEN 'CASH' WHEN Payment_Mode=2 THEN 'CHEQUE/DD' WHEN Payment_Mode=3 THEN 'NEFT' END AS Payment_Mode, Cheque_DD_No, Transaction_No, Which_Bank_Cheque_DD FROM fees_payment WHERE Student_Id=".$res[1]['Student_Id']);
 	
 		if(!empty($res)){
 			
