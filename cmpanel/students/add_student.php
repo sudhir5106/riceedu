@@ -317,9 +317,15 @@ $getCourse=$db->ExecuteQuery("SELECT * FROM course_master ");
                     <input type="text" class="form-control" id="bank_name" name="bank_name" placeholder="Bank Name" />
                   </div>
                 </div>
-                
+                   <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="ac_holder_name">A/C Holder Name <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="ac_holder_name" name="ac_holder_name" placeholder="A/C Holder Name" />
+                  </div>
+                </div>
+
                 <div class="form-group">
-                  <label class="control-label col-sm-4 mandatory" for="account_no">Bank Account No <span>*</span>:</label>
+                  <label class="control-label col-sm-4 mandatory" for="account_no"> Account No <span>*</span>:</label>
                   <div class="col-sm-3">
                     <input type="text" class="form-control" id="account_no" name="account_no" placeholder="Bank Account No." />
                   </div>
@@ -338,7 +344,10 @@ $getCourse=$db->ExecuteQuery("SELECT * FROM course_master ");
                     <input type="text" class="form-control" id="ifsc_code" name="ifsc_code" placeholder="IFSC Code" />
                   </div>
                 </div>
-                
+
+              
+
+
                 <hr />
                 
                 <div class="form-group">

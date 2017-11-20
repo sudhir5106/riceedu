@@ -4,16 +4,16 @@ class Send
   public function Sms($contactno,$content)
   {
      
-	$authKey = "69360AvE2Z7vRS9e15433d66e";
+	$authKey = "63a0d84e-11e5-4b0c-afaa-67e4560569f3";
 
 	//Multiple mobiles numbers seperated by comma
 	$mobileNumber = $contactno;
 
 	//Your message to send, Add URL endcoding here.
 	$message = urlencode($content);
-	$senderId = "SDMSON";
+	$senderId = "WEBSMS";
 	//Define route 
-	$route = "template";
+	$route = "Normal Connect";
 	//Prepare you post parameters
 	$postData = array(
 		'authkey' => $authKey,
@@ -24,8 +24,8 @@ class Send
 	);
 	
 	//API URL
-	$url="https://control.msg91.com/sendhttp.php";
-	
+	//$url="https://control.msg91.com/sendhttp.php";
+	$url="http://sms.technocratws.com";
 	// init the resource
 	$ch = curl_init();
 	curl_setopt_array($ch, array(

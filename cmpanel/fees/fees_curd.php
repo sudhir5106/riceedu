@@ -2,6 +2,8 @@
 include('../../config.php'); 
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
 require_once(PATH_LIBRARIES.'/classes/resize.php');
+require_once(PATH_LIBRARIES.'/classes/send_sms.php');
+require (ROOT."/PHPMailer-master/class.phpmailer.php");
 $db = new DBConn();
 
 
@@ -265,11 +267,26 @@ if($_POST['type']=='feespayment'){
 	/////////////////////////////////////////////////////
 	// Query to insert the data into fees_payment table
 	/////////////////////////////////////////////////////
+	$sql_receipt="select max(Receipt_no)as receipt from fees_payment";
+	$res_query_receipt=$db->ExecuteQuery($sql_receipt);
+	$receipt_no=0;
+
+	if(!($res_query_receipt[1]['receipt'])=="")
+	{
+		$receipt_no= $res_query_receipt[1]['receipt']+1;
+		$receipt_no=$receipt_no;
+	}
+	else
+	{
+		
+       $receipt_no="10000";
+       
+	}
 	
-	$res=mysql_query("INSERT INTO fees_payment (Payment_Date, Paid_Amt, Payment_Mode, Cheque_DD_No, Transaction_No, Which_Bank_Cheque_DD, Student_Id, CM_Id) 			
+	$res=mysql_query("INSERT INTO fees_payment (Payment_Date, Paid_Amt, Payment_Mode, Cheque_DD_No, Transaction_No, Which_Bank_Cheque_DD, Student_Id,Receipt_no,CM_Id) 			
 		
 	VALUES (NOW(), ".$_REQUEST['amount'].", ".$_REQUEST['paymentmode'].", '".$_REQUEST['cDDNo']."', '".$_REQUEST['transactionNo'].
-	"', '".$_REQUEST['bank']."', ".$_REQUEST['studentid'].", ".$_SESSION['cmid'].")");	
+	"', '".$_REQUEST['bank']."', ".$_REQUEST['studentid'].",$receipt_no, ".$_SESSION['cmid'].")");	
 	
 	if(!$res)
 	{
@@ -277,7 +294,44 @@ if($_POST['type']=='feespayment'){
 	}
 	else
 	{	
-	  echo 1;
+	  
+
+   
+
+
+$sql_student_mail="SELECT  Student_Name, Father_Name, Mother_Name,Email,Photo,Contact_No,Course_Name, Application_Fee, Learning_Fee, Registration_Fee, Exam_Fee, CASE WHEN Mode='regular' THEN 'Regular' WHEN Mode='online' THEN 'Online' WHEN Mode='private' THEN 'Private' END AS Mode, Session, About_Fee_Deposite, CASE WHEN Mode='regular' THEN (Application_Fee + Learning_Fee + Registration_Fee + Exam_Fee) WHEN Mode='online' THEN (Application_Fee + Learning_Fee + Registration_Fee + Exam_Fee) WHEN Mode='private' THEN Exam_Fee END AS Total_Fees, (SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=".$_POST['studentid'].") AS Paid_Amt
+		FROM student_master s
+		
+		LEFT JOIN course_master c ON s.Course_Id = c.Course_Id
+		WHERE Student_Id=".$_POST['studentid']; 
+	 	$res_query=$db->ExecuteQuery($sql_student_mail);
+
+       $total=$res_query[1]['Application_Fee']+$res_query[1]['Learning_Fee']+$res_query[1]['Registration_Fee']+$res_query[1]['Exam_Fee'];
+       $to=$res_query[1]['Email'];
+       $subject=" About Fee Submission";
+      	$message= '<table><tr><td>Name</td><td>'.$res_query[1]['Student_Name'].'</td></tr>
+                     <tr><td>Course Name</td><td>'.$res_query[1]['Course_Name'].'</td></tr>
+                     <tr><td>Total Fees:</td><td>'.$total.'</td></tr>
+                     <tr><td>Total Pay</td><td>'.$res_query[1]['Paid_Amt'].'</td></tr>
+                     
+
+      	</table>';
+ 
+
+ $sendsms = new Send();
+$contactno=$res_query[1]['Contact_No'];
+//$contactno='8827327607';
+$str="Thanks for Fee Submission";
+$ressend=$sendsms->Sms($contactno,$str);
+    if(!$ressend)
+    {
+	echo "not send";
+    }
+    else
+   {
+	echo 1;
+   }
+
 	}
 	
 }

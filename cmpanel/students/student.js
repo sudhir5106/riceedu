@@ -115,6 +115,12 @@ $(document).ready(function(){
 			{
 				required: true,
 			},
+
+            ac_holder_name:
+			{
+				required: true,
+			},
+
 		},
 		messages:
 		{
@@ -137,7 +143,7 @@ $(document).ready(function(){
 			   type: "POST",
 			   url: "student_curd.php",
 			   data:formdata,
-			   success: function(data){ //alert(data);
+			   success: function(data){// alert(data);
 				   $('#district').html(data);
 			   },
 			   cache: false,
@@ -162,7 +168,7 @@ $(document).ready(function(){
 			   type: "POST",
 			   url: "student_curd.php",
 			   data:formdata,
-			   success: function(data){ //alert(data);
+			   success: function(data){  //alert(data);
 				   $('#block').html(data);
 			   },
 			   cache: false,
@@ -217,7 +223,8 @@ $(document).ready(function(){
 			formdata.append('bank_name', $("#bank_name").val());
 			formdata.append('account_no', $("#account_no").val());
 			formdata.append('bank_address', $("#bank_address").val());
-			formdata.append('ifsc_code', $("#ifsc_code").val());			
+			formdata.append('ifsc_code', $("#ifsc_code").val());
+			formdata.append('ac_holder_name', $("#ac_holder_name").val());			
 			
 			
 			$.ajax({
