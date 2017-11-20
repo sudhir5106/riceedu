@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2017 at 09:01 AM
+-- Generation Time: Nov 20, 2017 at 02:40 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -827,17 +827,79 @@ CREATE TABLE `fees_payment` (
   `Transaction_No` varchar(30) DEFAULT NULL,
   `Which_Bank_Cheque_DD` varchar(75) DEFAULT NULL,
   `Student_Id` int(11) NOT NULL,
-  `CM_Id` smallint(6) NOT NULL
+  `CM_Id` smallint(6) NOT NULL,
+  `Receipt_no` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fees_payment`
 --
 
-INSERT INTO `fees_payment` (`Payment_Id`, `Payment_Date`, `Paid_Amt`, `Payment_Mode`, `Cheque_DD_No`, `Transaction_No`, `Which_Bank_Cheque_DD`, `Student_Id`, `CM_Id`) VALUES
-(2, '2017-08-12 14:30:48', 500, 1, '', '', '', 1, 3),
-(3, '2017-08-12 14:32:34', 1000, 2, '12345', '', 'Axis Bank', 1, 3),
-(4, '2017-08-12 14:33:13', 5000, 3, '', '654987321654', '', 1, 3);
+INSERT INTO `fees_payment` (`Payment_Id`, `Payment_Date`, `Paid_Amt`, `Payment_Mode`, `Cheque_DD_No`, `Transaction_No`, `Which_Bank_Cheque_DD`, `Student_Id`, `CM_Id`, `Receipt_no`) VALUES
+(2, '2017-08-12 14:30:48', 500, 1, '', '', '', 1, 3, ''),
+(3, '2017-08-12 14:32:34', 1000, 2, '12345', '', 'Axis Bank', 1, 3, ''),
+(4, '2017-08-12 14:33:13', 5000, 3, '', '654987321654', '', 1, 3, ''),
+(5, '2017-11-18 13:16:36', 12, 1, '', '', '', 2, 3, ''),
+(6, '2017-11-18 13:16:42', 12, 1, '', '', '', 2, 3, ''),
+(7, '2017-11-18 13:35:25', 2, 1, '', '', '', 2, 3, ''),
+(8, '2017-11-18 13:42:41', 2, 1, '', '', '', 2, 3, ''),
+(9, '2017-11-18 13:51:47', 1, 1, '', '', '', 2, 3, ''),
+(10, '2017-11-18 13:52:13', 1, 1, '', '', '', 2, 3, ''),
+(11, '2017-11-18 13:52:42', 1, 1, '', '', '', 2, 3, ''),
+(12, '2017-11-18 14:03:40', 2, 1, '', '', '', 2, 3, ''),
+(13, '2017-11-18 14:07:16', 2, 1, '', '', '', 2, 3, ''),
+(14, '2017-11-18 14:08:28', 2, 1, '', '', '', 2, 3, ''),
+(15, '2017-11-18 14:08:40', 3, 1, '', '', '', 2, 3, ''),
+(16, '2017-11-18 15:27:31', 2, 1, '', '', '', 2, 3, ''),
+(17, '2017-11-18 15:53:34', 2, 1, '', '', '', 2, 3, ''),
+(18, '2017-11-18 15:54:40', 2, 1, '', '', '', 1, 3, ''),
+(19, '2017-11-18 15:54:42', 2, 1, '', '', '', 1, 3, ''),
+(20, '2017-11-18 15:55:51', 2, 1, '', '', '', 2, 3, ''),
+(21, '2017-11-18 15:55:54', 2, 1, '', '', '', 2, 3, ''),
+(22, '2017-11-18 15:56:16', 3, 1, '', '', '', 2, 3, ''),
+(23, '2017-11-18 15:56:42', 2, 1, '', '', '', 1, 3, ''),
+(24, '2017-11-18 15:56:45', 2, 1, '', '', '', 1, 3, ''),
+(25, '2017-11-18 15:56:49', 2, 1, '', '', '', 1, 3, ''),
+(26, '2017-11-18 16:18:57', 1, 1, '', '', '', 2, 3, ''),
+(27, '2017-11-18 16:20:22', 2, 1, '', '', '', 2, 3, ''),
+(28, '2017-11-18 16:23:58', 3, 1, '', '', '', 2, 3, ''),
+(29, '2017-11-18 16:28:17', 2, 1, '', '', '', 2, 3, ''),
+(30, '2017-11-18 16:56:41', 1, 1, '', '', '', 2, 3, ''),
+(31, '2017-11-20 10:35:45', 2, 1, '', '', '', 2, 3, ''),
+(32, '2017-11-20 10:36:39', 3, 1, '', '', '', 2, 3, ''),
+(33, '2017-11-20 10:38:50', 3, 1, '', '', '', 2, 3, ''),
+(34, '2017-11-20 10:56:51', 1, 1, '', '', '', 2, 3, ''),
+(35, '2017-11-20 11:01:37', 1, 1, '', '', '', 2, 3, ''),
+(36, '2017-11-20 11:04:17', 1, 1, '', '', '', 2, 3, ''),
+(37, '2017-11-20 11:10:59', 2, 1, '', '', '', 2, 3, ''),
+(38, '2017-11-20 11:12:07', 3, 1, '', '', '', 2, 3, ''),
+(39, '2017-11-20 11:13:55', 3, 1, '', '', '', 2, 3, ''),
+(40, '2017-11-20 11:15:48', 3, 1, '', '', '', 2, 3, ''),
+(41, '2017-11-20 11:16:19', 3, 1, '', '', '', 2, 3, ''),
+(42, '2017-11-20 11:23:51', 34, 1, '', '', '', 2, 3, ''),
+(43, '2017-11-20 11:25:20', 34, 1, '', '', '', 2, 3, ''),
+(44, '2017-11-20 11:45:03', 10, 1, '', '', '', 1, 3, ''),
+(45, '2017-11-20 12:19:42', 1, 1, '', '', '', 2, 3, ''),
+(46, '2017-11-20 12:20:20', 2, 1, '', '', '', 2, 3, ''),
+(47, '2017-11-20 12:22:00', 2, 1, '', '', '', 2, 3, ''),
+(48, '2017-11-20 12:22:53', 3, 1, '', '', '', 2, 3, ''),
+(49, '2017-11-20 12:23:29', 2, 1, '', '', '', 2, 3, ''),
+(50, '2017-11-20 12:24:09', 3, 1, '', '', '', 2, 3, ''),
+(51, '2017-11-20 12:35:32', 2, 1, '', '', '', 2, 3, ''),
+(52, '2017-11-20 12:46:50', 1, 1, '', '', '', 2, 3, ''),
+(53, '2017-11-20 12:46:51', 1, 1, '', '', '', 2, 3, ''),
+(54, '2017-11-20 12:47:01', 2, 1, '', '', '', 2, 3, ''),
+(68, '2017-11-20 12:59:04', 2, 1, '', '', '', 2, 3, '10000'),
+(69, '2017-11-20 12:59:33', 4, 1, '', '', '', 2, 3, '10001'),
+(70, '2017-11-20 13:07:20', 4, 1, '', '', '', 2, 3, '10002'),
+(71, '2017-11-20 13:07:51', 4, 1, '', '', '', 2, 3, '10003'),
+(72, '2017-11-20 13:07:59', 45, 1, '', '', '', 2, 3, '10004'),
+(73, '2017-11-20 13:09:05', 45, 1, '', '', '', 2, 3, '10005'),
+(74, '2017-11-20 13:09:13', 34, 1, '', '', '', 2, 3, '10006'),
+(75, '2017-11-20 13:10:19', 34, 1, '', '', '', 2, 3, '10007'),
+(76, '2017-11-20 13:12:02', 34, 1, '', '', '', 2, 3, '10008'),
+(77, '2017-11-20 13:14:00', 23, 1, '', '', '', 2, 3, '10009'),
+(78, '2017-11-20 13:18:08', 1, 1, '', '', '', 2, 3, '10010');
 
 -- --------------------------------------------------------
 
@@ -1022,15 +1084,18 @@ CREATE TABLE `student_master` (
   `Registration_No` int(11) NOT NULL,
   `Entry_No` int(11) NOT NULL,
   `Approval_Status` tinyint(4) NOT NULL,
-  `Status` tinyint(4) NOT NULL
+  `Status` tinyint(4) NOT NULL,
+  `Acc_holder_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student_master`
 --
 
-INSERT INTO `student_master` (`Student_Id`, `Reg_Date`, `Application_No`, `Student_Code`, `Password`, `Student_Name`, `DOB`, `Gender`, `Father_Name`, `Mother_Name`, `Religion`, `Caste`, `Phisical_Status`, `Aadhaar_No`, `Education`, `Course_Id`, `Mode`, `Session`, `About_Fee_Deposite`, `Block_Id`, `Address`, `Pincode`, `Contact_No`, `Email`, `Bank_Name`, `Account_No`, `Bank_Address`, `IFSC_Code`, `Photo`, `Signature`, `Gaurdian_Signature`, `CM_Id`, `Reference`, `Registration_No`, `Entry_No`, `Approval_Status`, `Status`) VALUES
-(1, '2017-07-31', 1, 4376, 'student', 'v sudhir', '1984-01-09', 1, 'v gandhi', 'v saroja', 'Hindu', 'OBC', 2, '123456781234', 'Diploma', 2, 'regular', 'january', 'The student will pay in 4 installments, First 3 installment will be 20%-20% and the last installment will be 40% which he will pay in august month, because he belongs to very poor family that is why we gave him the time to pay the fees. ', 6, 'asdf adsf asdf ', '490020', '9826396462', 's@gmail.com', 'Axis Bank', '214010100136631', 'Supela, Bhilai, Chhattisgarh', 'UTIB0000214', '1501511959.jpg', '1501511959.jpg', '1501511959.jpg', 3, 'Naresh Sahu', 295566, 298523, 1, 1);
+INSERT INTO `student_master` (`Student_Id`, `Reg_Date`, `Application_No`, `Student_Code`, `Password`, `Student_Name`, `DOB`, `Gender`, `Father_Name`, `Mother_Name`, `Religion`, `Caste`, `Phisical_Status`, `Aadhaar_No`, `Education`, `Course_Id`, `Mode`, `Session`, `About_Fee_Deposite`, `Block_Id`, `Address`, `Pincode`, `Contact_No`, `Email`, `Bank_Name`, `Account_No`, `Bank_Address`, `IFSC_Code`, `Photo`, `Signature`, `Gaurdian_Signature`, `CM_Id`, `Reference`, `Registration_No`, `Entry_No`, `Approval_Status`, `Status`, `Acc_holder_name`) VALUES
+(1, '2017-07-31', 1, 4376, 'student', 'v sudhir', '1984-01-09', 1, 'v gandhi', 'v saroja', 'Hindu', 'OBC', 2, '123456781234', 'Diploma', 2, 'regular', 'january', 'The student will pay in 4 installments, First 3 installment will be 20%-20% and the last installment will be 40% which he will pay in august month, because he belongs to very poor family that is why we gave him the time to pay the fees. ', 6, 'asdf adsf asdf ', '490020', '9826396462', 's@gmail.com', 'Axis Bank', '214010100136631', 'Supela, Bhilai, Chhattisgarh', 'UTIB0000214', '1501511959.jpg', '1501511959.jpg', '1501511959.jpg', 3, 'Naresh Sahu', 295566, 298523, 1, 1, ''),
+(2, '2017-11-18', 2, 4377, 'UTiesj', 'seema', '1988-11-02', 1, 'edrfwqer', 'wertwetwe', 'Hindu', 'GEN', 1, 'fgsdf', 'M TECH', 2, 'online', 'april', 'fdgsfdgsdf', 11, 'gfsadfgsdfg', '490020', '1234567890', 'richa.sach.meshram@gmail.com', 'ftgdfsgsdf', 'gsdfgsdfg', 'fdgsdfg', 'qw12231', '1510989404.jpg', '1510989404.jpg', '1510989404.jpg', 3, '', 0, 0, 0, 0, 'rfwerer'),
+(3, '2017-11-18', 3, 4378, 'Wc6tOK', 'seema', '1988-11-02', 1, 'edrfwqer', 'wertwetwe', 'Hindu', 'GEN', 1, 'fgsdf', 'M TECH', 2, 'online', 'april', 'fdgsfdgsdf', 11, 'gfsadfgsdfg', '490020', '1234567890', 'richa.sach.meshram@gmail.com', 'ftgdfsgsdf', 'gsdfgsdfg', 'fdgsdfg', 'qw12231', '1510989411.jpg', '1510989411.jpg', '1510989411.jpg', 3, '', 0, 0, 0, 0, 'rfwerer');
 
 --
 -- Indexes for dumped tables
@@ -1185,7 +1250,7 @@ ALTER TABLE `employee_master`
 -- AUTO_INCREMENT for table `fees_payment`
 --
 ALTER TABLE `fees_payment`
-  MODIFY `Payment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Payment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 --
 -- AUTO_INCREMENT for table `ho_notice`
 --
@@ -1215,7 +1280,7 @@ ALTER TABLE `student_document`
 -- AUTO_INCREMENT for table `student_master`
 --
 ALTER TABLE `student_master`
-  MODIFY `Student_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Student_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
