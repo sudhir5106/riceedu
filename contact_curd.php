@@ -20,7 +20,8 @@ if($_POST['type']=="enquiry"){
 		//data send to the admin via Email
 		///////////////////////////////////
 		//$to  = "admin@samriddhidevelopers.in";
-		$to  = "contact@sdmsonline.in";
+		//$to  = "contact@sdmsonline.in";
+		$to  = "richa.sach.meshram@gmail.com";
 		
 		// subject ///////////////////////////////////////
 		$subject = 'A New Enquiry has been initiated';

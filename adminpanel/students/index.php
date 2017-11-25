@@ -5,7 +5,7 @@ include(PATH_ADMIN_INCLUDE.'/header.php');
 $db = new DBConn();
 
 // get all list of students 
-$getstudent=$db->ExecuteQuery("SELECT Student_Id, DATE_FORMAT(Reg_Date,'%d-%m-%Y') AS Reg_Date, Application_No, Student_Code, Student_Name, Password,  Father_Name, Aadhaar_No, Course_Name, Mode, Session, CASE WHEN Mode='regular' THEN (Learning_Fee + Registration_Fee + Exam_Fee) WHEN Mode='online' THEN (Learning_Fee + Registration_Fee + Exam_Fee) WHEN Mode='private' THEN Exam_Fee END AS Total_Fees, (SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id IN(SELECT Student_Id FROM student_master)) AS Paid_Amt, Address, Block_Name, District_Name, State_Name, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
+$getstudent=$db->ExecuteQuery("SELECT Student_Id, DATE_FORMAT(Reg_Date,'%d-%m-%Y') AS Reg_Date, Application_No, Student_Code, Student_Name, Password,  Father_Name, Aadhaar_No, Course_Name, Mode, Session, CASE WHEN Mode='regular' THEN (Learning_Fee + Registration_Fee + Exam_Fee+Application_Fee) WHEN Mode='online' THEN (Learning_Fee + Registration_Fee + Exam_Fee+Application_Fee) WHEN Mode='private' THEN Exam_Fee+Application_Fee END AS Total_Fees, (SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id IN(SELECT Student_Id FROM student_master)) AS Paid_Amt, Address, Block_Name, District_Name, State_Name, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
 
 FROM student_master st
 
@@ -74,7 +74,8 @@ ORDER BY Student_Id DESC");
                       <?php if($getstudentVal['Approval_Status']=='Pending'){ ?>
                       <button type="button" id="<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-success status">Approve</button>
                       <?php } if($getstudentVal['Approval_Status']!='Pending'){?>
-                      <button type="button" id="pdf-<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-default status">View PDF</button>
+                     <a href="view_pdf.php?k=<?php echo $getstudentVal['Student_Id']; ?>"> <button type="button" id="pdf-<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-default status">View PDF</button>
+                     </a>
                       <?php } ?>
                       </td>
                       

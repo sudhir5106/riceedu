@@ -290,48 +290,39 @@ if($_POST['type']=='feespayment'){
 	
 	if(!$res)
 	{
-	  echo 0;
+	  echo "data not inserted into fees payment";
 	}
 	else
 	{	
 	  
-
-   
-
-
-$sql_student_mail="SELECT  Student_Name, Father_Name, Mother_Name,Email,Photo,Contact_No,Course_Name, Application_Fee, Learning_Fee, Registration_Fee, Exam_Fee, CASE WHEN Mode='regular' THEN 'Regular' WHEN Mode='online' THEN 'Online' WHEN Mode='private' THEN 'Private' END AS Mode, Session, About_Fee_Deposite, CASE WHEN Mode='regular' THEN (Application_Fee + Learning_Fee + Registration_Fee + Exam_Fee) WHEN Mode='online' THEN (Application_Fee + Learning_Fee + Registration_Fee + Exam_Fee) WHEN Mode='private' THEN Exam_Fee END AS Total_Fees, (SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=".$_POST['studentid'].") AS Paid_Amt
-		FROM student_master s
+     $SQL="SELECT student_master.Payment_Status,course_master.Registration_Fee,(SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=".$_POST['studentid'].") AS Paid_Amt
+		FROM student_master 
 		
-		LEFT JOIN course_master c ON s.Course_Id = c.Course_Id
-		WHERE Student_Id=".$_POST['studentid']; 
-	 	$res_query=$db->ExecuteQuery($sql_student_mail);
+		LEFT JOIN course_master  ON student_master.Course_Id = course_master.Course_Id
+		WHERE Student_Id=".$_POST['studentid'];
+   
+       $check=$db->ExecuteQuery($SQL);
+          if($check[1]['Payment_Status']=="0")
+         {
+               if($check[1]['Registration_Fee']<=$check[1]['Paid_Amt'])
+                   {
+       	
+                        	$tblname="student_master";		
+		                     $tblfield=array('Payment_Status');		
+	                      	$tblvalues=array('1');
+			              	$condition="Student_Id=".$_POST['studentid'];
+	                	$result_check=$db->updateValue($tblname,$tblfield,$tblvalues,$condition);
+	                	
 
-       $total=$res_query[1]['Application_Fee']+$res_query[1]['Learning_Fee']+$res_query[1]['Registration_Fee']+$res_query[1]['Exam_Fee'];
-       $to=$res_query[1]['Email'];
-       $subject=" About Fee Submission";
-      	$message= '<table><tr><td>Name</td><td>'.$res_query[1]['Student_Name'].'</td></tr>
-                     <tr><td>Course Name</td><td>'.$res_query[1]['Course_Name'].'</td></tr>
-                     <tr><td>Total Fees:</td><td>'.$total.'</td></tr>
-                     <tr><td>Total Pay</td><td>'.$res_query[1]['Paid_Amt'].'</td></tr>
-                     
+                   }
+                   else
+                   {
 
-      	</table>';
- 
+                  // 	echo "student master table not update";
 
- $sendsms = new Send();
-$contactno=$res_query[1]['Contact_No'];
-//$contactno='8827327607';
-$str="Thanks for Fee Submission";
-$ressend=$sendsms->Sms($contactno,$str);
-    if(!$ressend)
-    {
-	echo "not send";
-    }
-    else
-   {
-	echo 1;
-   }
-
+                   }
+         }
+         echo "1";
 	}
 	
 }

@@ -84,6 +84,9 @@ $cmImg=$db->ExecuteQuery("SELECT EMP_Image FROM employee_master WHERE EMP_Code =
           <li><a href="<?php echo LINK_CONTROL_CM?>/fees"><i class="fa fa-inr" aria-hidden="true"></i>Fees Payment</a>
           	
           </li>
+          <li><a href="<?php echo LINK_CONTROL_CM?>/send_fee_to_admin"><i class="fa fa-inr" aria-hidden="true"></i>Send Regestration Payment</a>
+            
+          </li>
 
         </ul>
       </div>

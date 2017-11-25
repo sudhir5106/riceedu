@@ -77,6 +77,6 @@ if($_SESSION['Login_Id']=="")
   <li class="dropdown"><a href="<?php echo PATH_ADMIN_LINK?>/students">Students</a></li>
   <li class="dropdown"><a href="<?php echo PATH_ADMIN_LINK?>/notice">Notice</a></li>
   <li class="dropdown"><a href="<?php echo PATH_ADMIN_LINK?>/news">News</a></li>
-  
+  <li class="dropdown"><a href="<?php echo PATH_ADMIN_LINK?>/approved_regestration">Received Regestraion Fees</a></li>
 </ul>
 </div>
