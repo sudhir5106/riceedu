@@ -121,17 +121,116 @@ BUS STAND BEHIND KANHA HOSPITAL WARD NO. 31 RAIGARH 496001 C.G.</p>
                 </div>
                 <div class="page-content contact-page col-sm-9">
                 	<h1>Contact Us</h1>
-                    <p class="directorMsg"><strong>We appreciate your stated interest in continuing partnership with me to build ecosystem for skill development.</strong><br /><br />
-                    <span>
-                    CHAIRPERSION CUM DIRECTOR<br />
-                    MR. N. K. SAHU</span><br />
-                    Email - <a href="mailTo:director@riceedu.org">director@riceedu.org</a><br />
-                    Mobile - 9522223647<br />
-                    Whatsapp No - 9691057096
+                    <p class="directorMsg">
+                        <strong>We appreciate your stated interest in continuing partnership with me to build ecosystem for skill development.</strong><br /><br />
+                        <span>ADMINISTRATION OFFICE</span><br />
+                        RURAL INSTITUTE FOR CAREER AND EMPLOYMENT SOCIETY (RICEs)<br>
+                        OLD SARANGARH BUS STAND BEHIND KANHA HOSPITAL<br>
+                        WARD NO. 31 RAIGARH 496001 (C.G.)<br>
+
+                        TIMING 10 AM TO 7 PM<br>
+                        <strong>FOR ENQUARY</strong> – 07762222569, 9522223698, 9329057958<br>
+                        Email - <a href="mailTo:support@riceedu.org">support@riceedu.org</a><br />
+                        Visit us on: <a href="http://www.riceedu.org">www.riceedu.org</a>                        
                     </p>
-                    
+
+                    <div>
+                        <div class="col-sm-6">
+                            <h3>MAHARASHTRA OFFICE</h3>
+                            <p>Under maintenance or sifting <br>
+                            Contact -  – 07762222569, 9522223698, 9329057958
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3>UTTAR PRADESH OFFICE</h3>
+                            <p>PURANA KOPA GANJ NEAR GOVT. HOSPITAL<br>
+                            DIST MAU PIN CODE 275305 U.P.<br>
+                            CONTACT - 8169971843<br>
+                            EMAIL - <a href="mailTo:dspchrs6@gmail.com">dspchrs6@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div style="margin-top:30px;">
+                        <div class="col-sm-6">
+                            <h3>BIHAR OFFICE</h3>
+                            <p>FIRST FLOOR KHAKI BLENDER<br>
+                            NAHI ROAD GLIMMER BUXAR- 802101<br>
+                            CONTACT – 9004769710<br>
+                            EMAIL - <a href="mailTo:manojkumargupta533@gmail.com">manojkumargupta533@gmail.com</a>
+
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3>COMPUTER EDUCATION, SKILL CENTER & BANKING SERVICE </h3>
+                            <p>RURAL INSTITUTE FOR CAREER AND EMPLOYMENT SOCIETY (RICEs) NEAR SUBSTATION BAZAAR CHOWK DUMARPALI (VISA POWER PLANT) RAIGARH 496001 C.G. <br><br>
+                            TIMING 9AM TO 6 PM <br>
+                            CONTACT - 9522223700<br>
+                            EMAIL - <a href="mailTo:dumarpali@riceedu.org">dumarpali@riceedu.org</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div style="margin-top:30px;">
+                        <div class="col-sm-6">
+                            <h3>EDUCATION & SKILL CENTER</h3>
+                            <p>RURAL INSTITUTE FOR CAREER AND EMPLOYMENT SOCIETY (RICEs) PUSSOR ROAD 1ST FLOOR TULSI HOTEL KONDATARAI NEW RAIGARH 496100 C.G. <br><br>
+                            TIMING 9AM TO 6 PM <br>
+                            CONTACT – 9303014203 <br>
+                            EMAIL - <a href="mailTo:kondatarai@riceedu.org">kondatarai@riceedu.org</a>
+
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3>EDUCATION & SKILL CENTER</h3>
+                            <p>RURAL INSTITUTE FOR CAREER AND EMPLOYMENT SOCIETY (RICEs) NEAR BAJAJ AGENCY SHANTI NAGAR SADAK PARA WARD NO. 13 NAWAGARH DIST JANJGIR CHAMPA 495557 C.G. <br><br>
+                            TIMING 8 AM TO 6 PM br>
+                            CONTACT - 9522223689<br>
+                            EMAIL - <a href="mailTo:nawagarh@riceedu.org">nawagarh@riceedu.org</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div style="margin-top:30px;">
+                        <div class="col-sm-6">
+                            <h3>EDUCATION & SKILL CENTER</h3>
+                            <p>RURAL INSTITUTE FOR CAREER AND EMPLOYMENT SOCIETY (RICEs) MAIN ROAD WARD NO. 10 NEAR KRISHI UPAJ MANDI PENDRY BLOCK NAWAGARH DIST JANJGIR CHAMPA C.G. <br><br>
+                            TIMING 9AM TO 6 PM <br>
+                            CONTACT – 9522223644 <br>
+                            EMAIL - <a href="mailTo:janjgir@riceedu.org">janjgir@riceedu.org</a>
+
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3>EDUCATION & SKILL CENTER</h3>
+                            <p>RURAL INSTITUTE FOR CAREER AND EMPLOYMENT SOCIETY (RICEs) MAIN ROAD WARD NO. 10 NEAR KRISHI UPAJ MANDI PENDRY BLOCK NAWAGARH DIST JANJGIR CHAMPA C.G. <br><br>
+                            TIMING 8 AM TO 6 PM br>
+                            CONTACT - 9522223644 <br>
+                            EMAIL - <a href="mailTo:janjgir@riceedu.org">janjgir@riceedu.org</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div style="margin-top:30px;">
+                        <div class="col-sm-6">
+                            <h3>EDUCATION & SKILL CENTER</h3>
+                            <p>RURAL INSTITUTE FOR CAREER AND EMPLOYMENT SOCIETY (RICEs) SIND PLAZA NEAR  JANPAD PANCHAYAT  WARD NO. 7 RAIGARH ROAD DHARAMJAIGARH  496116  DIST  RAIGARH C.G.<br><br>
+                            TIMING 9AM TO 6 PM <br>
+                            CONTACT – 9522223690<br>
+                            EMAIL - <a href="mailTo:dharamjaigarh@riceedu.org">dharamjaigarh@riceedu.org</a>
+
+                            </p>
+                        </div>
+                        
+                    </div>
+                    <div class="clearfix"></div>
+
                     <div style="display:none;" id="captchaError"></div>
-                    <div class="contactFrm col-sm-6">
+                    <div class="contactFrm col-sm-6" style="margin:to:30px">
                         <form class="form-horizontal fromstyle" role="form" id="contactform" method="post">
                             <div>
                                 <div class="form-group clear fieldRow">
