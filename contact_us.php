@@ -88,7 +88,8 @@ if (isset($_REQUEST['submit']) ) {
         <!--eof header ** homeMid starts from here-->
         <div class="container homeMid">
         	<div>
-            	<div class="left-sidebar col-sm-3">
+            <!--	
+            <div class="left-sidebar col-sm-3">
                 	<div class="left-block contactTxt">
                     	<h3>HEAD OFFICE</h3>
                         <p>
@@ -118,8 +119,8 @@ BUS STAND BEHIND KANHA HOSPITAL WARD NO. 31 RAIGARH 496001 C.G.</p>
                             <strong>Timing</strong> : 10:30am to 12:30pm
                         </p>
                     </div>
-                </div>
-                <div class="page-content contact-page col-sm-9">
+                </div>-->
+                <div class="page-content contact-page" style="padding:15px;">
                 	<h1>Contact Us</h1>
                     <p class="directorMsg">
                         <strong>We appreciate your stated interest in continuing partnership with me to build ecosystem for skill development.</strong><br /><br />
@@ -230,6 +231,7 @@ BUS STAND BEHIND KANHA HOSPITAL WARD NO. 31 RAIGARH 496001 C.G.</p>
                     <div class="clearfix"></div>
 
                     <div style="display:none;" id="captchaError"></div>
+                    
                     <div class="contactFrm col-sm-6" style="margin:to:30px">
                         <form class="form-horizontal fromstyle" role="form" id="contactform" method="post">
                             <div>
@@ -278,6 +280,7 @@ BUS STAND BEHIND KANHA HOSPITAL WARD NO. 31 RAIGARH 496001 C.G.</p>
                             </div>
                         </form>
                     </div>
+
                     <!--<div class="col-sm-6 gmap">
                     		<iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=magneto+mall,+raipur&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=42.901912,56.513672&amp;ie=UTF8&amp;hq=&amp;hnear=&amp;ll=21.24072,81.684126&amp;spn=0.006295,0.006295&amp;t=m&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=magneto+mall,+raipur&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=42.901912,56.513672&amp;ie=UTF8&amp;hq=&amp;hnear=&amp;ll=21.24072,81.684126&amp;spn=0.006295,0.006295&amp;t=m&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small>
                     </div>-->
@@ -322,25 +325,31 @@ BUS STAND BEHIND KANHA HOSPITAL WARD NO. 31 RAIGARH 496001 C.G.</p>
                         </tr>
                     </table>-->
                     
-                    <p class="directorMsg">
+                    
+                    
+                    <!--<p class="directorMsg">
                     <span>MRS.K.MEHTA<br>
                     NATIONAL MARKETING HEAD</span><br>
                     
                     Contact - 9522223688<br>
                     Email - <a href="mailTo:kmehta@riceedu.org">kmehta@riceedu.org</a>
-                    </p>        
+                    </p> -->       
                     
-                    <h3><strong>FOR COMPLAIN</strong></h3>
-                    <p>Email: <a href="mailto:complain@riceedu.org">complain@riceedu.org</a></p>
+                    <div class="col-sm-6">
+                    	<h3><strong>FOR COMPLAIN</strong></h3>
+                        <p>Email: <a href="mailto:complain@riceedu.org">complain@riceedu.org</a></p>
+                        
+                        <h3>Important</h3>
+                        <p>Please note that our office timing is 10 A.M. to 5:30 P.M.(Monday - Saturday)</p>
+                        <p>Please do not make us any calls before and after the office timing.</p>
+                    </div>
                     
-                    <h3>Important</h3>
-                    <p>Please note that our office timing is 10 A.M. to 5:30 P.M.(Monday - Saturday)</p>
-                    <p>Please do not make us any calls before and after the office timing.</p>
-                    
+                    <div class="clearfix"></div>
                 </div>
             </div>
             <div class="clearfix"></div>
         </div>
         <!--eof homeMid ** footer starts from here-->
+        
         <a href="#" class="back-to-top">&nbsp;</a>
 <?php include('footer.php'); ?>
