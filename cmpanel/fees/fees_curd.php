@@ -264,30 +264,29 @@ if($_POST['type']=="getStudentInfo")
 ///*******************************************************
 if($_POST['type']=='feespayment'){
 	
+	
+	$sql_receipt="select max(Receipt_no)as receipt from fees_payment";
+	$res_query_receipt=$db->ExecuteQuery($sql_receipt);
+	if(!empty($res_query_receipt[1]['receipt']))
+	{
+		$receipt_no= $res_query_receipt[1]['receipt']+1;		
+	}
+	else
+	{		
+       $receipt_no="10000";       
+	}
+	
 	/////////////////////////////////////////////////////
 	// Query to insert the data into fees_payment table
 	/////////////////////////////////////////////////////
-	$sql_receipt="select max(Receipt_no)as receipt from fees_payment";
-	$res_query_receipt=$db->ExecuteQuery($sql_receipt);
-	$receipt_no=0;
-
-	if(!($res_query_receipt[1]['receipt'])=="")
-	{
-		$receipt_no= $res_query_receipt[1]['receipt']+1;
-		$receipt_no=$receipt_no;
-	}
-	else
-	{
-		
-       $receipt_no="10000";
-       
-	}
-	
-	$res=mysql_query("INSERT INTO fees_payment (Payment_Date, Paid_Amt, Payment_Mode, Cheque_DD_No, Transaction_No, Which_Bank_Cheque_DD, Student_Id,Receipt_no,CM_Id) 			
+	$res=mysql_query("INSERT INTO fees_payment (Payment_Date, Paid_Amt, Payment_Mode, Cheque_DD_No, Transaction_No, Which_Bank_Cheque_DD, 
+	Student_Id, CM_Id, Receipt_No) 			
 		
 	VALUES (NOW(), ".$_REQUEST['amount'].", ".$_REQUEST['paymentmode'].", '".$_REQUEST['cDDNo']."', '".$_REQUEST['transactionNo'].
-	"', '".$_REQUEST['bank']."', ".$_REQUEST['studentid'].",$receipt_no, ".$_SESSION['cmid'].")");	
+	"', '".$_REQUEST['bank']."',".$_REQUEST['studentid'].",".$_SESSION['cmid'].", '".$receipt_no."')");
 	
+	  
+
 	if(!$res)
 	{
 	  echo "data not inserted into fees payment";
@@ -295,34 +294,54 @@ if($_POST['type']=='feespayment'){
 	else
 	{	
 	  
-     $SQL="SELECT student_master.Payment_Status,course_master.Registration_Fee,(SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=".$_POST['studentid'].") AS Paid_Amt
+     	$SQL="SELECT student_master.Student_Name,student_master.Payment_Status,course_master.Registration_Fee,course_master.Course_Name,cm_login.Center_Code,(SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=".$_POST['studentid'].") AS Paid_Amt
 		FROM student_master 
 		
 		LEFT JOIN course_master  ON student_master.Course_Id = course_master.Course_Id
+		LEFT JOIN cm_login  ON student_master.CM_Id = cm_login.CM_Id
 		WHERE Student_Id=".$_POST['studentid'];
    
-       $check=$db->ExecuteQuery($SQL);
+        $check=$db->ExecuteQuery($SQL);
+       
+        //print_r($check);
+
+        $mobile="8827327607";
+        // $msg="Student Name".$check[1]['Student_Name']."Receipt Number".$receipt_no."Center Code".$check[1]['Center_Code']."Course Name".$check[1]['Course_Name']."Pay Amount".$_REQUEST['amount'];
+        $msg="Student%20Name".$check[1]['Student_Name'];
+  
+
+        $url="http://sms.technocratws.com/api/mt/SendSMS?APIKey=63a0d84e-11e5-4b0c-afaa-67e4560569f3&senderid=TESTIN&channel=2&DCS=0&flashsms=0&number=91".$mobile."&text=".$msg."&route=1";
+			  
+			  $ch = curl_init();
+			  $timeout = 5;
+			  curl_setopt($ch,CURLOPT_URL,$url);
+			  curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+			  curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+			  $data = curl_exec($ch);
+			  curl_close($ch);
+			  //return  $data;
+
+
+
+
           if($check[1]['Payment_Status']=="0")
          {
                if($check[1]['Registration_Fee']<=$check[1]['Paid_Amt'])
-                   {
-       	
-                        	$tblname="student_master";		
-		                     $tblfield=array('Payment_Status');		
-	                      	$tblvalues=array('1');
-			              	$condition="Student_Id=".$_POST['studentid'];
-	                	$result_check=$db->updateValue($tblname,$tblfield,$tblvalues,$condition);
-	                	
-
-                   }
-                   else
-                   {
-
-                  // 	echo "student master table not update";
-
-                   }
+               {
+                    $tblname="student_master";		
+                    $tblfield=array('Payment_Status');		
+                  	$tblvalues=array('1');
+	              	$condition="Student_Id=".$_POST['studentid'];
+            		$result_check=$db->updateValue($tblname,$tblfield,$tblvalues,$condition);
+               }
+               else
+               {
+              	// echo "student master table not update";
+               }
          }
+
          echo "1";
+         
 	}
 	
 }

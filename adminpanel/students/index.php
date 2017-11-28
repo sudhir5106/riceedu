@@ -15,6 +15,11 @@ LEFT JOIN district_master d ON b.District_Id = d.District_Id
 LEFT JOIN state_master s ON d.State_Id = s.State_Id 
 
 ORDER BY Student_Id DESC");
+$get_list=$db->ExecuteQuery("select sent_reg_fees_details.Student_Id from sent_reg_fees_details left join sent_reg_fees on sent_reg_fees_details.Sent_Id=sent_reg_fees.Sent_Id where sent_reg_fees.Appr_Status=1");
+foreach($get_list as $s_id)
+{
+$studentid= array($s_id['Student_Id']);
+}
 ?>
 <script type="text/javascript"  src="student.js" ></script>
 <div class="main">
@@ -52,7 +57,20 @@ ORDER BY Student_Id DESC");
                   <tbody>
                     <?php 
                         $i=1;
-                        foreach($getstudent as $getstudentVal){ ?>
+                        foreach($getstudent as $getstudentVal){ 
+
+                        if(in_array($getstudentVal['Student_Id'],$studentid))
+                        {
+                        
+                          $payment_staus=1;
+                        }
+                        else
+                        {
+                          $payment_staus=0;
+                        }
+
+
+                          ?>
                     <tr>
                       <td><?php echo $i;?></td>
                       <td><?php echo $getstudentVal['Application_No']; ?></td>
@@ -71,12 +89,18 @@ ORDER BY Student_Id DESC");
                       <td><span class="label <?php echo $getstudentVal['Approval_Status']=='Pending'?'label-warning': ($getstudentVal['Approval_Status']=='Approved'?'label-success':'label-danger');?>"><?php echo $getstudentVal['Approval_Status'];?></span></td>
                       
                       <td>
-                      <?php if($getstudentVal['Approval_Status']=='Pending'){ ?>
-                      <button type="button" id="<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-success status">Approve</button>
-                      <?php } if($getstudentVal['Approval_Status']!='Pending'){?>
+                      <?php if($getstudentVal['Approval_Status']=='Approved' && $payment_staus=='1'){ ?>
+                      <button type="button" id="<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-warning approve_status">Not Approve</button>
+                      
                      <a href="view_pdf.php?k=<?php echo $getstudentVal['Student_Id']; ?>"> <button type="button" id="pdf-<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-default status">View PDF</button>
                      </a>
                       <?php } ?>
+                         <?php if($getstudentVal['Approval_Status']=='Approved' && $payment_staus=='1'){ }?>
+                        <?php if($getstudentVal['Approval_Status']=='Pending' && $payment_staus=='1'){ ?>
+                      <button type="button" id="<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-success status">Approve</button>
+                    <a href="view_pdf.php?k=<?php echo $getstudentVal['Student_Id']; ?>"> <button type="button" id="pdf-<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-default status">View PDF</button>
+                      <?php } ?>
+
                       </td>
                       
                     </tr>

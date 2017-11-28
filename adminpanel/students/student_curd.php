@@ -10,13 +10,10 @@ $db = new DBConn();
 ///*******************************************************
 if($_POST['type']=="approval")
 {
-	$regNo = rand(1000,1000000);
-	$entryNo = rand(1000,1000000);
 	
-	// Update rm_login Tabel
 	$tblname="student_master";	
-	$tblfield=array('Registration_No', 'Entry_No', 'Approval_Status');	
-	$tblvalues=array($regNo, $entryNo, 1);	
+	$tblfield=array('Approval_Status');	
+	$tblvalues=array(1);	
 	$condition="Student_Id=".$_POST['student_id'];
 	
 	$res=$db->updateValue($tblname,$tblfield,$tblvalues,$condition);
@@ -28,5 +25,26 @@ if($_POST['type']=="approval")
 		echo 0;
 	}
 }
+/////////////////////////////// approve -not approve//////////////////////////////
 
+
+if($_POST['type']=="approve_status")
+{
+	
+	$tblname="student_master";	
+
+	$tblfield=array('Approval_Status');	
+	$tblvalues=array(0);	
+	$condition="Student_Id=".$_POST['student_id'];
+	
+	$res=$db->updateValue($tblname,$tblfield,$tblvalues,$condition);
+	
+	if(!empty($res)){
+		echo 1;	
+	}
+	else{
+		echo 0;
+	}
+}
+/////////////////////////////////////////////////////////////////////////////////
 ?>

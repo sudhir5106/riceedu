@@ -29,7 +29,6 @@ $db->ExecuteQuery("select a.Student_Name,a.Registration_No, b.Course_Name, b.Reg
           <th>Sno.</th>
           <th>Student Name</th>
           <th>Course Name</th>
-          <th>Registration_No</th> 
           <th>Registration Fee</th>
           
         </tr>
@@ -42,7 +41,6 @@ $db->ExecuteQuery("select a.Student_Name,a.Registration_No, b.Course_Name, b.Reg
           <td><?php echo $i;?></td>
           <td><?php echo ucfirst($getList['Student_Name']);?></td>
           <td><?php echo ucfirst($getList['Course_Name']);?></td>
-          <td><?php echo $getList['Registration_No'];?></td>
           <td><?php echo $getList['Registration_Fee'];?></td>
           
            </tr>
