@@ -16,9 +16,13 @@ LEFT JOIN state_master s ON d.State_Id = s.State_Id
 
 ORDER BY Student_Id DESC");
 $get_list=$db->ExecuteQuery("select sent_reg_fees_details.Student_Id from sent_reg_fees_details left join sent_reg_fees on sent_reg_fees_details.Sent_Id=sent_reg_fees.Sent_Id where sent_reg_fees.Appr_Status=1");
+if($get_list)
+{
 foreach($get_list as $s_id)
 {
 $studentid= array($s_id['Student_Id']);
+}
+
 }
 ?>
 <script type="text/javascript"  src="student.js" ></script>
@@ -57,8 +61,10 @@ $studentid= array($s_id['Student_Id']);
                   <tbody>
                     <?php 
                         $i=1;
-                        foreach($getstudent as $getstudentVal){ 
-
+                        foreach($getstudent as $getstudentVal)
+                        { 
+                        if(!empty($studentid))
+                        {
                         if(in_array($getstudentVal['Student_Id'],$studentid))
                         {
                         
@@ -68,7 +74,9 @@ $studentid= array($s_id['Student_Id']);
                         {
                           $payment_staus=0;
                         }
-
+                        }
+                        else
+                        {$payment_staus=0;}
 
                           ?>
                     <tr>

@@ -23,7 +23,9 @@ $(document).ready(function(){
 	
 	
 	///////////////////////////////////
-	// Payment form validation
+	// Payment form validation///////
+    
+	//////////////////////////////////
 
 $("#save").validate({
 		rules: 
@@ -91,7 +93,7 @@ $("#save").validate({
 			   type: "POST",
 			   url: "fees_curd.php",
 			   data:formdata,
-			   success: function(data){  //alert(data);
+			   success: function(data){  alert(data);
 					if(data!=""){
 						$("#displayInfo").show();
 						$('#displayInfo').html(data);
@@ -159,7 +161,7 @@ $("#save").validate({
 			   type: "POST",
 			   url: "fees_curd.php",
 			   data:formdata,
-			   success: function(data){ //alert(data);
+			   success: function(data){ 
 				  if(data==1)
 				  {
 				  	window.location.href="index.php";
@@ -231,5 +233,50 @@ $("#save").validate({
 			location.reload();
 	    }
 	});
+
+//////////////////////////// For Payment History////////////////////////////////////
+
+$(document).on('click', '#search_history', function() 
+{      
+		
+			var formdata = new FormData();
+			
+			//var course_code=$('#course_code :selected').val();
+
+		     var course_id = $("#course_id").val();
+             var student_name = $("#student_name").val();
+
+			//alert(course_code);
+			formdata.append('type', "getpaymenthistory");
+		    formdata.append('course_id',course_id);
+		    formdata.append('student_name',student_name);
+	      
+			var x;
+			$.ajax({
+			   type: "POST",
+			   url: "fees_curd.php",
+			   data:formdata,
+			   success: function(data){  //alert(data);
+					if(data!=""){
+						$("#displayInfo").show();
+						$('#displayInfo').html(data);
+					}
+			   },
+			   cache: false,
+			   contentType: false,
+			   processData: false
+			});//eof ajax	
+		   
+
+	});
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
 	
 });//eof of ready function

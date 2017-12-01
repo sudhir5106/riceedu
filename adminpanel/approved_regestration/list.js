@@ -16,7 +16,7 @@ $(document).ready(function(){
 				type: "POST",
 				data: {type:"approved",sent_id:sent_id},
 				async:false,
-				success: function(data){  alert(data);
+				success: function(data){  //alert(data);
 					if(data)
 					{
 						//window.location.href="index.php";

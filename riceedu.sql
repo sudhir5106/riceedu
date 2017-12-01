@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2017 at 02:27 PM
+-- Generation Time: Dec 01, 2017 at 12:24 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin_login` (
 --
 
 INSERT INTO `admin_login` (`Login_Id`, `Login_Name`, `Login_Pwd`, `Login_Ip`, `Last_Login_Date`) VALUES
-(1, 'admin', 'france', '::1', '2017-11-28 18:44:48');
+(1, 'admin', 'france', '::1', '2017-11-30 12:05:24');
 
 -- --------------------------------------------------------
 
@@ -838,60 +838,9 @@ CREATE TABLE `fees_payment` (
 --
 
 INSERT INTO `fees_payment` (`Payment_Id`, `Payment_Date`, `Paid_Amt`, `Payment_Mode`, `Cheque_DD_No`, `Transaction_No`, `Which_Bank_Cheque_DD`, `Student_Id`, `CM_Id`, `Receipt_No`, `Rege_status`) VALUES
-(107, '2017-11-28 12:13:27', 1000, 1, '', '', '', 1, 3, '10000', 0),
-(108, '2017-11-28 14:37:25', 100, 1, '', '', '', 1, 3, '10001', 0),
-(109, '2017-11-28 14:37:37', 100, 1, '', '', '', 1, 3, '10002', 0),
-(110, '2017-11-28 14:39:45', 100, 1, '', '', '', 1, 3, '10003', 0),
-(111, '2017-11-28 14:40:53', 100, 1, '', '', '', 1, 3, '10004', 0),
-(112, '2017-11-28 14:46:26', 21, 1, '', '', '', 1, 3, '10005', 0),
-(113, '2017-11-28 14:47:12', 23, 1, '', '', '', 1, 3, '10006', 0),
-(114, '2017-11-28 14:47:29', 12, 1, '', '', '', 1, 3, '10007', 0),
-(115, '2017-11-28 14:48:30', 45, 1, '', '', '', 1, 3, '10008', 0),
-(116, '2017-11-28 14:49:19', 23, 1, '', '', '', 1, 3, '10009', 0),
-(117, '2017-11-28 14:49:46', 23, 1, '', '', '', 1, 3, '10010', 0),
-(118, '2017-11-28 14:50:55', 12, 1, '', '', '', 1, 3, '10011', 0),
-(119, '2017-11-28 14:51:47', 23, 1, '', '', '', 1, 3, '10012', 0),
-(120, '2017-11-28 14:52:02', 23, 1, '', '', '', 1, 3, '10013', 0),
-(121, '2017-11-28 14:52:42', 2, 1, '', '', '', 1, 3, '10014', 0),
-(122, '2017-11-28 14:54:16', 12, 1, '', '', '', 1, 3, '10015', 0),
-(123, '2017-11-28 14:55:02', 12, 1, '', '', '', 1, 3, '10016', 0),
-(124, '2017-11-28 14:56:01', 12, 1, '', '', '', 1, 3, '10017', 0),
-(125, '2017-11-28 14:56:22', 12, 1, '', '', '', 1, 3, '10018', 0),
-(126, '2017-11-28 14:58:09', 12, 1, '', '', '', 1, 3, '10019', 0),
-(127, '2017-11-28 14:58:29', 23, 1, '', '', '', 1, 3, '10020', 0),
-(128, '2017-11-28 14:59:35', 23, 1, '', '', '', 1, 3, '10021', 0),
-(129, '2017-11-28 15:00:18', 12, 1, '', '', '', 1, 3, '10022', 0),
-(130, '2017-11-28 15:01:05', 12, 1, '', '', '', 1, 3, '10023', 0),
-(131, '2017-11-28 15:02:19', 23, 1, '', '', '', 1, 3, '10024', 0),
-(132, '2017-11-28 15:05:10', 23, 1, '', '', '', 1, 3, '10025', 0),
-(133, '2017-11-28 15:05:20', 12, 1, '', '', '', 1, 3, '10026', 0),
-(134, '2017-11-28 15:05:48', 12, 1, '', '', '', 1, 3, '10027', 0),
-(135, '2017-11-28 15:06:05', 12, 1, '', '', '', 1, 3, '10028', 0),
-(136, '2017-11-28 15:08:32', 12, 1, '', '', '', 1, 3, '10029', 0),
-(137, '2017-11-28 15:09:08', 12, 1, '', '', '', 1, 3, '10030', 0),
-(138, '2017-11-28 15:09:49', 12, 1, '', '', '', 1, 3, '10031', 0),
-(139, '2017-11-28 15:10:17', 12, 1, '', '', '', 1, 3, '10032', 0),
-(140, '2017-11-28 15:10:51', 21, 1, '', '', '', 1, 3, '10033', 0),
-(141, '2017-11-28 15:11:22', 1, 1, '', '', '', 1, 3, '10034', 0),
-(142, '2017-11-28 15:12:02', 12, 1, '', '', '', 1, 3, '10035', 0),
-(143, '2017-11-28 15:13:14', 12, 1, '', '', '', 1, 3, '10036', 0),
-(144, '2017-11-28 15:14:51', 23, 1, '', '', '', 1, 3, '10037', 0),
-(145, '2017-11-28 15:18:12', 12, 1, '', '', '', 1, 3, '10038', 0),
-(146, '2017-11-28 15:19:24', 12, 1, '', '', '', 1, 3, '10039', 0),
-(147, '2017-11-28 15:34:11', 1, 1, '', '', '', 1, 3, '10040', 0),
-(148, '2017-11-28 16:39:41', 12, 1, '', '', '', 1, 3, '10041', 0),
-(149, '2017-11-28 16:40:33', 12, 1, '', '', '', 1, 3, '10042', 0),
-(150, '2017-11-28 16:40:47', 12, 1, '', '', '', 1, 3, '10043', 0),
-(151, '2017-11-28 16:42:48', 12, 1, '', '', '', 1, 3, '10044', 0),
-(152, '2017-11-28 16:43:07', 12, 1, '', '', '', 1, 3, '10045', 0),
-(153, '2017-11-28 17:55:11', 10, 1, '', '', '', 1, 3, '10046', 0),
-(154, '2017-11-28 18:04:02', 2, 1, '', '', '', 1, 3, '10047', 0),
-(155, '2017-11-28 18:15:09', 7, 1, '', '', '', 1, 3, '10048', 0),
-(156, '2017-11-28 18:22:45', 5, 1, '', '', '', 1, 3, '10049', 0),
-(157, '2017-11-28 18:28:51', 5, 1, '', '', '', 1, 3, '10050', 0),
-(158, '2017-11-28 18:29:31', 5, 1, '', '', '', 1, 3, '10051', 0),
-(159, '2017-11-28 18:30:35', 5, 1, '', '', '', 1, 3, '10052', 0),
-(160, '2017-11-28 18:38:22', 5, 1, '', '', '', 1, 3, '10053', 0);
+(169, '2017-11-30 12:40:39', 1234, 1, '', '', '', 1, 3, '10000', 0),
+(170, '2017-11-30 13:09:10', 1234, 1, '', '', '', 2, 3, '10001', 0),
+(171, '2017-11-30 13:10:30', 278, 1, '', '', '', 5, 3, '10002', 0);
 
 -- --------------------------------------------------------
 
@@ -984,7 +933,22 @@ CREATE TABLE `sent_reg_fees` (
 --
 
 INSERT INTO `sent_reg_fees` (`Sent_Id`, `Payment_Date`, `Total_Amount`, `Payment_Mode`, `Transaction_Number`, `Cheque_No`, `CM_Id`, `Appr_Status`) VALUES
-(34, '2017-11-28', 1000, 'cash', '---', '---', '3', 1);
+(37, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
+(38, '2017-11-30', 150, 'cash', '---', '---', '3', 0),
+(39, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
+(40, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
+(41, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
+(42, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
+(43, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
+(44, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
+(45, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
+(46, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
+(47, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
+(48, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
+(49, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
+(50, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
+(51, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
+(52, '2017-11-30', 100, 'cash', '---', '---', '3', 0);
 
 -- --------------------------------------------------------
 
@@ -1004,7 +968,21 @@ CREATE TABLE `sent_reg_fees_details` (
 --
 
 INSERT INTO `sent_reg_fees_details` (`SID`, `Sent_Id`, `Student_Id`, `Course_Id`) VALUES
-(57, 34, 1, 2);
+(62, 37, 1, 2),
+(63, 39, 2, 2),
+(64, 40, 2, 2),
+(65, 41, 2, 2),
+(66, 42, 2, 2),
+(67, 43, 2, 2),
+(68, 44, 2, 2),
+(69, 45, 2, 2),
+(70, 46, 2, 2),
+(71, 47, 5, 3),
+(72, 48, 5, 3),
+(73, 49, 5, 3),
+(74, 50, 5, 3),
+(75, 51, 5, 3),
+(76, 52, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -1130,11 +1108,11 @@ CREATE TABLE `student_master` (
 --
 
 INSERT INTO `student_master` (`Student_Id`, `Reg_Date`, `Application_No`, `Student_Code`, `Password`, `Student_Name`, `DOB`, `Gender`, `Father_Name`, `Mother_Name`, `Religion`, `Caste`, `Phisical_Status`, `Aadhaar_No`, `Education`, `Course_Id`, `Mode`, `Session`, `About_Fee_Deposite`, `Block_Id`, `Address`, `Pincode`, `Contact_No`, `Email`, `Bank_Name`, `Acc_holder_name`, `Account_No`, `Bank_Address`, `IFSC_Code`, `Photo`, `Signature`, `Gaurdian_Signature`, `CM_Id`, `Reference`, `Registration_No`, `Entry_No`, `Approval_Status`, `Status`, `Payment_Status`) VALUES
-(1, '2017-07-31', 1, 4376, 'student', 'v sudhir', '1984-01-09', 1, 'v gandhi', 'v saroja', 'Hindu', 'OBC', 2, '123456781234', 'Diploma', 2, 'regular', 'january', 'The student will pay in 4 installments, First 3 installment will be 20%-20% and the last installment will be 40% which he will pay in august month, because he belongs to very poor family that is why we gave him the time to pay the fees. ', 6, 'asdf adsf asdf ', '490020', '9826396462', 's@gmail.com', 'Axis Bank', '', '214010100136631', 'Supela, Bhilai, Chhattisgarh', 'UTIB0000214', '1501511959.jpg', '1501511959.jpg', '1501511959.jpg', 3, 'Naresh Sahu', 43763005, 298523, 0, 1, 1),
-(2, '2017-11-18', 2, 4377, 'UTiesj', 'seema', '1988-11-02', 1, 'edrfwqer', 'wertwetwe', 'Hindu', 'GEN', 1, 'fgsdf', 'M TECH', 2, 'online', 'april', 'fdgsfdgsdf', 11, 'gfsadfgsdfg', '490020', '1234567890', 'richa.sach.meshram@gmail.com', 'ftgdfsgsdf', 'rfwerer', 'gsdfgsdfg', 'fdgsdfg', 'qw12231', '1510989404.jpg', '1510989404.jpg', '1510989404.jpg', 3, '', 0, 0, 0, 0, 0),
+(1, '2017-07-31', 1, 4376, 'student', 'v sudhir', '1984-01-09', 1, 'v gandhi', 'v saroja', 'Hindu', 'OBC', 2, '123456781234', 'Diploma', 2, 'regular', 'january', 'The student will pay in 4 installments, First 3 installment will be 20%-20% and the last installment will be 40% which he will pay in august month, because he belongs to very poor family that is why we gave him the time to pay the fees. ', 6, 'asdf adsf asdf ', '490020', '9826396462', 's@gmail.com', 'Axis Bank', '', '214010100136631', 'Supela, Bhilai, Chhattisgarh', 'UTIB0000214', '1501511959.jpg', '1501511959.jpg', '1501511959.jpg', 3, 'Naresh Sahu', 43763006, 298523, 1, 1, 1),
+(2, '2017-11-18', 2, 4377, 'UTiesj', 'seema', '1988-11-02', 1, 'edrfwqer', 'wertwetwe', 'Hindu', 'GEN', 1, 'fgsdf', 'M TECH', 2, 'online', 'april', 'fdgsfdgsdf', 11, 'gfsadfgsdfg', '490020', '1234567890', 'richa.sach.meshram@gmail.com', 'ftgdfsgsdf', 'rfwerer', 'gsdfgsdfg', 'fdgsdfg', 'qw12231', '1510989404.jpg', '1510989404.jpg', '1510989404.jpg', 3, '', 43763007, 0, 0, 0, 1),
 (3, '2017-11-18', 3, 4378, 'Wc6tOK', 'seema', '1988-11-02', 1, 'edrfwqer', 'wertwetwe', 'Hindu', 'GEN', 1, 'fgsdf', 'M TECH', 2, 'online', 'april', 'fdgsfdgsdf', 11, 'gfsadfgsdfg', '490020', '1234567890', 'richa.sach.meshram@gmail.com', 'ftgdfsgsdf', 'rfwerer', 'gsdfgsdfg', 'fdgsdfg', 'qw12231', '1510989411.jpg', '1510989411.jpg', '1510989411.jpg', 3, '', 0, 0, 0, 0, 0),
 (4, '2017-11-21', 4, 4379, 'DUX3xe', 'gudiya', '2017-11-15', 1, 'arfasdf', 'asdf', 'Jain', 'MUSLIM', 2, 'dsafasd', 'MCA', 3, 'regular', 'april', 'asdfasdf', 11, 'sdfrsd', '2323', '1234567890', 'richa.sach.meshram@gmail.com', 'twetr', 'trwer', 'ewrtwer', 'rwert', 'retwer', '1511255571.jpg', '1511255571.jpg', '1511255571.jpg', 3, 'dsfsdf', 43763003, 0, 0, 0, 0),
-(5, '2017-11-21', 5, 4380, 'SgdG9a', 'gudiya', '2017-11-15', 1, 'arfasdf', 'asdf', 'Jain', 'MUSLIM', 2, 'dsafasd', 'MCA', 3, 'regular', 'april', 'asdfasdf', 11, 'sdfrsd', '2323', '1234567890', 'richa.sach.meshram@gmail.com', 'twetr', 'trwer', 'ewrtwer', 'rwert', 'retwer', '1511255584.jpg', '1511255584.jpg', '1511255584.jpg', 3, 'dsfsdf', 43763004, 0, 0, 0, 0);
+(5, '2017-11-21', 5, 4380, 'SgdG9a', 'gudiya', '2017-11-15', 1, 'arfasdf', 'asdf', 'Jain', 'MUSLIM', 2, 'dsafasd', 'MCA', 3, 'regular', 'april', 'asdfasdf', 11, 'sdfrsd', '2323', '8827327607', 'richa.sach.meshram@gmail.com', 'twetr', 'trwer', 'ewrtwer', 'rwert', 'retwer', '1511255584.jpg', '1511255584.jpg', '1511255584.jpg', 3, 'dsfsdf', 43763004, 0, 0, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -1301,7 +1279,7 @@ ALTER TABLE `employee_master`
 -- AUTO_INCREMENT for table `fees_payment`
 --
 ALTER TABLE `fees_payment`
-  MODIFY `Payment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+  MODIFY `Payment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 --
 -- AUTO_INCREMENT for table `ho_notice`
 --
@@ -1321,12 +1299,12 @@ ALTER TABLE `rm_login`
 -- AUTO_INCREMENT for table `sent_reg_fees`
 --
 ALTER TABLE `sent_reg_fees`
-  MODIFY `Sent_Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `Sent_Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `sent_reg_fees_details`
 --
 ALTER TABLE `sent_reg_fees_details`
-  MODIFY `SID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `SID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT for table `state_master`
 --

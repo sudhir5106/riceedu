@@ -2,8 +2,8 @@
 include('../../config.php'); 
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
 require_once(PATH_LIBRARIES.'/classes/resize.php');
-require_once(PATH_LIBRARIES.'/classes/send_sms.php');
-require (ROOT."/PHPMailer-master/class.phpmailer.php");
+
+
 $db = new DBConn();
 
 
@@ -294,7 +294,7 @@ if($_POST['type']=='feespayment'){
 	else
 	{	
 	  
-     	$SQL="SELECT student_master.Student_Name,student_master.Payment_Status,course_master.Registration_Fee,course_master.Course_Name,cm_login.Center_Code,(SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=".$_POST['studentid'].") AS Paid_Amt
+     	$SQL="SELECT student_master.Student_Name,student_master.Contact_No,student_master.Payment_Status,course_master.Registration_Fee,course_master.Course_Name,cm_login.Center_Code,(SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=".$_POST['studentid'].") AS Paid_Amt
 		FROM student_master 
 		
 		LEFT JOIN course_master  ON student_master.Course_Id = course_master.Course_Id
@@ -305,12 +305,14 @@ if($_POST['type']=='feespayment'){
        
         //print_r($check);
 
-        $mobile="8827327607";
-        // $msg="Student Name".$check[1]['Student_Name']."Receipt Number".$receipt_no."Center Code".$check[1]['Center_Code']."Course Name".$check[1]['Course_Name']."Pay Amount".$_REQUEST['amount'];
-        $msg="Student%20Name".$check[1]['Student_Name'];
-  
+        $mobile=$check[1]['Contact_No'];
+        $msg="Thanks For Fee Submission ";
+        $msg.="Student Name :".$check[1]['Student_Name']." ". "Receipt Number :".$receipt_no." "."Center Code :"
+        .$check[1]['Center_Code']." "."Course Name :".$check[1]['Course_Name']." "."Paid Amount :".$_REQUEST['amount'];
+        //$msg="Student%20Name".$check[1]['Student_Name'];
+    $message=str_replace(" ","%20",$msg);
 
-        $url="http://sms.technocratws.com/api/mt/SendSMS?APIKey=63a0d84e-11e5-4b0c-afaa-67e4560569f3&senderid=TESTIN&channel=2&DCS=0&flashsms=0&number=91".$mobile."&text=".$msg."&route=1";
+        $url="http://sms.technocratws.com/api/mt/SendSMS?APIKey=63a0d84e-11e5-4b0c-afaa-67e4560569f3&senderid=TESTIN&channel=2&DCS=0&flashsms=0&number=91".$mobile."&text=".$message."&route=1";
 			  
 			  $ch = curl_init();
 			  $timeout = 5;

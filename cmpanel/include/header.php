@@ -88,6 +88,10 @@ $cmImg=$db->ExecuteQuery("SELECT EMP_Image FROM employee_master WHERE EMP_Code =
             
           </li>
 
+          <li><a href="<?php echo LINK_CONTROL_CM?>/send_fee_to_admin/payment_history.php"><i class="fa fa-inr" aria-hidden="true"></i>Payment History</a>
+            
+          </li>
+
         </ul>
       </div>
     <div class="clearfix"></div>

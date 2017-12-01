@@ -47,8 +47,8 @@ $res=$db->ExecuteQuery($sql);
                        {                     
                          // $studentIdList = $db->ExecuteQuery("SELECT Student_Id, SUM(Paid_Amt) FROM fees_payment GROUP BY Student_Id");
                       //  print_r($studentIdList);
-                      $list=$db->ExecuteQuery("SELECT * from student_master GROUP BY Student_Id where Payment_Status='0' and  Course_Id='".$course['Course_Id']."'");
-                        echo "SELECT * from student_master where Payment_Status='0' and  Course_Id='".$course['Course_Id']."' GROUP BY Student_Id" ;
+                  //    $list=$db->ExecuteQuery("SELECT * from student_master GROUP BY Student_Id where Payment_Status='0' and  Course_Id='".$course['Course_Id']."' ");
+                    //    echo "SELECT * from student_master where Payment_Status='0' and  Course_Id='".$course['Course_Id']."' GROUP BY Student_Id" ;
                          
                        ?>
                           <option value="<?php echo $course['Course_Id']; ?>"><?php echo $course['Course_Name'];  ?></option>

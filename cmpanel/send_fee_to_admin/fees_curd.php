@@ -3,7 +3,7 @@ include('../../config.php');
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
 require_once(PATH_LIBRARIES.'/classes/resize.php');
 require_once(PATH_LIBRARIES.'/classes/send_sms.php');
-require (ROOT."/PHPMailer-master/class.phpmailer.php");
+
 $db = new DBConn();
 error_reporting(null);
 
@@ -45,7 +45,7 @@ if($_POST['type']=="getStudentInfo")
 			{
 	 	
  
-  				$get_resg_fees=$db->ExecuteQuery("SELECT student_master.Student_Name,student_master.Payment_Status,course_master.Registration_Fee,student_master.Student_Id,course_master.Course_Name,student_master.Student_Id FROM student_master LEFT JOIN course_master ON student_master.Course_Id = course_master.Course_Id WHERE student_master.Payment_Status='1' and course_master.Course_Id='".$code[$i]."' and student_master.Payment_Status='1'");
+  				$get_resg_fees=$db->ExecuteQuery("SELECT student_master.Student_Name,student_master.Payment_Status,course_master.Registration_Fee,student_master.Student_Id,course_master.Course_Name,student_master.Student_Id FROM student_master LEFT JOIN course_master ON student_master.Course_Id = course_master.Course_Id WHERE student_master.Payment_Status='1' and course_master.Course_Id='".$code[$i]."' and student_master.Payment_Status='1' and student_master.CM_Id='".$_SESSION['cmid']."'");
                                              
 				   foreach($get_resg_fees as $result)
 					{  
@@ -193,7 +193,7 @@ if($_POST['type']=='regestration_fees_send')
 	
 	try{
   
-  		$sql="INSERT INTO `riceedu`.`sent_reg_fees` (`Total_Amount`, `Payment_Mode`,`Payment_Date`, `Transaction_Number`, `Cheque_No`, `CM_Id`)
+  		$sql="INSERT INTO `sent_reg_fees` (`Total_Amount`, `Payment_Mode`,`Payment_Date`, `Transaction_Number`, `Cheque_No`, `CM_Id`)
  VALUES ('".$total_ammount."', '".$mode."','".$date."','".$transactionNo."','".$cheque_dd_no."', '".$center_code."')";
  		$insert=mysql_query($sql);
 
@@ -212,7 +212,7 @@ if($_POST['type']=='regestration_fees_send')
 			{ 
 			 	if($student_id[$i]!="")
 			    {	
-			 		 $sql_insert="INSERT INTO `riceedu`.`sent_reg_fees_details` (`Sent_Id`, `Student_Id`, `Course_Id`) VALUES ('".$sent_id."', '".$student_id[$i]."', '".$course_id[$i]."')";
+			 		 $sql_insert="INSERT INTO `sent_reg_fees_details` (`Sent_Id`, `Student_Id`, `Course_Id`) VALUES ('".$sent_id."', '".$student_id[$i]."', '".$course_id[$i]."')";
 			  		$result_sql_insert= mysql_query($sql_insert);
 				  	
 				  	if(!$result_sql_insert)
@@ -302,6 +302,109 @@ if($_POST['type']=="delete")
 	 $condition="Notice_Id=".$_POST['id'];
 	 $res=$db->deleteRecords($tblname,$condition);	 
 }
+////////////////////////Get Student Payment History/////////////
+///*******************************************************
+/// Get Student name /////////////////////////////////
+///*******************************************************
 
+if($_POST['type']=="getpaymenthistory")
+{ ///////////////////// for submit///
+
+        
+    if($_POST['student_name']!="")
+    {    $client_name = explode("-",$_POST['student_name']);
+
+       $getdetails=$db->ExecuteQuery("select sent_reg_fees_details.Student_Id,student_master.Student_Name,student_master.Student_Code,course_master.Course_Name,course_master.  Registration_Fee,sent_reg_fees.Appr_Status from sent_reg_fees_details
+left join student_master on sent_reg_fees_details.Student_Id=student_master.Student_Id
+left join sent_reg_fees on sent_reg_fees_details.Sent_Id=sent_reg_fees.Sent_Id 
+left join course_master on course_master.Course_Id=student_master.Course_Id
+where student_master.Student_Code='".$client_name[1]."'");
+
+
+
+    }
+
+
+
+                       if($_POST['course_id']!="")
+                          {    
+       
+                    $getdetails=$db->ExecuteQuery("select sent_reg_fees_details.Student_Id,student_master.Student_Name,
+                    student_master.Student_Code,course_master.Course_Name,course_master.Registration_Fee, sent_reg_fees.Appr_Status  from sent_reg_fees_details
+left join student_master on sent_reg_fees_details.Student_Id=student_master.Student_Id
+left join sent_reg_fees on sent_reg_fees_details.Sent_Id=sent_reg_fees.Sent_Id 
+left join course_master on course_master.Course_Id=student_master.Course_Id
+where student_master.Course_Id='".$_POST['course_id']."'");
+
+
+
+                         }
+                if($_POST['course_id']!="" && $_POST['student_name']!="")
+                   {    
+   $client_name = explode("-",$_POST['student_name']);
+   $getdetails=$db->ExecuteQuery("select         sent_reg_fees_details.Student_Id,student_master.Student_Name,student_master.Student_Code,course_master.Course_Name,
+                 course_master.Registration_Fee,sent_reg_fees.Appr_Status  from sent_reg_fees_details
+                left join student_master on sent_reg_fees_details.Student_Id=student_master.Student_Id
+                left join sent_reg_fees on sent_reg_fees_details.Sent_Id=sent_reg_fees.Sent_Id 
+                left join course_master on course_master.Course_Id=student_master.Course_Id
+                where student_master.Course_Id='".$_POST['course_id']."' and student_master.Student_Code='".$client_name[1]."'");
+
+
+
+                 }?>
+
+
+
+
+
+
+                 <table class="table table-striped table-hover jambo_table">
+            <thead>
+                <tr class="headings">
+                  <td>Name</td>
+                  <td>Course Name</td>
+                  <td>Registration Fees</td>
+                  <td>Status</td>
+                </tr>
+            </thead>
+              <?php 
+              if(($getdetails))
+              {
+              foreach($getdetails as $val)
+              {?>
+                  <tr class="">
+                  <td><?php echo $val['Student_Name']; ?></td>
+                  <td><?php echo $val['Course_Name']; ?></td>
+                  <td><?php echo $val['Registration_Fee']; ?></td>
+                  <td><?php if($val['Appr_Status']==1){echo "Accept";}
+                            else{echo "Pending";}
+                   ?></td>
+                  </tr>
+            
+
+          <?php }
+
+          
+          }
+              else
+          {
+          	?>
+
+                 <tr class="">
+                  <td colspan="3"><?php echo "NO RECORD FOUND"; ?></td>
+                 
+                  </tr>   
+
+
+          	<?php 
+          } ?>
+              </table>
+                
+              
+               
+
+<?php  }
+
+////////////////////////////////////////////////////////////////
 
 ?>

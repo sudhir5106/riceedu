@@ -59,13 +59,12 @@
         <div class="clearfix"></div>
         <ul class="nav side-menu">
           <li><a href="<?php echo LINK_CONTROL_DM?>"><i class="fa fa-home"></i>Dashboard</a></li>
-          <!--<li><a><i class="fa fa-file-text-o"></i>Tenders<span class="fa fa-chevron-down"></span></a>
-          	<ul class="nav child_menu" style="display: none">
-              <li><a href="<?php echo LINK_CONTROL_DM?>/tenders/index.php">Add New</a></li>
-              <li><a href="<?php echo LINK_CONTROL_DM?>/tenders/list.php">View List</a></li>
-              <li><a href="<?php echo LINK_CONTROL_DM?>/tenders/archives.php">Archive Tenders</a></li>
+          <li><a><i class="fa fa-graduation-cap"></i>List<span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu" style="display: none">
+              <li><a href="<?php echo LINK_CONTROL_DM?>/list/cm_panel_list.php">CM-Panel List </a></li>
+              <li><a href="<?php echo LINK_CONTROL_DM?>/list/student_list.php">Student List</a></li>
             </ul>
-          </li>-->
+          </li>
 
         </ul>
       </div>
