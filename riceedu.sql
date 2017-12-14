@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2017 at 12:24 PM
+-- Generation Time: Dec 14, 2017 at 08:31 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin_login` (
 --
 
 INSERT INTO `admin_login` (`Login_Id`, `Login_Name`, `Login_Pwd`, `Login_Ip`, `Last_Login_Date`) VALUES
-(1, 'admin', 'france', '::1', '2017-11-30 12:05:24');
+(1, 'admin', 'france', '::1', '2017-12-14 12:58:11');
 
 -- --------------------------------------------------------
 
@@ -948,7 +948,7 @@ INSERT INTO `sent_reg_fees` (`Sent_Id`, `Payment_Date`, `Total_Amount`, `Payment
 (49, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
 (50, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
 (51, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
-(52, '2017-11-30', 100, 'cash', '---', '---', '3', 0);
+(52, '2017-12-7', 100, 'cash', '---', '---', '3', 0);
 
 -- --------------------------------------------------------
 
