@@ -30,8 +30,8 @@ if($_POST['type']=="approved")
 									throw new Exception('error on Update Center sent_reg_fees Table');
 									}
 
-	                                $sql_get_student=$db->ExecuteQuery("SELECT Student_Id FROM sent_reg_fees_details where Sent_Id='".$_POST['sent_id']."'");
-	                               $regestration_number=0;
+	                                $sql_get_student=$db->ExecuteQuery("SELECT Student_Id FROM sent_reg_fees_details WHERE Sent_Id='".$_POST['sent_id']."'");
+	                               	$regestration_number=0;
 	                              
 	                                foreach($sql_get_student as $student)
 	                                {          
@@ -40,17 +40,18 @@ if($_POST['type']=="approved")
                                                 if($sql_result[1]['regestration_number']!=0)
                                                 {$regestration_number=$sql_result[1]['regestration_number']+1;}
                                                 else{$regestration_number='43763001';}
-                                            ///////////////////**for generate Regestration Number end**/////////////////////
+                                            	///////////////////**for generate Regestration Number end**/////////////////////
                                               
 									                  $tblname="student_master";  
 												      $condition="Student_Id=".$student['Student_Id'];
 													  $tblfield=array('Approval_Status','Registration_No');	
 													  $tblvalues=array('1',$regestration_number);
-	                                                   $update_student_master=$db->updateValue($tblname,$tblfield,$tblvalues,$condition);
-	                                                            if(empty($update_student_master)) 
-									                                {
-								                                     	throw new Exception('error on Update  student_master Table');
-									                                 }
+	                                                  $update_student_master=$db->updateValue($tblname,$tblfield,$tblvalues,$condition);
+	                                                    
+	                                                    if(empty($update_student_master)) 
+							                                {
+						                                     	throw new Exception('error on Update  student_master Table');
+							                             }
 
 
 	                                } //for each close
@@ -59,9 +60,9 @@ if($_POST['type']=="approved")
 	              } //try close
                   catch(Exception $e)
 	            {
-										echo  $e->getMessage();
-										mysql_query('ROLLBACK',$con);
-										mysql_query('SET AUTOCOMMIT=1',$con);
+					echo  $e->getMessage();
+					mysql_query('ROLLBACK',$con);
+					mysql_query('SET AUTOCOMMIT=1',$con);
 				}
 
 } // main if close

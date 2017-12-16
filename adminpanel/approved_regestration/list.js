@@ -10,7 +10,7 @@ $(document).ready(function(){
 		var didConfirm = confirm("Are you sure?");
 	    if (didConfirm == true) {
 			var sent_id=$(this).attr("id");
-			alert(sent_id);
+			
 			$.ajax({
 				url:"curd.php",
 				type: "POST",
