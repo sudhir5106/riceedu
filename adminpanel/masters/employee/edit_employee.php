@@ -6,7 +6,7 @@ $db = new DBConn();
 
 
 // get all list of employee 
-$getemployee=$db->ExecuteQuery("SELECT DATE_FORMAT(DOJ,'%d-%m-%Y') AS DOJ, e.EMP_Id, e.EMP_Code, e.EMP_Image, e.EMP_Name, e.EMP_Designation, e.Block_Id, e.District_Id, d.State_Id, e.EMP_Address, e.EMP_Contact, EMP_Email, EMP_Salary, Posting_Place, Duty_Time, Visiting_Date_Place
+$getemployee=$db->ExecuteQuery("SELECT DATE_FORMAT(DOJ,'%d-%m-%Y') AS DOJ, e.EMP_Id, e.EMP_Code, e.EMP_Image, e.EMP_Name, e.EMP_Designation, e.Block_Id, e.District_Id, d.State_Id, e.EMP_Address,e.EMP_Contact, e.Paymenr_Record,e.Perfromance,e.emp_sign, EMP_Email, EMP_Salary, Posting_Place, Duty_Time, Visiting_Date_Place
 
 FROM employee_master e
 
@@ -62,7 +62,34 @@ $getBlocks=$db->ExecuteQuery("SELECT Block_Id, Block_Name FROM block_master WHER
                 
            </div>
         </div>
-        
+         <div class="form-group">
+            <label class="col-md-4 control-label mandatory" for="filebutton">Employee Sign <span>*</span>:</label>
+            <div class="col-md-4">
+                
+              <input type="hidden" id="emp-sign" name="emp-sign" value="<?php echo $getemployee[1]['emp_sign']?>"/>
+                
+      <?php if(!empty($getemployee[1]['emp_sign']) && file_exists(ROOT."/data_images/employee/signature/".$getemployee[1]['emp_sign']))
+      { 
+        echo '<div class="col-md-4"><img width="100%" src="'.PATH_DATA_IMAGE."/employee/signature/thumb/".$getemployee[1]['emp_sign'].'"/></div>';
+      } 
+        else{
+          echo '<label class="col-md-4 control-label" for="fileupload"><span class="glyphicon glyphicon-user" style="font-size:50pt;"></span></label>';
+        }
+          ?>
+                
+                <input class="col-md-8" type="file" id="emp_sign_image" name="emp_sign_image" accept="image/jpg,image/png,image/jpeg,image/gif"/>
+                
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
         <div class="form-group">
           <label class="control-label col-sm-4 mandatory" for="emp_code">Employee Code <span>*</span>:</label>
           <div class="col-sm-5">
@@ -161,7 +188,22 @@ $getBlocks=$db->ExecuteQuery("SELECT Block_Id, Block_Name FROM block_master WHER
             <input type="password" class="form-control input-sm" id="password" name="password" placeholder="Password" />
           </div>
         </div>-->
-        
+        <div class="form-group">
+          <label class="control-label col-sm-4 mandatory" for="Advance_Payment_Record">Advance Payment Record <span>*</span>:</label>
+          <div class="col-sm-3">
+          <textarea  class="form-control input-sm txtarea" id="payment_record" name="payment_record" placeholder="Advance Payment Record">
+
+          </textarea>
+            
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-4 mandatory" for="Working_Performance">Working Performance <span>*</span>:</label>
+          <div class="col-sm-3">
+          <textarea  class="form-control input-sm txtarea" id="perfromance" name="perfromance" placeholder="Working Performance">
+          </textarea>
+          </div>
+        </div>
         <div class="form-group">
           <label class="control-label col-sm-4 mandatory" for="posting_place">Posting Place <span>*</span>:</label>
           <div class="col-sm-5">

@@ -5,7 +5,7 @@ include(PATH_ADMIN_INCLUDE.'/header.php');
 $db = new DBConn();
 
 // get all list of news
-$getList=$db->ExecuteQuery("SELECT sent_reg_fees.Sent_Id,sent_reg_fees.Payment_Mode,sent_reg_fees.Transaction_Number,sent_reg_fees.Cheque_No,sent_reg_fees.Appr_Status,sent_reg_fees.Total_Amount,sent_reg_fees.Payment_Date,sent_reg_fees.CM_Id, cm_login.Center_Code FROM sent_reg_fees LEFT JOIN cm_login on sent_reg_fees.CM_Id=cm_login.CM_Id");
+$getList=$db->ExecuteQuery("SELECT sent_reg_fees.Sent_Id,sent_reg_fees.Payment_Mode,sent_reg_fees.Transaction_Number,sent_reg_fees.Cheque_No,sent_reg_fees.Appr_Status,sent_reg_fees.Total_Amount,DATE_FORMAT(sent_reg_fees.Payment_Date,'%d-%m-%Y') AS Payment_Date,sent_reg_fees.CM_Id, cm_login.Center_Code FROM sent_reg_fees LEFT JOIN cm_login on sent_reg_fees.CM_Id=cm_login.CM_Id");
 
 ?>
 <script type="text/javascript" src="list.js" ></script>
@@ -57,7 +57,7 @@ $getList=$db->ExecuteQuery("SELECT sent_reg_fees.Sent_Id,sent_reg_fees.Payment_M
             <?php }
             else
             { ?>
-           <button type="button" class="btn btn-info btn-sm approved" id="<?php echo $getList['Sent_Id'];?>" name="delete"> <span class="glyphicon "></span>Payment Accept</button>
+           <button type="button" class="btn btn-info btn-sm approved" id="<?php echo $getList['Sent_Id'];?>" name=""> <span class="glyphicon "></span>Payment Accept</button>
             <?php } ?></td>
         </tr>
         <?php $i++;} ?>

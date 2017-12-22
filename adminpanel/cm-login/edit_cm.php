@@ -6,7 +6,7 @@ $db = new DBConn();
 
 
 // get all list of rm logins 
-$getdmlogin=$db->ExecuteQuery("SELECT CM_Id, Center_Code, DM_Emp_Code, CM_Emp_Code, CM_Address, e.EMP_Name AS CEMP_Name, em.EMP_Name AS DEMP_Name, CM_Password, CM_Block, CM_District, CM_State
+$getdmlogin=$db->ExecuteQuery("SELECT CM_Id, Center_Code, DM_Emp_Code, CM_Emp_Code, CM_Address, e.EMP_Name AS CEMP_Name, em.EMP_Name AS DEMP_Name, CM_Password, CM_Block, CM_District, CM_State,CM_Contact_No,CM_Emaill
 FROM cm_login cm
 LEFT JOIN employee_master e ON cm.CM_Emp_Code = e.EMP_Code
 LEFT JOIN employee_master em ON cm.DM_Emp_Code = em.EMP_Code
@@ -21,6 +21,11 @@ $getDistrict=$db->ExecuteQuery("SELECT District_Id, District_Name FROM district_
 
 // get all list of blocks
 $getBlocks=$db->ExecuteQuery("SELECT Block_Id, Block_Name FROM block_master WHERE District_Id=".$getdmlogin[1]['CM_District']);
+// get all image
+$sql_image="SELECT CM_Image,S_NO FROM cm_image_gallery WHERE CM_Id = ".$_GET['id'];
+
+$getAllimage=$db->ExecuteQuery($sql_image);
+
 
 ?>
 <script type="text/javascript"  src="cm.js" ></script>
@@ -121,14 +126,37 @@ $getBlocks=$db->ExecuteQuery("SELECT Block_Id, Block_Name FROM block_master WHER
             <textarea  class="form-control input-sm txtarea" id="address" name="address" placeholder="Address"><?php echo $getdmlogin[1]['CM_Address'] ?></textarea>
           </div>
         </div>
-        
+        <div class="form-group">
+          <label class="control-label col-sm-4 mandatory" for="contact_no">Contact No. <span>*</span>:</label>
+          <div class="col-sm-4">
+          <input type="text" class="form-control input-sm" id="contact_no" name="contact_no" value="<?php
+           echo $getdmlogin[1]['CM_Contact_No'] ?>" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-4 mandatory" for="Emaiid">Email <span>*</span>:</label>
+          <div class="col-sm-4">
+          <input type="text" class="form-control input-sm" id="email" name="email" value="<?php
+           echo $getdmlogin[1]['CM_Emaill'];?>" />
+          </div>
+        </div>
+
+        <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="imageupload">Image Upload <span class="required">*</span> </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="file" id="imageupload" name="imageupload"  class="form-control col-md-7 col-xs-12 " accept="image/jpg,image/png,image/jpeg,image/gif" multiple>
+                <span id="errmsg"></span> (Note : Image size must be geater than 500*300  and you can also upload multiple images also.) </div>
+            </div>
+
+       
         <div class="form-group">
           <label class="control-label col-sm-4 mandatory" for="password">Password <span>*</span>:</label>
           <div class="col-sm-3">
             <input type="text" class="form-control input-sm" id="password" name="password" placeholder="Enter Login Password" value="<?php echo $getdmlogin[1]['CM_Password'] ?>" />
           </div>
         </div>
-        
+      
         
         <div class="form-group">
           <div class="col-sm-4"></div>
@@ -138,6 +166,36 @@ $getBlocks=$db->ExecuteQuery("SELECT Block_Id, Block_Name FROM block_master WHER
             <input type="reset" class="btn btn-default btn-sm" id="reset" value="Reset">
           </div>
         </div>
+
+             <!-- GEt HEre All The Image -->
+      <div id="imageShow">
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input title="Select All" type="checkbox" id="selecctallgallery"/>
+          <button title="Delete" type="button" class="btn btn-danger btn-sm " id="deletegalleryimage" name="deletegalleryimage"> <span class="glyphicon glyphicon-trash"></span> Delete All</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <?php 
+             $i=1;
+              foreach($getAllimage as $value){ 
+               ?>
+          <div class="col-sm-3 imgBlck">
+            
+              <div class="galleryImg"><img width="100%" src="<?php echo PATH_DATA_IMAGE_CM."/img-gallery/thumb/".$value['CM_Image'];?>" alt="" /></div>
+            <div>
+             
+            </div>
+            <div>
+              <input type="checkbox" class="deletegallery" id="<?php echo $value['S_NO'];?>"/>
+              </div>
+          </div>
+          <?php $i++; }?>
+    </div>
+       </div>
+
+
       </div>
     </form>
   </div>

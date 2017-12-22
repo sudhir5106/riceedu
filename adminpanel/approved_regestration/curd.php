@@ -51,7 +51,7 @@ if($_POST['type']=="approved")
 	                                                    if(empty($update_student_master)) 
 							                                {
 						                                     	throw new Exception('error on Update  student_master Table');
-							                             }
+							                                }
 
 
 	                                } //for each close

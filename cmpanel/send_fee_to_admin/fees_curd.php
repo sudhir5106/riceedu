@@ -129,6 +129,9 @@ if($_POST['type']=="getStudentInfo")
     </div>
     <div id="display">
     </div>
+    <div id="error">
+    dfsd
+    </div>
 </form>
 
 
@@ -192,11 +195,11 @@ if($_POST['type']=='regestration_fees_send')
 	}
 	
 	try{
-  
-  		$sql="INSERT INTO `sent_reg_fees` (`Total_Amount`, `Payment_Mode`,`Payment_Date`, `Transaction_Number`, `Cheque_No`, `CM_Id`)
- VALUES ('".$total_ammount."', '".$mode."','".$date."','".$transactionNo."','".$cheque_dd_no."', '".$center_code."')";
- 		$insert=mysql_query($sql);
+		$tblfield=array('Total_Amount','Payment_Mode','Payment_Date','Transaction_Number','Cheque_No','CM_Id');
+       $tblvalues=array($total_ammount,$mode,$date,$transactionNo,$cheque_dd_no,$center_code);
+		$insert=$db->valInsert("sent_reg_fees",$tblfield,$tblvalues);
 
+       
 		if(!$insert)
 		{
 			throw new Exception('erro on sent_reg_fees');	
@@ -212,8 +215,11 @@ if($_POST['type']=='regestration_fees_send')
 			{ 
 			 	if($student_id[$i]!="")
 			    {	
-			 		 $sql_insert="INSERT INTO `sent_reg_fees_details` (`Sent_Id`, `Student_Id`, `Course_Id`) VALUES ('".$sent_id."', '".$student_id[$i]."', '".$course_id[$i]."')";
-			  		$result_sql_insert= mysql_query($sql_insert);
+
+                     $tblfield=array('Sent_Id','Student_Id','Course_Id');
+         $tblvalues=array($sent_id,$student_id[$i],$course_id[$i]);
+		  $result_sql_insert=$db->valInsert("sent_reg_fees_details",$tblfield,$tblvalues);
+
 				  	
 				  	if(!$result_sql_insert)
 					{

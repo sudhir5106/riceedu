@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2017 at 08:31 AM
+-- Generation Time: Dec 22, 2017 at 09:35 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin_login` (
 --
 
 INSERT INTO `admin_login` (`Login_Id`, `Login_Name`, `Login_Pwd`, `Login_Ip`, `Last_Login_Date`) VALUES
-(1, 'admin', 'france', '::1', '2017-12-14 12:58:11');
+(1, 'admin', 'france', '::1', '2017-12-22 13:45:23');
 
 -- --------------------------------------------------------
 
@@ -97,6 +97,35 @@ INSERT INTO `center_notice` (`Notice_Id`, `Notice_Date`, `Notice`, `Student_Id`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cm_image_gallery`
+--
+
+CREATE TABLE `cm_image_gallery` (
+  `S_NO` int(11) NOT NULL,
+  `CM_Image` varchar(100) NOT NULL,
+  `CM_Id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cm_image_gallery`
+--
+
+INSERT INTO `cm_image_gallery` (`S_NO`, `CM_Image`, `CM_Id`) VALUES
+(3, '15138403461.jpg', 5),
+(5, '15138403523.jpg', 5),
+(6, '15138403554.jpg', 5),
+(7, '15138403585.jpg', 5),
+(8, '15138446530.jpg', 5),
+(9, '15138446760.JPG', 5),
+(10, '15138454830.JPG', 5),
+(11, '15138455950.JPG', 5),
+(12, '15138455960.JPG', 5),
+(13, '15138456010.JPG', 5),
+(18, '15138592364.jpg', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cm_login`
 --
 
@@ -110,15 +139,18 @@ CREATE TABLE `cm_login` (
   `CM_Block` int(11) NOT NULL,
   `CM_Address` varchar(300) NOT NULL,
   `CM_Password` varchar(50) NOT NULL,
-  `CM_Status` tinyint(4) NOT NULL
+  `CM_Status` tinyint(4) NOT NULL,
+  `CM_Contact_No` varchar(15) NOT NULL,
+  `CM_Emaill` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cm_login`
 --
 
-INSERT INTO `cm_login` (`CM_Id`, `Center_Code`, `DM_Emp_Code`, `CM_Emp_Code`, `CM_State`, `CM_District`, `CM_Block`, `CM_Address`, `CM_Password`, `CM_Status`) VALUES
-(3, 'RTC-001', 'AB00002', 'AB00005', 7, 152, 8, 'sdfasdf', '123456', 1);
+INSERT INTO `cm_login` (`CM_Id`, `Center_Code`, `DM_Emp_Code`, `CM_Emp_Code`, `CM_State`, `CM_District`, `CM_Block`, `CM_Address`, `CM_Password`, `CM_Status`, `CM_Contact_No`, `CM_Emaill`) VALUES
+(3, 'RTC-001', 'AB00002', 'AB00005', 7, 152, 8, 'sdfasdf', '123456', 1, '9826396462', 'rice1@gmail.com'),
+(5, 'RTC-RTC-00', 'AB00002', 'AB00006', 7, 152, 9, 'drqerqarqwe', '1234567890', 1, '1234567890', 'richa.sach.meshram@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -797,21 +829,27 @@ CREATE TABLE `employee_master` (
   `Posting_Place` varchar(50) NOT NULL,
   `Duty_Time` varchar(50) NOT NULL,
   `Visiting_Date_Place` varchar(50) NOT NULL,
-  `emp_sign` varchar(100) NOT NULL COMMENT '//emp signature_name'
+  `emp_sign` varchar(100) NOT NULL COMMENT '//emp signature_name',
+  `Paymenr_Record` text NOT NULL,
+  `Perfromance` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee_master`
 --
 
-INSERT INTO `employee_master` (`EMP_Id`, `EMP_Code`, `EMP_Name`, `DOJ`, `EMP_Designation`, `EMP_Image`, `State_Id`, `District_Id`, `Block_Id`, `EMP_Address`, `EMP_Contact`, `EMP_Email`, `EMP_Salary`, `Posting_Place`, `Duty_Time`, `Visiting_Date_Place`, `emp_sign`) VALUES
-(1, 'AB00001', 'V Sudhir', '2017-06-28', 'Regional Manager', '1498819685.jpg', 7, 152, 1, 'Kaledonia 1st Floor, Office No-26, Sahar Road', '9826396462', 'sudhir5106@gmail.com', 50000, 'Bhilai', '10AM to 6PM', '28.06.2017 Bhilai', ''),
-(2, 'AB00002', 'V Manasa', '2017-06-30', 'District Manager', '1498819700.jpg', 7, 152, 6, 'sd asdfa sdf asdf asdf asdf', '9479256604', 's@gmail.com', 30000, 'Durg', '10AM to 6PM', '01.07.2017 Bhilai', ''),
-(4, 'AB00003', 'Jagjit Singh', '2017-07-05', 'Regional Manager', '1499262954.jpg', 7, 152, 4, 'dfas asfd asdf asdf ', '9826396462', 'jagjit@gmail.com', 50000, 'Raigarh', '10AM to 6PM', 'zxdasdf', ''),
-(5, 'AB00004', 'Dr. Sandeep Dave', '2017-07-06', 'Regional Manager', '1499352383.jpg', 7, 152, 11, 'sd asdf asdf asdf asdfafds', '9479256605', 'sandeep@gmail.com', 50000, 'Bhilai', '10AM to 6PM', '07.07.2017 Bhilai', ''),
-(6, 'AB00005', 'Rakesh Nair', '2017-07-06', 'Center Manager', '1499358967.jpg', 7, 152, 1, 'asdf asdf asdf asdf asdfasf dasfd', '9826138203', 'nair_bhilai@gmail.com', 10000, 'Raigarh', '10AM to 6PM', '07.07.2017 Bhilai', ''),
-(7, 'AB001', 'SDFSDF', '2017-11-02', 'Regional Manager', '1509610157.jpg', 7, 152, 7, 'xcgvsdfgsd', '1234567890', 'richa.sach.meshram@gmail.com', 1200, 'sdfasd', '10AM to 6PM', '28.06.2017 Bhilai', ''),
-(8, 'fdghdf', 'ghdgdf', '2017-11-02', 'Regional Manager', '1509610443.jpg', 7, 152, 11, 'cvhdh', '1234567890', 'richameshram1988@gmail.com', 1234, 'urtuy', '10am to 6 pm', 'hdfg', '1509610443.jpg');
+INSERT INTO `employee_master` (`EMP_Id`, `EMP_Code`, `EMP_Name`, `DOJ`, `EMP_Designation`, `EMP_Image`, `State_Id`, `District_Id`, `Block_Id`, `EMP_Address`, `EMP_Contact`, `EMP_Email`, `EMP_Salary`, `Posting_Place`, `Duty_Time`, `Visiting_Date_Place`, `emp_sign`, `Paymenr_Record`, `Perfromance`) VALUES
+(1, 'AB00001', 'V Sudhir', '2017-06-28', 'Regional Manager', '1498819685.jpg', 7, 152, 1, 'Kaledonia 1st Floor, Office No-26, Sahar Road', '9826396462', 'sudhir5106@gmail.com', 50000, 'Bhilai', '10AM to 6PM', '28.06.2017 Bhilai', '1513849209.jpg', '\r\n         sdsdfsdf ', '          asdfsdfsdfas'),
+(2, 'AB00002', 'V Manasa', '2017-06-30', 'District Manager', '1498819700.jpg', 7, 152, 6, 'sd asdfa sdf asdf asdf asdf', '9479256604', 's@gmail.com', 30000, 'Durg', '10AM to 6PM', '01.07.2017 Bhilai', '', '', ''),
+(4, 'AB00003', 'Jagjit Singh', '2017-07-05', 'Regional Manager', '1499262954.jpg', 7, 152, 4, 'dfas asfd asdf asdf ', '9826396462', 'jagjit@gmail.com', 50000, 'Raigarh', '10AM to 6PM', 'zxdasdf', '', '', ''),
+(5, 'AB00004', 'Dr. Sandeep Dave', '2017-07-06', 'Regional Manager', '1499352383.jpg', 7, 152, 11, 'sd asdf asdf asdf asdfafds', '9479256605', 'sandeep@gmail.com', 50000, 'Bhilai', '10AM to 6PM', '07.07.2017 Bhilai', '', '', ''),
+(6, 'AB00005', 'Rakesh Nair', '2017-07-06', 'Center Manager', '1499358967.jpg', 7, 152, 1, 'asdf asdf asdf asdf asdfasf dasfd', '9826138203', 'nair_bhilai@gmail.com', 10000, 'Raigarh', '10AM to 6PM', '07.07.2017 Bhilai', '', '', ''),
+(7, 'AB001', 'SDFSDF', '2017-11-02', 'Regional Manager', '1509610157.jpg', 7, 152, 7, 'xcgvsdfgsd', '1234567890', 'richa.sach.meshram@gmail.com', 1200, 'sdfasd', '10AM to 6PM', '28.06.2017 Bhilai', '', '', ''),
+(8, 'fdghdf', 'ghdgdf', '2017-11-02', 'Regional Manager', '1509610443.jpg', 7, 152, 11, 'cvhdh', '1234567890', 'richameshram1988@gmail.com', 1234, 'urtuy', '10am to 6 pm', 'hdfg', '1509610443.jpg', '', ''),
+(9, 'AB00006', 'Richa Meshram', '2017-12-21', 'Center Manager', '1513838444.jpg', 7, 152, 9, 'panchsheel nagar', '1234567890', 'asdr@gmail.com', 234590, 'bhilai', '10AM to  PM', '23-12-2017', '1513838444.jpg', '', ''),
+(11, 'AB00009', 'SEEMA NISHAD', '2017-12-21', 'Center Manager', '1513846884.jpg', 7, 152, 7, 'SDTFSDFGSDFG', '1234567890', 'richa.sach.meshram@gmail.com', 323, 'EWQEQWE', '123', 'DFDSFSDF', '1513846884.jpg', '', ''),
+(12, 'AB00009', 'SEEMA NISHAD', '2017-12-21', 'Center Manager', '1513846893.jpg', 7, 152, 7, 'SDTFSDFGSDFG', '1234567890', 'richa.sach.meshram@gmail.com', 323, 'EWQEQWE', '123', 'DFDSFSDF', '1513846893.jpg', '', ''),
+(13, 'AB000045', 'RITU', '2017-12-21', 'Center Manager', '1513847074.jpg', 7, 152, 11, 'FDGSDFGDFG', '2345678901', 'richa.sach.meshram@gmail.com', 344, '121ASDFASDF', 'FSFSD', 'FGSDFG', '1513847074.jpg', '\r\n          ', '          ');
 
 -- --------------------------------------------------------
 
@@ -840,7 +878,13 @@ CREATE TABLE `fees_payment` (
 INSERT INTO `fees_payment` (`Payment_Id`, `Payment_Date`, `Paid_Amt`, `Payment_Mode`, `Cheque_DD_No`, `Transaction_No`, `Which_Bank_Cheque_DD`, `Student_Id`, `CM_Id`, `Receipt_No`, `Rege_status`) VALUES
 (169, '2017-11-30 12:40:39', 1234, 1, '', '', '', 1, 3, '10000', 0),
 (170, '2017-11-30 13:09:10', 1234, 1, '', '', '', 2, 3, '10001', 0),
-(171, '2017-11-30 13:10:30', 278, 1, '', '', '', 5, 3, '10002', 0);
+(171, '2017-11-30 13:10:30', 278, 1, '', '', '', 5, 3, '10002', 0),
+(172, '2017-12-20 13:16:37', 12340, 1, '', '', '', 6, 3, '10003', 0),
+(173, '2017-12-20 13:56:21', 1345, 1, '', '', '', 1, 3, '10004', 0),
+(174, '2017-12-20 13:59:10', 1234, 1, '', '', '', 2, 3, '10005', 0),
+(175, '2017-12-20 14:03:43', 100, 1, '', '', '', 6, 3, '10006', 0),
+(176, '2017-12-20 15:04:07', 123, 1, '', '', '', 1, 3, '10007', 0),
+(177, '2017-12-20 15:05:05', 123, 1, '', '', '', 1, 3, '10008', 0);
 
 -- --------------------------------------------------------
 
@@ -918,37 +962,24 @@ INSERT INTO `rm_login` (`R_Id`, `R_Emp_Code`, `R_State`, `R_District`, `R_Block`
 --
 
 CREATE TABLE `sent_reg_fees` (
-  `Sent_Id` int(100) NOT NULL,
   `Payment_Date` varchar(100) NOT NULL,
   `Total_Amount` float NOT NULL,
   `Payment_Mode` varchar(100) NOT NULL,
   `Transaction_Number` varchar(100) NOT NULL,
   `Cheque_No` varchar(100) NOT NULL,
   `CM_Id` varchar(100) NOT NULL,
-  `Appr_Status` int(11) NOT NULL
+  `Appr_Status` int(11) NOT NULL,
+  `Sent_Id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sent_reg_fees`
 --
 
-INSERT INTO `sent_reg_fees` (`Sent_Id`, `Payment_Date`, `Total_Amount`, `Payment_Mode`, `Transaction_Number`, `Cheque_No`, `CM_Id`, `Appr_Status`) VALUES
-(37, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
-(38, '2017-11-30', 150, 'cash', '---', '---', '3', 0),
-(39, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
-(40, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
-(41, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
-(42, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
-(43, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
-(44, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
-(45, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
-(46, '2017-11-30', 1000, 'cash', '---', '---', '3', 0),
-(47, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
-(48, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
-(49, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
-(50, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
-(51, '2017-11-30', 100, 'cash', '---', '---', '3', 0),
-(52, '2017-12-7', 100, 'cash', '---', '---', '3', 0);
+INSERT INTO `sent_reg_fees` (`Payment_Date`, `Total_Amount`, `Payment_Mode`, `Transaction_Number`, `Cheque_No`, `CM_Id`, `Appr_Status`, `Sent_Id`) VALUES
+('2017-12-20', 1000, 'cash', '---', '---', '3', 1, 11),
+('2017-12-20', 1000, 'cash', '---', '---', '3', 1, 12),
+('2017-12-21', 1000, 'cash', '---', '---', '3', 1, 13);
 
 -- --------------------------------------------------------
 
@@ -968,21 +999,9 @@ CREATE TABLE `sent_reg_fees_details` (
 --
 
 INSERT INTO `sent_reg_fees_details` (`SID`, `Sent_Id`, `Student_Id`, `Course_Id`) VALUES
-(62, 37, 1, 2),
-(63, 39, 2, 2),
-(64, 40, 2, 2),
-(65, 41, 2, 2),
-(66, 42, 2, 2),
-(67, 43, 2, 2),
-(68, 44, 2, 2),
-(69, 45, 2, 2),
-(70, 46, 2, 2),
-(71, 47, 5, 3),
-(72, 48, 5, 3),
-(73, 49, 5, 3),
-(74, 50, 5, 3),
-(75, 51, 5, 3),
-(76, 52, 5, 3);
+(107, 11, 1, 2),
+(108, 12, 2, 2),
+(109, 13, 6, 2);
 
 -- --------------------------------------------------------
 
@@ -1097,9 +1116,7 @@ CREATE TABLE `student_master` (
   `CM_Id` smallint(6) NOT NULL,
   `Reference` varchar(75) NOT NULL,
   `Registration_No` int(11) NOT NULL,
-  `Entry_No` int(11) NOT NULL,
   `Approval_Status` tinyint(4) NOT NULL,
-  `Status` tinyint(4) NOT NULL,
   `Payment_Status` int(11) NOT NULL COMMENT '//1 for paid '
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1107,12 +1124,13 @@ CREATE TABLE `student_master` (
 -- Dumping data for table `student_master`
 --
 
-INSERT INTO `student_master` (`Student_Id`, `Reg_Date`, `Application_No`, `Student_Code`, `Password`, `Student_Name`, `DOB`, `Gender`, `Father_Name`, `Mother_Name`, `Religion`, `Caste`, `Phisical_Status`, `Aadhaar_No`, `Education`, `Course_Id`, `Mode`, `Session`, `About_Fee_Deposite`, `Block_Id`, `Address`, `Pincode`, `Contact_No`, `Email`, `Bank_Name`, `Acc_holder_name`, `Account_No`, `Bank_Address`, `IFSC_Code`, `Photo`, `Signature`, `Gaurdian_Signature`, `CM_Id`, `Reference`, `Registration_No`, `Entry_No`, `Approval_Status`, `Status`, `Payment_Status`) VALUES
-(1, '2017-07-31', 1, 4376, 'student', 'v sudhir', '1984-01-09', 1, 'v gandhi', 'v saroja', 'Hindu', 'OBC', 2, '123456781234', 'Diploma', 2, 'regular', 'january', 'The student will pay in 4 installments, First 3 installment will be 20%-20% and the last installment will be 40% which he will pay in august month, because he belongs to very poor family that is why we gave him the time to pay the fees. ', 6, 'asdf adsf asdf ', '490020', '9826396462', 's@gmail.com', 'Axis Bank', '', '214010100136631', 'Supela, Bhilai, Chhattisgarh', 'UTIB0000214', '1501511959.jpg', '1501511959.jpg', '1501511959.jpg', 3, 'Naresh Sahu', 43763006, 298523, 1, 1, 1),
-(2, '2017-11-18', 2, 4377, 'UTiesj', 'seema', '1988-11-02', 1, 'edrfwqer', 'wertwetwe', 'Hindu', 'GEN', 1, 'fgsdf', 'M TECH', 2, 'online', 'april', 'fdgsfdgsdf', 11, 'gfsadfgsdfg', '490020', '1234567890', 'richa.sach.meshram@gmail.com', 'ftgdfsgsdf', 'rfwerer', 'gsdfgsdfg', 'fdgsdfg', 'qw12231', '1510989404.jpg', '1510989404.jpg', '1510989404.jpg', 3, '', 43763007, 0, 0, 0, 1),
-(3, '2017-11-18', 3, 4378, 'Wc6tOK', 'seema', '1988-11-02', 1, 'edrfwqer', 'wertwetwe', 'Hindu', 'GEN', 1, 'fgsdf', 'M TECH', 2, 'online', 'april', 'fdgsfdgsdf', 11, 'gfsadfgsdfg', '490020', '1234567890', 'richa.sach.meshram@gmail.com', 'ftgdfsgsdf', 'rfwerer', 'gsdfgsdfg', 'fdgsdfg', 'qw12231', '1510989411.jpg', '1510989411.jpg', '1510989411.jpg', 3, '', 0, 0, 0, 0, 0),
-(4, '2017-11-21', 4, 4379, 'DUX3xe', 'gudiya', '2017-11-15', 1, 'arfasdf', 'asdf', 'Jain', 'MUSLIM', 2, 'dsafasd', 'MCA', 3, 'regular', 'april', 'asdfasdf', 11, 'sdfrsd', '2323', '1234567890', 'richa.sach.meshram@gmail.com', 'twetr', 'trwer', 'ewrtwer', 'rwert', 'retwer', '1511255571.jpg', '1511255571.jpg', '1511255571.jpg', 3, 'dsfsdf', 43763003, 0, 0, 0, 0),
-(5, '2017-11-21', 5, 4380, 'SgdG9a', 'gudiya', '2017-11-15', 1, 'arfasdf', 'asdf', 'Jain', 'MUSLIM', 2, 'dsafasd', 'MCA', 3, 'regular', 'april', 'asdfasdf', 11, 'sdfrsd', '2323', '8827327607', 'richa.sach.meshram@gmail.com', 'twetr', 'trwer', 'ewrtwer', 'rwert', 'retwer', '1511255584.jpg', '1511255584.jpg', '1511255584.jpg', 3, 'dsfsdf', 43763004, 0, 0, 0, 1);
+INSERT INTO `student_master` (`Student_Id`, `Reg_Date`, `Application_No`, `Student_Code`, `Password`, `Student_Name`, `DOB`, `Gender`, `Father_Name`, `Mother_Name`, `Religion`, `Caste`, `Phisical_Status`, `Aadhaar_No`, `Education`, `Course_Id`, `Mode`, `Session`, `About_Fee_Deposite`, `Block_Id`, `Address`, `Pincode`, `Contact_No`, `Email`, `Bank_Name`, `Acc_holder_name`, `Account_No`, `Bank_Address`, `IFSC_Code`, `Photo`, `Signature`, `Gaurdian_Signature`, `CM_Id`, `Reference`, `Registration_No`, `Approval_Status`, `Payment_Status`) VALUES
+(1, '2017-07-31', 1, 4376, 'student', 'v sudhir', '1984-01-09', 1, 'v gandhi', 'v saroja', 'Hindu', 'OBC', 2, '123456781234', 'Diploma', 2, 'regular', 'january', 'The student will pay in 4 installments, First 3 installment will be 20%-20% and the last installment will be 40% which he will pay in august month, because he belongs to very poor family that is why we gave him the time to pay the fees. ', 6, 'asdf adsf asdf ', '490020', '9826396462', 's@gmail.com', 'Axis Bank', '', '214010100136631', 'Supela, Bhilai, Chhattisgarh', 'UTIB0000214', '1501511959.jpg', '1501511959.jpg', '1501511959.jpg', 3, 'Naresh Sahu', 43763001, 1, 1),
+(2, '2017-11-18', 2, 4377, 'UTiesj', 'seema', '1988-11-02', 1, 'edrfwqer', 'wertwetwe', 'Hindu', 'GEN', 1, 'fgsdf', 'M TECH', 2, 'online', 'april', 'fdgsfdgsdf', 11, 'gfsadfgsdfg', '490020', '1234567890', 'richa.sach.meshram@gmail.com', 'ftgdfsgsdf', 'rfwerer', 'gsdfgsdfg', 'fdgsdfg', 'qw12231', '1510989404.jpg', '1510989404.jpg', '1510989404.jpg', 3, '', 43763002, 0, 1),
+(3, '2017-11-18', 3, 4378, 'Wc6tOK', 'seema', '1988-11-02', 1, 'edrfwqer', 'wertwetwe', 'Hindu', 'GEN', 1, 'fgsdf', 'M TECH', 2, 'online', 'april', 'fdgsfdgsdf', 11, 'gfsadfgsdfg', '490020', '1234567890', 'richa.sach.meshram@gmail.com', 'ftgdfsgsdf', 'rfwerer', 'gsdfgsdfg', 'fdgsdfg', 'qw12231', '1510989411.jpg', '1510989411.jpg', '1510989411.jpg', 3, '', 0, 0, 0),
+(4, '2017-11-21', 4, 4379, 'DUX3xe', 'gudiya', '2017-11-15', 1, 'arfasdf', 'asdf', 'Jain', 'MUSLIM', 2, 'dsafasd', 'MCA', 3, 'regular', 'april', 'asdfasdf', 11, 'sdfrsd', '2323', '1234567890', 'richa.sach.meshram@gmail.com', 'twetr', 'trwer', 'ewrtwer', 'rwert', 'retwer', '1511255571.jpg', '1511255571.jpg', '1511255571.jpg', 3, 'dsfsdf', 0, 0, 0),
+(5, '2017-11-21', 5, 4380, 'SgdG9a', 'gudiya', '2017-11-15', 1, 'arfasdf', 'asdf', 'Jain', 'MUSLIM', 2, 'dsafasd', 'MCA', 3, 'regular', 'april', 'asdfasdf', 11, 'sdfrsd', '2323', '8827327607', 'richa.sach.meshram@gmail.com', 'twetr', 'trwer', 'ewrtwer', 'rwert', 'retwer', '1511255584.jpg', '1511255584.jpg', '1511255584.jpg', 3, 'dsfsdf', 0, 0, 0),
+(6, '2017-12-20', 6, 4381, 'oipQ0L', 'richa ', '2017-12-25', 1, 'anandrao meshram', 'indu', 'Hindu', 'GEN', 1, '12435465', 'GRADUATE', 2, 'regular', 'january', 'fgdfgdfgfdgs', 9, 'cvhbgfhdfgh', '121313', '1234567890', 'richa.sach.meshram@gmail.com', 'sdeasdas', 'dasdsa', '123131', '34234', 'sr4543534  ', '1513835342.png', '1513755905.jpg', '1513755905.jpg', 3, '', 43763003, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -1138,6 +1156,12 @@ ALTER TABLE `center_notice`
   ADD PRIMARY KEY (`Notice_Id`),
   ADD KEY `CM_Id` (`CM_Id`),
   ADD KEY `Student_Id` (`Student_Id`);
+
+--
+-- Indexes for table `cm_image_gallery`
+--
+ALTER TABLE `cm_image_gallery`
+  ADD PRIMARY KEY (`S_NO`);
 
 --
 -- Indexes for table `cm_login`
@@ -1251,10 +1275,15 @@ ALTER TABLE `block_master`
 ALTER TABLE `center_notice`
   MODIFY `Notice_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `cm_image_gallery`
+--
+ALTER TABLE `cm_image_gallery`
+  MODIFY `S_NO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
 -- AUTO_INCREMENT for table `cm_login`
 --
 ALTER TABLE `cm_login`
-  MODIFY `CM_Id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `CM_Id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `course_master`
 --
@@ -1274,12 +1303,12 @@ ALTER TABLE `dm_login`
 -- AUTO_INCREMENT for table `employee_master`
 --
 ALTER TABLE `employee_master`
-  MODIFY `EMP_Id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `EMP_Id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `fees_payment`
 --
 ALTER TABLE `fees_payment`
-  MODIFY `Payment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+  MODIFY `Payment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 --
 -- AUTO_INCREMENT for table `ho_notice`
 --
@@ -1299,12 +1328,12 @@ ALTER TABLE `rm_login`
 -- AUTO_INCREMENT for table `sent_reg_fees`
 --
 ALTER TABLE `sent_reg_fees`
-  MODIFY `Sent_Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `Sent_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `sent_reg_fees_details`
 --
 ALTER TABLE `sent_reg_fees_details`
-  MODIFY `SID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `SID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 --
 -- AUTO_INCREMENT for table `state_master`
 --
@@ -1319,7 +1348,7 @@ ALTER TABLE `student_document`
 -- AUTO_INCREMENT for table `student_master`
 --
 ALTER TABLE `student_master`
-  MODIFY `Student_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Student_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --

@@ -13,6 +13,7 @@ define('PATH_JS_LIBRARIES','/riceedu/js');
 define('PATH_CSS_LIBRARIES','/riceedu/css');
 define('PATH_IMAGE','/riceedu/images');
 define('PATH_DATA_IMAGE','/riceedu/data_images');
+define('PATH_DATA_IMAGE_CM','/riceedu/cm_image');
 define("PATH_FONTS",'/riceedu/fonts'); // fonts Link
 define('PATH_DATA_DOC','/riceedu/documents');//documents
 

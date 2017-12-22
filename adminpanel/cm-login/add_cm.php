@@ -94,6 +94,29 @@ $getStates=$db->ExecuteQuery("SELECT * FROM state_master ");
             <textarea  class="form-control input-sm txtarea" id="address" name="address" placeholder="Address"></textarea>
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-4 mandatory" for="contact_no">Contact No. <span>*</span>:</label>
+          <div class="col-sm-4">
+          <input type="text" class="form-control input-sm" id="contact_no" name="contact_no" placeholder="Contact No." />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-4 mandatory" for="Emaiid">Email <span>*</span>:</label>
+          <div class="col-sm-4">
+          <input type="text" class="form-control input-sm" id="email" name="email" placeholder="Email" />
+          </div>
+        </div>
+
+        <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="imageupload">Image Upload <span class="required">*</span> </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="file" id="imageupload" name="imageupload" required="required" class="form-control col-md-7 col-xs-12 " accept="image/jpg,image/png,image/jpeg,image/gif" multiple>
+                <span id="errmsg"></span> (Note : Image size must be geater than 500*300  and you can also upload multiple images also.) </div>
+            </div>
+
+
         
         <div class="form-group">
           <label class="control-label col-sm-4 mandatory" for="password">Password <span>*</span>:</label>

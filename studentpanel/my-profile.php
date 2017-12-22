@@ -6,7 +6,7 @@ $db = new DBConn();
 
 require_once(PATH_STUDENT_INCLUDE.'/header.php');
 
-$GetStudentInfo = $db->ExecuteQuery("SELECT *, DATE_FORMAT(Reg_Date,'%d-%M-%Y') AS DOJ, DATE_FORMAT(DOB,'%d-%M-%Y') AS DateOfBirth , Block_Name, District_Name, State_Name, CASE WHEN Gender=1 THEN 'Male' ELSE 'Female' END Sex, CASE WHEN Phisical_Status=1 THEN 'Normal' ELSE 'Physically Challenged' END Phisical_Status, CASE WHEN Approval_Status=0 THEN 'Pending' ELSE 'Approved' END Approval_Status, CASE WHEN Status=0 THEN 'Blocked' ELSE 'Active' END Status, Entry_No
+$GetStudentInfo = $db->ExecuteQuery("SELECT *, DATE_FORMAT(Reg_Date,'%d-%M-%Y') AS DOJ, DATE_FORMAT(DOB,'%d-%M-%Y') AS DateOfBirth , Block_Name, District_Name, State_Name, CASE WHEN Gender=1 THEN 'Male' ELSE 'Female' END Sex, CASE WHEN Phisical_Status=1 THEN 'Normal' ELSE 'Physically Challenged' END Phisical_Status, CASE WHEN Approval_Status=0 THEN 'Pending' ELSE 'Approved' END Approval_Status  
 
 FROM student_master st
 
@@ -16,6 +16,7 @@ LEFT JOIN district_master d ON b.District_Id = d.District_Id
 LEFT JOIN state_master s ON d.State_Id = s.State_Id
 
 WHERE Student_Id='".$_SESSION['sid']."'");
+
 ?>
 
 <div>
@@ -23,7 +24,7 @@ WHERE Student_Id='".$_SESSION['sid']."'");
     <div class="title_left">
       <h3><i class="fa fa-user" aria-hidden="true"></i> My Profile</h3>
     </div>
-    <div class="text-right">Profile : <span class="<?php echo $GetStudentInfo[1]['Status']=='Blocked'?'text-danger':'text-primary'?>"><strong><?php echo $GetStudentInfo[1]['Status']; ?></strong></span> &nbsp;&nbsp;|&nbsp;&nbsp; Admin Approval : <span class="<?php echo $GetStudentInfo[1]['Approval_Status']=='Pending'?'text-danger':'text-primary'?>"><strong><?php echo $GetStudentInfo[1]['Approval_Status']?></strong></span></div>
+    <div class="text-right"> Admin Approval : <span class="<?php echo $GetStudentInfo[1]['Approval_Status']=='Pending'?'text-danger':'text-primary'?>"><strong><?php echo $GetStudentInfo[1]['Approval_Status']?></strong></span></div>
   </div>
   
   <div class="row">
@@ -103,10 +104,7 @@ WHERE Student_Id='".$_SESSION['sid']."'");
                         	<div class="col-sm-3">Registration No</div>
                             <div class="col-sm-7"><?php echo $GetStudentInfo[1]['Registration_No']==0?'Not Generated':$GetStudentInfo[1]['Registration_No']; ?></div>
                         </div>
-                        <div class="data-row">
-                        	<div class="col-sm-3">Entry No</div>
-                            <div class="col-sm-7"><?php echo $GetStudentInfo[1]['Entry_No']==0?'Not Generated':$GetStudentInfo[1]['Registration_No']; ?></div>
-                        </div>
+                       
                         <div class="data-row">
                         	<div class="col-sm-3">Student Code</div>
                             <div class="col-sm-7"><?php echo $GetStudentInfo[1]['Student_Code']; ?></div>

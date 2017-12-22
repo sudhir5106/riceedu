@@ -19,7 +19,7 @@ $(document).ready(function(){
 				success: function(data){  //alert(data);
 					if(data)
 					{
-						//window.location.href="index.php";
+						window.location.href="index.php";
 					}
 				}
 			});

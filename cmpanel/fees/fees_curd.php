@@ -312,7 +312,7 @@ if($_POST['type']=='feespayment'){
         //$msg="Student%20Name".$check[1]['Student_Name'];
     $message=str_replace(" ","%20",$msg);
 
-        $url="http://sms.technocratws.com/api/mt/SendSMS?APIKey=63a0d84e-11e5-4b0c-afaa-67e4560569f3&senderid=TESTIN&channel=2&DCS=0&flashsms=0&number=91".$mobile."&text=".$message."&route=1";
+        $url="http://sms.technocratws.com/api/mt/SendSMS?APIKey=63a0d84e-11e5-4b0c-afaa-67e4560569f3&senderid=RICEDU&channel=2&DCS=0&flashsms=0&number=91".$mobile."&text=".$message."&route=1";
 			  
 			  $ch = curl_init();
 			  $timeout = 5;

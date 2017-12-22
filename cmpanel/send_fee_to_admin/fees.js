@@ -93,7 +93,7 @@ $("#save").validate({
 			   type: "POST",
 			   url: "fees_curd.php",
 			   data:formdata,
-			   success: function(data){  alert(data);
+			   success: function(data){  //alert(data);
 					if(data!=""){
 						$("#displayInfo").show();
 						$('#displayInfo').html(data);
@@ -162,9 +162,11 @@ $("#save").validate({
 			   url: "fees_curd.php",
 			   data:formdata,
 			   success: function(data){ 
+			   	
 				  if(data==1)
-				  {
+				 {
 				  	window.location.href="index.php";
+				  	
 				  }
 			   },
 			   cache: false,

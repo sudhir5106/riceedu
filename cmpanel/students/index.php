@@ -5,7 +5,7 @@ $db = new DBConn();
 include(PATH_CM_INCLUDE.'/header.php');
 
 // get all list of students 
-$getstudent=$db->ExecuteQuery("SELECT Student_Id, DATE_FORMAT(Reg_Date,'%d-%m-%Y') AS Reg_Date, Application_No, Student_Code, Student_Name, Password,  Father_Name, Aadhaar_No, Course_Name, Mode, Session, Address, Block_Name, District_Name, State_Name, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
+$getstudent=$db->ExecuteQuery("SELECT Student_Id, DATE_FORMAT(Reg_Date,'%d-%m-%Y') AS Reg_Date,Registration_No,Application_No, Student_Code, Student_Name, Password,  Father_Name, Aadhaar_No, Course_Name, Mode, Session, Address, Block_Name, District_Name, State_Name, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
 
 FROM student_master st
 
@@ -58,7 +58,7 @@ WHERE CM_Id =".$_SESSION['cmid']);
                       <th>Sign</th>
                       <th>Gaurdian's Sign</th>
                       <th>Approval Status</th>                  
-                      <!--<th>Action</th>-->
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -83,8 +83,8 @@ WHERE CM_Id =".$_SESSION['cmid']);
                       <td><img width="50px;" src="<?php echo PATH_DATA_IMAGE ?>/student/gaurdian-sign/thumb/<?php echo $getstudentVal['Gaurdian_Signature'];?>" alt="" /></td>
                       <td><span class="label <?php echo $getstudentVal['Approval_Status']=='Pending'?'label-warning': ($getstudentVal['Approval_Status']=='Approved'?'label-success':'label-danger');?>"><?php echo $getstudentVal['Approval_Status'];?></span></td>
                       
-                      <!--<td><button type="button" id="editbtn" class="btn btn-success btn-xs" onClick="window.location.href='edit_student.php?id=<?php echo $getstudentVal['Student_Id'];?>'" > <span class="glyphicon glyphicon-edit"></span> </button>
-                        <button type="button" class="btn btn-danger btn-xs delete" id="<?php echo $getstudentVal['Student_Id']; ?>" name="delete"> <span class="glyphicon glyphicon-trash"></span> </button></td>-->
+                      <td><?php if($getstudentVal['Registration_No']!=0){ ?><button type="button" id="editbtn" class="btn btn-success btn-xs" onClick="window.location.href='edit_student.php?id=<?php echo $getstudentVal['Student_Id'];?>'" > <span class="glyphicon glyphicon-edit">EDIT</span> </button>
+                     <?php  } ?>   </td>
                     </tr>
                     <?php $i++;} ?>
                   </tbody>

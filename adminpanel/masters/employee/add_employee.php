@@ -124,6 +124,21 @@ $getStates=$db->ExecuteQuery("SELECT * FROM state_master ");
             <input type="text" class="form-control input-sm" id="email" name="email" placeholder="Email" />
           </div>
         </div>
+        <div class="form-group">
+          <label class="control-label col-sm-4 mandatory" for="Advance_Payment_Record">Advance Payment Record <span>*</span>:</label>
+          <div class="col-sm-3">
+          <textarea  class="form-control input-sm txtarea" id="payment_record" name="payment_record" placeholder="Advance Payment Record">
+          </textarea>
+            
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-4 mandatory" for="Working_Performance">Working Performance <span>*</span>:</label>
+          <div class="col-sm-3">
+          <textarea  class="form-control input-sm txtarea" id="perfromance" name="perfromance" placeholder="Working Performance">
+          </textarea>
+          </div>
+        </div>
         <!--<div class="form-group">
           <label class="control-label col-sm-4 mandatory" for="password">Password <span>*</span>:</label>
           <div class="col-sm-3">

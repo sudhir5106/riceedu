@@ -1,200 +1,510 @@
 <?php
 include('../../config.php'); 
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
-$db = new DBConn();
 include(PATH_CM_INCLUDE.'/header.php');
+$db = new DBConn();
 
+$getstudent=$db->ExecuteQuery("SELECT Student_Id, DATE_FORMAT(Reg_Date,'%d-%m-%Y') AS Reg_Date, DATE_FORMAT(DOB,'%d-%m-%Y') AS dob,
+Application_No, Student_Code, Student_Name, Password,Father_Name,Mother_Name, Aadhaar_No,Education,Course_Id, Mode,Session, Address,Pincode,
+ Contact_No, Email, Bank_Name,Reference,Gender,Phisical_Status,Religion,Caste, Account_No,Block_Id,Bank_Address,About_Fee_Deposite,Bank_Address,Acc_holder_name,
+ IFSC_Code, Photo, Signature, Gaurdian_Signature, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
 
+FROM student_master WHERE Student_Id =".$_REQUEST['id']);
 
-// get all list of employee 
-$getemployee=$db->ExecuteQuery("SELECT DATE_FORMAT(DOJ,'%d-%m-%Y') AS DOJ, e.EMP_Id, e.EMP_Code, e.EMP_Image, e.EMP_Name, e.EMP_Designation, e.Block_Id, e.District_Id, d.State_Id, e.EMP_Address, e.EMP_Contact, EMP_Email, EMP_Salary, Posting_Place, Duty_Time, Visiting_Date_Place
-
-FROM employee_master e
-
-LEFT JOIN block_master b ON e.Block_Id = b.Block_Id
-LEFT JOIN district_master d ON e.District_Id = d.District_Id
-LEFT JOIN state_master s ON d.State_Id = s.State_Id
-
-WHERE e.EMP_Id = ".$_GET['id']);
-
-// get all list of states
 $getStates=$db->ExecuteQuery("SELECT * FROM state_master ");
 
-// get all list of districts
-$getDistrict=$db->ExecuteQuery("SELECT District_Id, District_Name FROM district_master WHERE State_Id=".$getemployee[1]['State_Id']);
+// get all list of courses
+$getCourse=$db->ExecuteQuery("SELECT * FROM course_master");
 
-// get all list of blocks
-$getBlocks=$db->ExecuteQuery("SELECT Block_Id, Block_Name FROM block_master WHERE District_Id=".$getemployee[1]['District_Id']);
+     
 
+  $sql_district="SELECT District_Id FROM block_master  where Block_Id=".$getstudent[1]['Block_Id'];
+                   $get_district=$db->ExecuteQuery($sql_district);
+                   $sql_state="SELECT  State_Id  FROM   district_master  WHERE District_Id=".$get_district[1]['District_Id'];
+                   $get_state=$db->ExecuteQuery($sql_state);
+				   $getdistrict=$db->ExecuteQuery("SELECT * FROM district_master  WHERE State_Id='".$get_state[1]['State_Id']."' ORDER BY District_Name ASC");
+				   $getblock=$db->ExecuteQuery("SELECT * FROM block_master WHERE District_Id='".$get_district[1]['District_Id']."' ORDER BY Block_Name ASC");
+                          
+                   
 ?>
-<script type="text/javascript"  src="student.js" ></script>
+<script type="text/javascript" src="student.js"></script>
 
-<div class="main">
+<div id="loading">
+    <div class="loader-block"><i class="fa-li fa fa-spinner fa-spin spinloader"></i></div>
+</div>
+
+<div>
   <div class="page-title">
-    <div>
-      <div class="col-lg-5 pull-left">
-        <h4><i class="glyphicon glyphicon-plus"></i> Edit Employee</h4>
-      </div>
-      <div class="col-lg-5 pull-right text-right">
-      	<span class="hidden-phone" style="margin-left: 15px; margin-top: 3px;"><a class="btn btn-primary" href="index.php"><i class="glyphicon glyphicon-share-alt"></i> View Employee List</a></span>
+    <div class="title_left">
+      <h3><i class="glyphicon glyphicon-plus"></i> Edit Student</h3>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li>
+             
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+        	<form class="form-horizontal" role="form" id="insertStudent" method="post">
+              <div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="reference">Reference :</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" id="reference" name="reference" value="<?php echo $getstudent[1]['Reference'];?>"/>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label mandatory" for="fileupload">Upload Student Photo <span>*</span>:</label>
+                    <div class="col-md-4">
+                        <label class="col-md-4 control-label" for="fileupload">
+                        <img width="50px;" src="<?php echo PATH_DATA_IMAGE ?>/student/thumb/<?php echo $getstudent[1]['Photo'];?>" alt="" />
+                        </label>
+                        <input class="col-md-8" type="file" id="fileupload" name="fileupload">
+                   </div>
+                </div>
+               
+                <div class="form-group">
+                    <label class="col-md-4 control-label mandatory" for="student_sign">Upload Student Signature <span>*</span>:</label>
+                    <div class="col-md-4">
+                        <label class="col-md-4 control-label" for="student_sign"> <img width="50px;" src="<?php echo PATH_DATA_IMAGE ?>/student/student-sign/thumb/<?php echo $getstudent[1]['Signature'];?>" alt="" /></label>
+                        <input class="col-md-8" type="file" id="student_sign" name="student_sign">
+                   </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label mandatory" for="guardian_sign">Upload Guardian Signature <span>*</span>:</label>
+                    <div class="col-md-4">
+                        <label class="col-md-4 control-label" for="guardian_sign"><img width="50px;" src="<?php echo PATH_DATA_IMAGE ?>/student/gaurdian-sign/thumb/<?php echo $getstudent[1]['Gaurdian_Signature'];?>" alt="" /></label>
+                        <input class="col-md-8" type="file" id="guardian_sign" name="guardian_sign">
+                   </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="student_name">Student Name <span>*</span>:</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" id="student_name" name="student_name" value="<?php echo $getstudent[1]['Student_Name'];?>" />
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="dob">Date of Birth <span>*</span> </label>
+                  <div class="col-sm-2">
+                    <input type="text" id="dob" name="dob" required="required" class="form-control datetimepicker" value="<?php echo $getstudent[1]['dob'];?>">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="gender">Gender</label>
+                  <div class="col-md-4"> 
+                  <?php if($getstudent[1]['Gender']==1){?>
+                    <label class="radio-inline" for="gender-0">
+                      <input name="gender" id="gender-0" value="1" checked="checked" type="radio">
+                      Male
+                    </label> 
+                    <label class="radio-inline" for="gender-1">
+                      <input name="gender" id="gender-1" value="2" type="radio">
+                      Female
+                    </label>
+                    <?php  } 
+                    else
+                    {
+                      ?>
+                       <label class="radio-inline" for="gender-0">
+                      <input name="gender" id="gender-0" value="1"  type="radio">
+                      Male
+                    </label> 
+                    <label class="radio-inline" for="gender-1">
+                      <input name="gender" id="gender-1" value="2" checked="checked" type="radio">
+                      Female
+                    </label>
+                      <?php
+                    }
+
+                    ?>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="father_name">Father's Name <span>*</span>:</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" id="father_name" name="father_name" value="<?php echo $getstudent[1]['Father_Name'];?>"/>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="mother_name">Mother's Name <span>*</span>:</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" id="mother_name" name="mother_name" value="<?php echo $getstudent[1]['Mother_Name'];?>"/>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-md-4 control-label mandatory" for="religion">Religion <span>*</span></label>
+                  <div class="col-md-3">
+                    <select id="religion" name="religion" class="form-control">
+                     <option value="">--- Select Religion  ---</option>
+                      <option value="Hindu" <?php 
+                      if($getstudent[1]['Religion']=="Hindu"){
+                        ?>
+                        selected
+                        <?php  
+                        }?> >Hindu</option>
+                      <option value="Muslim" <?php 
+                      if($getstudent[1]['Religion']=="Muslim")
+                      {?> selected  <?php  } ?>  >Muslim</option>
+                      <option value="Sikh" <?php  if($getstudent[1]['Religion']=="Sikh")
+                      {?> selected  <?php  } ?>      >Sikh</option>
+                      <option value="Chritsian"  <?php  if($getstudent[1]['Religion']=="Chritsian")
+                      {?> selected  <?php  } ?>        >Chritsian</option>
+                      <option value="Jain" <?php  if($getstudent[1]['Religion']=="Jain")
+                      {?> selected  <?php  } ?>        >Jain</option>
+                      <option value="Buddhist" <?php  if($getstudent[1]['Religion']=="Buddhist")
+                      {?> selected  <?php  } ?> >Buddhist</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-md-4 control-label mandatory" for="caste">Caste <span>*</span></label>
+                  <div class="col-md-3">
+                    <select id="caste" name="caste" class="form-control">
+                     <option value="">--- Select Caste  ---</option>  Caste
+                      <option value="GEN"  <?php 
+                      if($getstudent[1]['Caste']=="GEN")
+                      {?> selected  <?php  } ?>   >GEN</option>
+                      <option value="OBC" <?php 
+                      if($getstudent[1]['Caste']=="OBC")
+                      {?> selected  <?php  } ?>  >OBC</option>
+                      <option value="SC" <?php 
+                      if($getstudent[1]['Caste']=="SC")
+                      {?> selected  <?php  } ?> >SC</option>
+                      <option value="ST" <?php 
+                      if($getstudent[1]['Caste']=="ST")
+                      {?> selected  <?php  } ?>>ST</option>
+                      <option value="SATNAMI"<?php 
+                      if($getstudent[1]['Caste']=="SATNAMI")
+                      {?> selected  <?php  } ?>   >SATNAMI</option>
+                      <option value="MINORITY"<?php 
+                      if($getstudent[1]['Caste']=="MINORITY")
+                      {?> selected  <?php  } ?>    >MINORITY</option>
+                      <option value="JAIN"<?php 
+                      if($getstudent[1]['Caste']=="JAIN")
+                      {?> selected  <?php  } ?>    >JAIN</option>
+                      <option value="MUSLIM" <?php 
+                      if($getstudent[1]['Caste']=="MUSLIM")
+                      {?> selected  <?php  } ?>>MUSLIM</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="physical_status">Physical Status</label>
+                  <?php if($getstudent[1]['Phisical_Status']==1){?>
+                     <div class="col-md-4"> 
+                    <label class="radio-inline" for="physical_status-0">
+                      <input name="physical_status" id="physical_status-0" value="1" checked="checked" type="radio">
+                      Normal
+                    </label> 
+                    <label class="radio-inline" for="physical_status-1">
+                      <input name="physical_status" id="physical_status-1" value="2" type="radio">
+                      Physically Challenged
+                    </label>
+                  </div>
+                      
+                  <?php } 
+                  else
+                  {?>
+                    <div class="col-md-4"> 
+                    <label class="radio-inline" for="physical_status-0">
+                      <input name="physical_status" id="physical_status-0" value="1"  type="radio">
+                      Normal
+                    </label> 
+                    <label class="radio-inline" for="physical_status-1">
+                      <input name="physical_status" id="physical_status-1" value="2" checked="checked" type="radio">
+                      Physically Challenged
+                    </label>
+                  </div>
+                  <?php }
+                  ?>
+                 
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="aadhaar_no">Aadhaar Card No. <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="aadhaar_no" name="aadhaar_no" value="<?php echo $getstudent[1]['Aadhaar_No'];?>" />
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-md-4 control-label mandatory" for="education">Education <span>*</span></label>
+                  <div class="col-md-3">
+                    <select id="education" name="education" class="form-control">
+                   
+                      <option value="8th" <?php 
+                      if($getstudent[1]['Education']=="8th")
+                      {?> selected  <?php  } ?> >8th</option>
+                      <option value="10th"  <?php 
+                      if($getstudent[1]['Education']=="10th")
+                      {?> selected  <?php  } ?>   >10th</option>
+                      <option value="12th" <?php 
+                      if($getstudent[1]['Education']=="12th")
+                      {?> selected  <?php  } ?>    >12th</option>
+                      <option value="Diploma" <?php 
+                      if($getstudent[1]['Education']=="Diploma")
+                      {?> selected  <?php  } ?>      >Diploma</option>
+                      <option value="BA" <?php 
+                      if($getstudent[1]['Education']=="BA")
+                      {?> selected  <?php  } ?> >BA</option>
+                      <option value="B COM" <?php 
+                      if($getstudent[1]['Education']=="B COM")
+                      {?> selected  <?php  } ?>   >B COM</option>
+                      <option value="BSC" <?php 
+                      if($getstudent[1]['Education']=="BSC")
+                      {?> selected  <?php  } ?>   >BSC</option>
+                      <option value="BCA" <?php 
+                      if($getstudent[1]['Education']=="BCA")
+                      {?> selected  <?php  } ?> >BCA</option>
+                      <option value="BE"  <?php 
+                      if($getstudent[1]['Education']=="BE")
+                      {?> selected  <?php  } ?>>BE</option>
+                      <option value="B TECH"  <?php 
+                      if($getstudent[1]['Education']=="B TECH")
+                      {?> selected  <?php  } ?> >B TECH</option>
+                      <option value="MA"<?php 
+                      if($getstudent[1]['Education']=="MA")
+                      {?> selected  <?php  } ?> >MA</option>
+                      <option value="MBA"<?php 
+                      if($getstudent[1]['Education']=="MBA")
+                      {?> selected  <?php  } ?>  >MBA</option>
+                      <option value="MSC" <?php 
+                      if($getstudent[1]['Education']=="MSC")
+                      {?> selected  <?php  } ?> >MSC</option>
+                      <option value="MCA" <?php 
+                      if($getstudent[1]['Education']=="MCA")
+                      {?> selected  <?php  } ?> >MCA</option>
+                      <option value="M TECH"  <?php 
+                      if($getstudent[1]['Education']=="M TECH")
+                      {?> selected  <?php  } ?> >M TECH</option>
+                      <option value="GRADUATE"  <?php 
+                      if($getstudent[1]['Education']=="GRADUATE")
+                      {?> selected  <?php  } ?>>GRADUATE</option>
+                      <option value="POST GRADUATE"  <?php 
+                      if($getstudent[1]['Education']=="POST GRADUATE")
+                      {?> selected  <?php  } ?> >POST GRADUATE</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <hr />
+                
+                <h4>Course Details</h4>
+                
+                <hr />
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="course">Course <span>*</span>:</label>
+                  <div class="col-sm-3">
+                 
+                    <select id="course" name="course" class="form-control">
+                                      
+                     <?php foreach($getCourse as $getCourseVal){ ?>
+                      <option value="<?php echo $getCourseVal['Course_Id']; ?>" <?php if($getCourseVal['Course_Id']==$getstudent[1]['Course_Id']) {?> selected <?php } ?>
+
+
+                      ><?php echo $getCourseVal['Course_Name']; ?></option>
+                     <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="mode">Mode <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <select id="mode" name="mode" class="form-control">
+                     <option value="">--- Select Mode  ---</option>
+                     <option value="regular" <?php if($getstudent[1]['Mode']=="regular") {?> selected <?php } ?>  >Regular</option>
+                     <option value="online" <?php if($getstudent[1]['Mode']=="online") {?> selected <?php } ?>>Online</option>
+                     <option value="private" <?php if($getstudent[1]['Mode']=="private") {?> selected <?php } ?>>Private</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="session">Session <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <select id="session" name="session" class="form-control">
+                     <option value="">--- Select Session  ---</option>
+                     <option value="january" <?php if($getstudent[1]['Session']=="january") {?> selected <?php } ?>>January</option>
+                     <option value="april" <?php if($getstudent[1]['Session']=="april") {?> selected <?php } ?>>April</option>
+                     <option value="july" <?php if($getstudent[1]['Session']=="july") {?> selected <?php } ?>>July</option>
+                     <option value="october" <?php if($getstudent[1]['Session']=="october") {?> selected <?php } ?>>October</option>
+                     <option value="vocational"  <?php if($getstudent[1]['Session']=="vocational") {?> selected <?php } ?>>Vocational</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="fee_deposit_detail">Write About Fees Deposit In Future <span>*</span>:</label>
+                  <div class="col-sm-4">
+                    <textarea  class="form-control txtarea" id="fee_deposit_detail" name="fee_deposit_detail" ><?php echo $getstudent[1]['About_Fee_Deposite']; ?></textarea>
+                  </div>
+                </div>
+                
+                <hr />
+                
+                <h4>Contact Details</h4>
+                
+                <hr />
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="state">State <span>*</span>:</label>
+                  <div class="col-sm-4">
+                 
+                    <select name="state" id="state" class="form-control" >
+                    
+                      <option value="">--Select Type--</option>
+                      <?php foreach($getStates as $getStatesVal){ ?>
+                      <option value="<?php echo $getStatesVal['State_Id']; ?>"
+                       <?php if($getStatesVal['State_Id']==$get_state[1]['State_Id'])
+                      {?>
+                        selected
+
+                     <?php  } ?> ><?php echo $getStatesVal['State_Name']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="district">District <span>*</span>:</label>
+                  <div class="col-sm-3">
+                 <?php    ?>
+                    <select name="district" id="district" class="form-control" >
+                    
+                     <?php foreach($getdistrict as $getdistrict)
+                    { ?>
+                     <option value="<?php echo $getdistrict['District_Id']; ?>"   <?php if($get_district[1]['District_Id']==$getdistrict['District_Id']){?> selected <?php }  ?>><?php echo $getdistrict['District_Name']; ?></option>
+                    <?php } ?>
+                      <option value="">--Select Type--</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="block">Block <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <select name="block" id="block" class="form-control" >
+                     <option value=" ">--Select Type--</option>
+                    <?php foreach($getblock as $block)
+                    { ?>
+                    <option value="<?php echo $block['Block_Id']; ?>" <?php if($block['Block_Id']==$getstudent[1]['Block_Id']){?> selected <?php }?> ><?php echo $block['Block_Name']; ?></option>
+                    <?php }?>
+                     
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="address">Address <span>*</span>:</label>
+                  <div class="col-sm-4">
+                    <textarea  class="form-control txtarea" id="address" name="address" ><?php echo $getstudent[1]['Address']; ?></textarea>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="pincode">Pin Code :</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="pincode" name="pincode" value="<?php echo $getstudent[1]['Pincode']; ?>" />
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="contact_no">Contact No <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="contact_no" name="contact_no" value="<?php echo $getstudent[1]['Contact_No']; ?>" />
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="email">Email <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="email" name="email" value="<?php echo $getstudent[1]['Email'];?>" />
+                  </div>
+                </div>
+                
+                <hr />
+                
+                <h4>Student Bank Account Details</h4>
+                
+                <hr />
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="bank_name">Bank Name <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="bank_name" name="bank_name" value="<?php echo $getstudent[1]['Bank_Name'];?>" />
+                  </div>
+                </div>
+                   <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="ac_holder_name">A/C Holder Name <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="ac_holder_name" name="ac_holder_name" value="<?php echo $getstudent[1]['Acc_holder_name'];?>" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="account_no"> Account No <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="account_no" name="account_no" value="<?php echo $getstudent[1]['Account_No'];?>" />
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="bank_address">Bank Address <span>*</span>:</label>
+                  <div class="col-sm-4">
+                    <textarea  class="form-control txtarea" id="bank_address" name="bank_address" ><?php echo $getstudent[1]
+                    ['Bank_Address'];?></textarea>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="ifsc_code">IFSC Code <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="ifsc_code" name="ifsc_code" value="<?php echo $getstudent[1]['IFSC_Code'];?> " />
+                  </div>
+                </div>
+
+              
+
+
+                <hr />
+                
+                <div class="form-group">
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-3">
+                  <input type="hidden" id="student_id" name="student_id" value="<?php echo $_REQUEST['id'];?>">
+                  <input type="hidden" id="student_photo" name="student_photo" value="<?php echo $getstudent[1]['Photo'];?>">
+                   <input type="hidden" id="student_signature" name="student_signature" value="<?php echo $getstudent[1]['Signature'];?>">
+                   <input type="hidden" id="gurdian_signature" name="gurdian_signature" value="<?php echo $getstudent[1]['Gaurdian_Signature'];?>">
+                    <input type="button" class="btn btn-primary btn-sm" id="edit" value="Submit">
+                    <input type="reset" class="btn btn-default btn-sm" id="reset" value="Reset">
+                  </div>
+                </div>
+              </div>
+            </form>
+        </div>
       </div>
     </div>
-    <div class="clearfix">&nbsp;</div>
   </div>
-  <div class="clear formbgstyle">
-    <form class="form-horizontal" role="form" id="editEmployee" action="" method="post">
-      <div>
-        <div class="form-group">
-            <label class="col-md-4 control-label mandatory" for="filebutton">Employee Photo <span>*</span>:</label>
-            <div class="col-md-4">
-                
-              <input type="hidden" id="emp-img" name="emp-img" value="<?php echo $getemployee[1]['EMP_Image']?>"/>
-                
-  		<?php if(!empty($getemployee[1]['EMP_Image']) && file_exists(ROOT."/data_images/employee/".$getemployee[1]['EMP_Image']))
-			{ 
-				echo '<div class="col-md-4"><img width="100%" src="'.PATH_DATA_IMAGE."/employee/".$getemployee[1]['EMP_Image'].'"/></div>';
-			} 
-			  else{
-				  echo '<label class="col-md-4 control-label" for="fileupload"><span class="glyphicon glyphicon-user" style="font-size:50pt;"></span></label>';
-			  }
-				  ?>
-                
-                <input class="col-md-8" type="file" id="fileupload" name="fileupload" accept="image/jpg,image/png,image/jpeg,image/gif"/>
-                
-           </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="emp_code">Employee Code <span>*</span>:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control input-sm" id="emp_code" name="emp_code" placeholder="Ex: AB00001" value="<?php echo $getemployee[1]['EMP_Code'] ?>" />
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="emp_name">Employee Name <span>*</span>:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control input-sm" id="emp_name" name="emp_name" placeholder="Name of the Employee" value="<?php echo $getemployee[1]['EMP_Name'] ?>" />
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="designation">Designation <span>*</span>:</label>
-          <div class="col-sm-5">
-          	<input class="pull-left checkboxVerAlign" id="rmChkBx" type="checkbox" <?php if($getemployee[1]['EMP_Designation']=='Regional Manager'){echo 'checked="checked"';} ?> />&nbsp; Regional Manager<br />
-            <input class="pull-left checkboxVerAlign" id="dmChkBx" type="checkbox" <?php if($getemployee[1]['EMP_Designation']=='District Manager'){echo 'checked="checked"';} ?> />&nbsp; District Manager<br />
-            <input class="pull-left checkboxVerAlign" id="cmChkBx" type="checkbox" <?php if($getemployee[1]['EMP_Designation']=='Center Manager'){echo 'checked="checked"';} ?> />&nbsp; Center Manager<br />
-            <input class="pull-left checkboxVerAlign" id="otherChkBx" type="checkbox" <?php if($getemployee[1]['EMP_Designation']!='Regional Manager' and $getemployee[1]['EMP_Designation']!='District Manager' and $getemployee[1]['EMP_Designation']!='Center Manager'){echo 'checked="checked"';} ?> />&nbsp; Other<br /><br />
-            <input type="text" class="form-control input-sm" id="designation" name="designation" placeholder="Designation" readonly="readonly" value="<?php echo $getemployee[1]['EMP_Designation']?>" /><br />
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="salary">Salary <span>*</span>:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control input-sm" id="salary" name="salary" placeholder="Salary" value="<?php echo $getemployee[1]['EMP_Salary']?>" />
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="state">State <span>*</span>:</label>
-          <div class="col-sm-3">
-            <select name="state" id="state" class="form-control input-sm" >
-              <option value="">--Select Type--</option>
-              
-              <?php foreach($getStates as $getStatesVal){ ?>
-              <option <?php if($getStatesVal['State_Id']==$getemployee[1]['State_Id']){echo 'selected="selected"';}?> value="<?php echo $getStatesVal['State_Id']; ?>"><?php echo $getStatesVal['State_Name']; ?></option>
-              <?php } ?>
-              
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="district">District <span>*</span>:</label>
-          <div class="col-sm-3">
-            <select name="district" id="district" class="form-control input-sm" >
-              <option value="">--Select Type--</option>
-              
-              <?php foreach($getDistrict as $getDistrictVal){ ?>
-              <option value="<?php echo $getDistrictVal['District_Id']; ?>" <?php if($getDistrictVal['District_Id']==$getemployee[1]['District_Id']){echo "selected";}?>><?php echo $getDistrictVal['District_Name']; ?></option>
-              <?php } ?>
-              
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="block">Block <span>*</span>:</label>
-          <div class="col-sm-3">
-            <select name="block" id="block" class="form-control input-sm" >
-              <option value="">--Select Type--</option>
-              
-              <?php foreach($getBlocks as $getBlocksVal){ ?>
-              <option value="<?php echo $getBlocksVal['Block_Id']; ?>" <?php if($getBlocksVal['Block_Id']==$getemployee[1]['Block_Id']){echo "selected";}?>><?php echo $getBlocksVal['Block_Name']; ?></option>
-              <?php } ?>
-              
-            </select>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="address">Address <span>*</span>:</label>
-          <div class="col-sm-4">
-            <textarea  class="form-control input-sm txtarea" id="address" name="address" placeholder="Address"><?php echo $getemployee[1]['EMP_Address']?></textarea>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="contact_no">Contact No <span>*</span>:</label>
-          <div class="col-sm-3">
-            <input type="text" class="form-control input-sm" id="contact_no" name="contact_no" placeholder="Contact No" value="<?php echo $getemployee[1]['EMP_Contact']?>" />
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="email">Email <span>*</span>:</label>
-          <div class="col-sm-3">
-            <input type="text" class="form-control input-sm" id="email" name="email" placeholder="Email" value="<?php echo $getemployee[1]['EMP_Email']?>" />
-          </div>
-        </div>
-        <!--<div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="password">Password <span>*</span>:</label>
-          <div class="col-sm-3">
-            <input type="password" class="form-control input-sm" id="password" name="password" placeholder="Password" />
-          </div>
-        </div>-->
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="posting_place">Posting Place <span>*</span>:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control input-sm" id="posting_place" name="posting_place" placeholder="Posting Place" value="<?php echo $getemployee[1]['Posting_Place']?>" />
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="duty_time">Duty Time <span>*</span>:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control input-sm" id="duty_time" name="duty_time" placeholder="Ex: 10AM to 6PM" value="<?php echo $getemployee[1]['Duty_Time']?>" />
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4 mandatory" for="Visiting_Date_Place">Visiting Date &amp; Place <span>*</span>:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control input-sm" id="Visiting_Date_Place" name="Visiting_Date_Place" placeholder="Visiting Date & Place" value="<?php echo $getemployee[1]['Visiting_Date_Place']?>" />
-          </div>
-        </div>
-        
-        
-        <div class="form-group">
-          <div class="col-sm-4"></div>
-          <div class="col-sm-3">
-          	<input type="hidden" id="emp_id" name="emp_id" value="<?php echo $getemployee[1]['EMP_Id'] ?>">
-            
-            <input type="button" class="btn btn-primary btn-sm" id="edit" value="Update">
-            <input type="reset" class="btn btn-default btn-sm" id="reset" value="Reset">
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
+  
+  
 </div>
+<?php require_once(PATH_CM_INCLUDE.'/footer.php'); ?>

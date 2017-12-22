@@ -97,7 +97,7 @@ if($_POST['type']=="checkcmLogin")
 }//eof if condition
 
 ///*******************************************************
-/// check cm login
+/// check Student login
 ///*******************************************************
 if($_POST['type']=="checkStudentLogin")
 {
@@ -109,7 +109,7 @@ if($_POST['type']=="checkStudentLogin")
 	
 	if(!empty($result)){
 		
-		if($result[1]['Status']==1){
+		if($result[1]['Approval_Status']==1){
 			  $_SESSION['user_code']=$result[1]['Student_Id'];;
 			$_SESSION['sid']=$result[1]['Student_Id'];
 			$_SESSION['sname']=$result[1]['Student_Name'];

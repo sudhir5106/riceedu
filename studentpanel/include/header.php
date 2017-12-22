@@ -65,12 +65,14 @@ $db = new DBConn();
         <div class="clearfix"></div>
         <ul class="nav side-menu">
           <li><a href="<?php echo LINK_CONTROL_STUDENT?>"><i class="fa fa-home"></i>Dashboard</a></li>
-          <!--<li><a><i class="fa fa-graduation-cap"></i>Students<span class="fa fa-chevron-down"></span></a>
-          	<ul class="nav child_menu" style="display: none">
-              <li><a href="<?php echo LINK_CONTROL_STUDENT?>/students/add_student.php">Add New</a></li>
-              <li><a href="<?php echo LINK_CONTROL_STUDENT?>/students/index.php">View List</a></li>
-            </ul>
-          </li>-->
+           <li><a href="<?php echo LINK_CONTROL_STUDENT?>/my-profile.php">My Profile</a></li>
+            <li><a href="<?php echo LINK_CONTROL_STUDENT?>/center-notice.php">Center Notice</a></li>
+            <li><a href="<?php echo LINK_CONTROL_STUDENT?>/ho-notice.php">Head Office Notice</a></li>
+            <li><a href="<?php echo LINK_CONTROL_STUDENT?>/upload-document/index.php">Upload Documents</a></li>
+            <li><a href="<?php echo LINK_CONTROL_STUDENT?>/">Admit Card</a></li>
+            <li><a href="<?php echo LINK_CONTROL_STUDENT?>/fees.php">Fees Details</a></li>
+            <li><a href="<?php echo LINK_CONTROL_STUDENT?>/change_password/index.php">Change Password</a></li>
+                       
 
         </ul>
       </div>

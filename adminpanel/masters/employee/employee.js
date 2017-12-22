@@ -73,6 +73,14 @@ $(document).ready(function(){
 				required: true,
 				email:true
 			},
+			payment_record:
+			{
+				required: true,
+			},
+			perfromance:
+			{
+				required: true,
+			},
 			password:
 			{
 				required: true,
@@ -151,6 +159,14 @@ $(document).ready(function(){
 				email:true
 			},
 			password:
+			{
+				required: true,
+			},
+			payment_record:
+			{
+				required: true,
+			},
+			perfromance:
 			{
 				required: true,
 			},
@@ -328,6 +344,8 @@ $(document).ready(function(){
 			formdata.append('Visiting_Date_Place', $("#Visiting_Date_Place").val());
 			formdata.append('contact_no', $("#contact_no").val());
 			formdata.append('email', $("#email").val());
+			formdata.append('payment_record', $("#payment_record").val());
+			formdata.append('perfromance', $("#perfromance").val());
 			
 			var x;
 			$.ajax({
@@ -370,15 +388,23 @@ $(document).ready(function(){
 					image=$("#fileupload").prop('files')[0];
 					imageval=1;
 				}
-			
+				//Check Here Sign Image Uploaded or not
+			var image_sign='';
+			var image_signval='';			
+			if($("#emp_sign_image").val().length>0)
+				{
+					image_sign=$("#emp_sign_image").prop('files')[0];
+					image_signval=1;
+				}
 			var formdata = new FormData();
 			formdata.append('type', "editEmployee");
 			
 			formdata.append('emp_image', image);
 			formdata.append('imageval', imageval);
 			formdata.append('emp-img', $('#emp-img').val());
-			
-			
+			formdata.append('emp_sign_image',image_sign);
+			formdata.append('image_signval',image_signval);
+			formdata.append('emp-sign', $('#emp-sign').val());
 			formdata.append('emp_id', $("#emp_id").val());
 			formdata.append('emp_code', $("#emp_code").val());
 			formdata.append('emp_name', $("#emp_name").val());
@@ -393,7 +419,8 @@ $(document).ready(function(){
 			formdata.append('Visiting_Date_Place', $("#Visiting_Date_Place").val());
 			formdata.append('contact_no', $("#contact_no").val());
 			formdata.append('email', $("#email").val());
-			
+			formdata.append('payment_record', $("#payment_record").val());
+			formdata.append('perfromance', $("#perfromance").val());
 			
 			 var x;
 			 $.ajax({

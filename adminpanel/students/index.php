@@ -20,7 +20,8 @@ if($get_list)
 {
 foreach($get_list as $s_id)
 {
-$studentid= array($s_id['Student_Id']);
+$studentid[]= $s_id['Student_Id'];
+
 }
 
 }
@@ -94,21 +95,28 @@ $studentid= array($s_id['Student_Id']);
                       
                       <td><?php echo $getstudentVal['Address'].', Block:'.$getstudentVal['Block_Name'].', Distt:'.$getstudentVal['District_Name'].', '.$getstudentVal['State_Name'].' Pincode-'.$getstudentVal['Pincode'];?><br />Contact No.:<?php echo $getstudentVal['Contact_No'] ?></td>
                       
+
+
+
+
                       <td><span class="label <?php echo $getstudentVal['Approval_Status']=='Pending'?'label-warning': ($getstudentVal['Approval_Status']=='Approved'?'label-success':'label-danger');?>"><?php echo $getstudentVal['Approval_Status'];?></span></td>
                       
                       <td>
+                        <button type="button" id="editbtn" class="btn btn-success btn-sm" onClick="window.location.href='edit_student.php?id=<?php echo $getstudentVal['Student_Id'];?>'" > <span class="glyphicon glyphicon-edit"></span> Edit </button>
+
+
+
                       <?php if($getstudentVal['Approval_Status']=='Approved' && $payment_staus=='1'){ ?>
                       <button type="button" id="<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-warning approve_status">Not Approve</button>
                       
                      <a href="view_pdf.php?k=<?php echo $getstudentVal['Student_Id']; ?>"> <button type="button" id="pdf-<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-default status">View PDF</button>
                      </a>
                       <?php } ?>
-                         <?php if($getstudentVal['Approval_Status']=='Approved' && $payment_staus=='1'){ }?>
+                         
                         <?php if($getstudentVal['Approval_Status']=='Pending' && $payment_staus=='1'){ ?>
                       <button type="button" id="<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-success status">Approve</button>
                     <a href="view_pdf.php?k=<?php echo $getstudentVal['Student_Id']; ?>"> <button type="button" id="pdf-<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-default status">View PDF</button>
                       <?php } ?>
-
                       </td>
                       
                     </tr>

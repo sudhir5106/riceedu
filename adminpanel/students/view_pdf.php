@@ -7,7 +7,7 @@ include(PATH_ADMIN_INCLUDE.'/header.php');
 $db = new DBConn();
 
 // get all list of students 
-$getstudentVal=$db->ExecuteQuery("SELECT Application_No,DOB,Gender,Caste,Mother_Name,Reference,About_Fee_Deposite,Student_Code,Signature,Gaurdian_Signature,Email,Student_Name,Religion, Father_Name, Aadhaar_No, Course_Name, Mode,Session,Education,Phisical_Status,Acc_holder_name,IFSC_Code,Bank_Address,Bank_Name,Application_Fee,Learning_Fee,Registration_Fee,Exam_Fee, CASE WHEN Mode='regular' THEN (Learning_Fee + Registration_Fee + Exam_Fee+Application_Fee) WHEN Mode='online' THEN (Learning_Fee + Registration_Fee + Exam_Fee+Application_Fee) WHEN Mode='private' THEN Exam_Fee+Application_Fee END AS Total_Fees, (SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=$get_id) AS Paid_Amt,Address, Block_Name, District_Name, State_Name, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, Registration_No, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
+$getstudentVal=$db->ExecuteQuery("SELECT Application_No,DATE_FORMAT(DOB, '%d-%m-%Y') AS DOB, CASE WHEN Gender=1 THEN 'Male' ELSE 'Female' END AS Gender,DATE_FORMAT(Reg_Date, '%d-%m-%Y') AS Reg_Date,Caste,Mother_Name,Reference,About_Fee_Deposite,Student_Code,CM_Id,Signature,Gaurdian_Signature,Email,Student_Name,Religion, Father_Name, Aadhaar_No, Course_Name, Mode,Session,Education,Phisical_Status,Acc_holder_name,IFSC_Code,Bank_Address,Bank_Name,Application_Fee,Learning_Fee,Registration_Fee,Exam_Fee, CASE WHEN Mode='regular' THEN (Learning_Fee + Registration_Fee + Exam_Fee+Application_Fee) WHEN Mode='online' THEN (Learning_Fee + Registration_Fee + Exam_Fee+Application_Fee) WHEN Mode='private' THEN Exam_Fee+Application_Fee END AS Total_Fees, (SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id=$get_id) AS Paid_Amt,Address, Block_Name, District_Name, State_Name, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, Registration_No, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
 
 FROM student_master st
 
@@ -15,10 +15,14 @@ LEFT JOIN course_master c ON st.Course_Id = c.Course_Id
 LEFT JOIN block_master b ON st.Block_Id = b.Block_Id
 LEFT JOIN district_master d ON b.District_Id = d.District_Id
 LEFT JOIN state_master s ON d.State_Id = s.State_Id 
+
  WHERE st.Student_Id=$get_id
 ORDER BY Student_Id DESC");
 
-
+$sql_select_branch_sign="SELECT CM_Emp_Code,emp_sign FROM cm_login 
+LEFT JOIN employee_master ON cm_login.CM_Emp_Code=employee_master.EMP_Code
+ WHERE  CM_Id=".$getstudentVal[1]['CM_Id'];
+$get_branch_sign=$db->ExecuteQuery($sql_select_branch_sign);
 ?>
 </div>
 <script type="text/javascript"  src="student.js" ></script>
@@ -39,7 +43,7 @@ ORDER BY Student_Id DESC");
 </style>
 <div class="noprint text-center">
     <a href="javascript:window.print()">
-      <button type="button"  class="btn btn-xs btn-success status">Print</button>
+      <button type="button"  class="btn btn-sm btn-success status">Print</button>
     </a>
 </div>
 
@@ -49,9 +53,9 @@ ORDER BY Student_Id DESC");
     <div class="col-sm-2" style="float:left"><img width="115" src="../../images/logo.png" alt=""></div>
     <div class="col-sm-10 text-center" style="float:left">
       <h2 style="margin-top:0;"><strong>APPLICATION FORM FOR STUDENT</strong></h2>
-      <p style="font-size:1.5em; font-weight:bold;"> RISEs (Rural Institute for Career & Employment Society)<br>
+      <p style="font-size:1.5em; font-weight:bold;"> RICEs (Rural Institute for Career & Employment Society)<br>
         AN ISO 9001:2015 CERTIFIED ORGANIZATION<br>
-        (Reg. No. <?php echo $getstudentVal[1]['Registration_No']; ?>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fees 100/-</p>
+        (Reg. No. 4376)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fees 100/-</p>
     </div>
     <div class="clearfix">&nbsp;</div>
   </div>
@@ -65,24 +69,34 @@ ORDER BY Student_Id DESC");
           <td style="border-bottom:solid 1px #666;"><?php echo $getstudentVal[1]['Reference'];?></td>
         </tr>
         <tr>
+          <td class="bg-success">Regestration Date :</td>
+          <td style="border-bottom:solid 1px #666;"><?php echo $getstudentVal[1]['Reg_Date'];?></td>
+        </tr>
+        <tr>
           <td class="bg-success">Student’s Name :</td>
-          <td style="border-bottom:solid 1px #666;"><?php echo $getstudentVal[1]['Student_Name'];?></td>
+          <td style="border-bottom:solid 1px #666;"><?php echo ucfirst($getstudentVal[1]['Student_Name']);?></td>
         </tr>
         <tr>
           <td class="bg-success">Date Of Birth :</td>
-          <td style="border-bottom:solid 1px #666;"><?php echo $getstudentVal[1]['DOB'];?></td>
+          <td style="border-bottom:solid 1px #666;">
+          <?php echo $getstudentVal[1]['DOB']; ?></td>
         </tr>
         <tr>
           <td class="bg-success">Gender :</td>
-          <td style="border-bottom:solid 1px #666;"><?php echo $getstudentVal[1]['Gender'];?></td>
+          <td style="border-bottom:solid 1px #666;">
+          <?php echo $getstudentVal[1]['Gender']; ?></td>
         </tr>
         <tr>
           <td class="bg-success">Father's Name :</td>
-          <td style="border-bottom:solid 1px #666;"><?php echo $getstudentVal[1]['Father_Name'];?></td>
+          <td style="border-bottom:solid 1px #666;"><?php 
+         echo ucfirst($getstudentVal[1]['Father_Name']);    
+         
+          ?>
+          </td>
         </tr>
         <tr>
           <td class="bg-success">Mother's Name  :</td>
-          <td style="border-bottom:solid 1px #666;"><?php echo $getstudentVal[1]['Mother_Name'];?></td>
+          <td style="border-bottom:solid 1px #666;"><?php echo ucfirst($getstudentVal[1]['Mother_Name']);?></td>
         </tr>
         <tr>
           <td class="bg-success">Religion:</td>
@@ -166,7 +180,7 @@ ORDER BY Student_Id DESC");
           </tr>
           <tr>
             <td class="bg-success">A/C Holder Name:</td>
-            <td style="border-bottom:solid 1px #666;"><?php echo $getstudentVal[1]['Acc_holder_name'];?></td>
+            <td style="border-bottom:solid 1px #666;"><?php echo ucfirst($getstudentVal[1]['Acc_holder_name']);?></td>
           </tr>
           <tr>
             <td class="bg-success">Bank Address:</td>
@@ -220,7 +234,7 @@ ORDER BY Student_Id DESC");
 
   <div align="center">
     <h4><span><strong>Write About Fees Deposit In Future</strong></span></h4>
-    <p><?php echo $getstudentVal[1]['Total_Fees']-$getstudentVal[1]['About_Fee_Deposite'];?></p>
+    <p><?php echo $getstudentVal[1]['About_Fee_Deposite'];?></p>
   </div>
 
   <div align="center">
@@ -253,9 +267,11 @@ ORDER BY Student_Id DESC");
 
   <div class="clearfix"></div>
 
-  <div style="margin-top:50px;">
-    <div align="left">Date --------------- </div>
-    <div align="right"> Verified By Branch </div>
+  <div style="margin-top:50px;" align="right"><img width="50px;" src="<?php echo '../../data_images/employee/signature/thumb/'.$get_branch_sign[1]['emp_sign'];?>"></div>
+
+  <div>
+    <div align="left" style="float:left;">Date :<?php echo $getstudentVal[1]['Reg_Date'];?></div>
+    <div align="right" style="float:right;">Verified By Branch</div>
   </div>
 
 </div>

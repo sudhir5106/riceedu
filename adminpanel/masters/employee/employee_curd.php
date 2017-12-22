@@ -120,9 +120,9 @@ if($_POST['type']=="addEmployee")
 
 
 
-		$res=mysql_query("INSERT INTO employee_master (DOJ, EMP_Code, EMP_Name, EMP_Designation, EMP_Image, State_Id, District_Id, Block_Id, EMP_Address, EMP_Contact, EMP_Email, EMP_Salary, Posting_Place, Duty_Time, Visiting_Date_Place,emp_sign) 			
+		$res=mysql_query("INSERT INTO employee_master (DOJ, EMP_Code, EMP_Name, EMP_Designation, EMP_Image, State_Id, District_Id, Block_Id, EMP_Address, EMP_Contact, EMP_Email, EMP_Salary, Posting_Place, Duty_Time, Visiting_Date_Place,emp_sign,Paymenr_Record,Perfromance) 			
 			
-		VALUES (NOW(), '".$_REQUEST['emp_code']."', '".$_REQUEST['emp_name']."', '".$_REQUEST['designation']."', '".$actual_image_name."', ".$_REQUEST['state'].", ".$_REQUEST['district'].", ".$_REQUEST['block'].", '".$_REQUEST['address']."', '".$_REQUEST['contact_no']."', '".$_REQUEST['email']."', '".$_REQUEST['salary']."', '".$_REQUEST['posting_place']."', '".$_REQUEST['duty_time']."', '".$_REQUEST['Visiting_Date_Place']."','".$actual_image_name_sign."')");
+		VALUES (NOW(), '".$_REQUEST['emp_code']."', '".$_REQUEST['emp_name']."', '".$_REQUEST['designation']."', '".$actual_image_name."', ".$_REQUEST['state'].", ".$_REQUEST['district'].", ".$_REQUEST['block'].", '".$_REQUEST['address']."', '".$_REQUEST['contact_no']."', '".$_REQUEST['email']."', '".$_REQUEST['salary']."', '".$_REQUEST['posting_place']."', '".$_REQUEST['duty_time']."', '".$_REQUEST['Visiting_Date_Place']."','".$actual_image_name_sign."','".$_REQUEST['payment_record']."','".$_REQUEST['perfromance']."')");
 		
 		
 		if(!$res)
@@ -192,14 +192,55 @@ if($_POST['type']=="editEmployee")
 			//if Image Is Empty Than
 			$gallary_image = $_REQUEST['emp-img'];
 		}
-	
+	   if($_REQUEST['image_signval']==1)
+		{   $path = ROOT."/data_images/employee/signature/";
+	        $path1 = ROOT."/data_images/employee/signature/thumb/";
+			$gallary_sign = $_FILES['emp_sign_image']['name'];		
+			$tmp2 = $_FILES['emp_sign_image']['tmp_name'];
+			$image=explode('.',$gallary_sign);
+			$emp_signature = time().'.'.$image[1]; // rename the file name
+			
+			if(move_uploaded_file($tmp2, $path.$emp_signature))
+			  {
+				// move the image in the thumb folder
+				$resizeObj1 = new resize($path.$emp_signature);
+				$resizeObj1 ->resizeImage(50,50,'auto');
+				$resizeObj1 -> saveImage($path1.$emp_signature, 100);
+				
+			  }
+			  
+			  //Delete Old Image from folder
+			  $remove=$db->ExecuteQuery("SELECT emp_sign FROM employee_master WHERE EMP_Id=".$_REQUEST['emp_id']);
+			  if(count($remove)>0 )
+			  {
+				  if(file_exists($path.$remove[1]['emp_sign']) && $remove[1]['emp_sign']!='')
+				  {
+						unlink($path.$remove[1]['emp_sign']);
+						unlink($path1.$remove[1]['emp_sign']);
+				  }
+			  }
+		}
+		else
+		{
+			//if Image Is Empty Than
+			$emp_signature = $_REQUEST['emp-sign'];
+		}
+
+
+
+
+
+
+
+
+
 	
 	// Update Employee Master Tabel
 	$tblname="employee_master";
 	
-	$tblfield=array('EMP_Code','EMP_Name','EMP_Designation','EMP_Image','State_Id','District_Id','Block_Id','EMP_Address', 'EMP_Contact', 'EMP_Email', 'EMP_Salary', 'Posting_Place', 'Duty_Time', 'Visiting_Date_Place');
+	$tblfield=array('EMP_Code','EMP_Name','EMP_Designation','EMP_Image','State_Id','District_Id','Block_Id','EMP_Address', 'EMP_Contact', 'EMP_Email', 'EMP_Salary', 'Posting_Place', 'Duty_Time', 'Visiting_Date_Place','emp_sign','Paymenr_Record','Perfromance');
 	
-	$tblvalues=array($_POST['emp_code'], $_POST['emp_name'], $_POST['designation'], $gallary_image, $_POST['state'], $_POST['district'], $_POST['block'], $_POST['address'], $_POST['contact_no'], $_POST['email'], $_POST['salary'], $_POST['posting_place'], $_POST['duty_time'], $_POST['Visiting_Date_Place']);
+	$tblvalues=array($_POST['emp_code'], $_POST['emp_name'], $_POST['designation'], $gallary_image, $_POST['state'], $_POST['district'], $_POST['block'], $_POST['address'], $_POST['contact_no'], $_POST['email'], $_POST['salary'], $_POST['posting_place'], $_POST['duty_time'], $_POST['Visiting_Date_Place'],$emp_signature,$_POST['payment_record'],$_POST['perfromance']);
 	
 	$condition="EMP_Id=".$_POST['emp_id'];
 	$res=$db->updateValue($tblname,$tblfield,$tblvalues,$condition);

@@ -136,7 +136,7 @@ $(document).ready(function(){
 			   type: "POST",
 			   url: "fees_curd.php",
 			   data:formdata,
-			   success: function(data){ alert(data);
+			   success: function(data){ //alert(data);
 					
 					if(data==1)
 					{

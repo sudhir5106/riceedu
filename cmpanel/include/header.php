@@ -45,7 +45,9 @@
 require_once(PATH_LIBRARIES.'/classes/DBConn.php');
 $db = new DBConn();
 
-$cmImg=$db->ExecuteQuery("SELECT EMP_Image FROM employee_master WHERE EMP_Code = (SELECT CM_Emp_Code FROM cm_login WHERE CM_Id =".$_SESSION['cmid'].")"); 
+$cmImg=$db->ExecuteQuery("SELECT EMP_Image FROM employee_master WHERE EMP_Code = (SELECT CM_Emp_Code FROM cm_login WHERE CM_Id =".$_SESSION['cmid'].")");
+$cm_code=$db->ExecuteQuery("SELECT Center_Code FROM cm_login WHERE CM_Id =".$_SESSION['cmid']);
+
 
 ?>
 
@@ -58,7 +60,8 @@ $cmImg=$db->ExecuteQuery("SELECT EMP_Image FROM employee_master WHERE EMP_Code =
     <div class="profile">
       <div class="profile_pic"> <img src="<?php echo PATH_DATA_IMAGE ?>/employee/thumb/<?php echo $cmImg[1]['EMP_Image'] ?>" alt="..." class="img-circle profile_img"> </div>
       <div class="profile_info"> <span>Welcome,</span>
-        <h2><?php echo $_SESSION['cmname']?></h2>
+      <h2><?php echo $_SESSION['cmname']?></h2>
+        <h2><?php echo $cm_code[1]['Center_Code']?></h2>
       </div>
     </div>
     <!-- /menu prile quick info --> 

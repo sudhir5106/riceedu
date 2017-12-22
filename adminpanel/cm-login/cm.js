@@ -40,6 +40,22 @@ $(document).ready(function(){
 			{ 
 				required: true,
 			},
+			imageupload:
+			{
+				required: true,
+				
+			},
+			contact_no:
+			{
+				required: true,
+				
+			},
+			
+			email:
+			{
+				required: true,
+				
+			},
 			password:
 			{
 				required: true,
@@ -94,6 +110,18 @@ $(document).ready(function(){
 			password:
 			{
 				required: true,
+			},
+
+			contact_no:
+			{
+				required: true,
+				
+			},
+			
+			email:
+			{
+				required: true,
+				
 			},
 		},
 		messages:
@@ -373,9 +401,18 @@ $(document).ready(function(){
 		flag=$("#insertCm").valid();
 		
 		if (flag==true)
-		{		
-		
-			var formdata = new FormData();
+		{	var formdata = new FormData();	
+		    var totalFiles = document.getElementById("imageupload").files.length;
+			if(totalFiles<1)
+			{
+				$('#errmsg').show();
+				$('#errmsg').append("image is required");;
+				return false;
+			}
+			for (var i = 0; i < totalFiles; i++) {
+				var file = document.getElementById("imageupload").files[i];
+				formdata.append("imageupload[]", file);  //Use [] to add multiple.
+			}
 			formdata.append('type', "addCmLogin");
 			formdata.append('centercode', $("#centercode").val());
 			formdata.append('d_emp_code', $("#d_emp_code").val());
@@ -384,6 +421,9 @@ $(document).ready(function(){
 			formdata.append('district', $("#district").val());
 			formdata.append('block', $("#block").val());				
 			formdata.append('address', $("#address").val());
+			formdata.append('contact_no', $("#contact_no").val());
+			formdata.append('email', $("#email").val());
+			formdata.append('imageupload', $("#imageupload").val());
 			formdata.append('password', $("#password").val());
 			
 			var x;
@@ -416,7 +456,16 @@ $(document).ready(function(){
 		
 		if (flag==true)
 		{
-			var formdata = new FormData();
+
+             
+			 var formdata = new FormData();
+			 var totalFiles = document.getElementById("imageupload").files.length;
+			
+			for (var i = 0; i < totalFiles; i++) {
+				var file = document.getElementById("imageupload").files[i];
+				formdata.append("imageupload[]", file);  //Use [] to add multiple.
+			}
+
 			formdata.append('type', "editCmLogin");
 			formdata.append('cmid', $("#cmid").val());
 			formdata.append('centercode', $("#centercode").val());
@@ -427,6 +476,8 @@ $(document).ready(function(){
 			formdata.append('block', $("#block").val());				
 			formdata.append('address', $("#address").val());
 			formdata.append('password', $("#password").val());
+			formdata.append('contact_no', $("#contact_no").val());
+			formdata.append('email', $("#email").val());
 			
 			 var x;
 			 $.ajax({
@@ -470,4 +521,90 @@ $(document).ready(function(){
 	    }
 	});
 	
+
+ $(document).on('click',".deletegallery",function()
+   {   
+               $('.deletegallery').each(function()
+               {
+                          if($(this).prop('checked') == true)		 
+		                   { 
+		                   	$('#selecctallgallery').prop('checked',true);
+				            }
+				            else
+				            {
+				            	$('#selecctallgallery').prop('checked',false);	
+				            }
+                           });
+	});       
+		      
+
+
+   $(document).on('click',"#deletegalleryimage",function()
+   {   
+   	   var i=0;
+			 var delete_id = [];	
+		     $('.deletegallery').each(function(){
+	       
+		      if($(this).prop('checked') == true)		 
+		      {
+				  delete_id.push($(this).attr("id"));
+				  alert();
+				  i++;
+		      }
+	     });
+
+
+	      if(i==0){
+			
+			alert("Please Select Any One Option"); 
+			 
+			 }
+			 if(i!=0){
+			
+			        var didConfirm = confirm("Are you sure?");
+				 if(didConfirm==true)
+				 {
+				// alert(delete_id);
+				//$("#loding").show();
+		
+				
+			$.ajax({
+				url:"cm_curd.php",
+				type: "POST",
+				data: {type:"deletegallerymultiimg",id:delete_id},
+				//async:false,
+				success: function(data){  //alert(data);
+				location.reload();
+				}
+			});
+			
+	    }
+                    		 
+			          }
+
+   });
+
+$(document).on('click',"#selecctallgallery",function()
+{
+	 
+	
+	if($('#selecctallgallery').prop('checked') == true)		 
+		      {  
+				   $('.deletegallery').each(function(){
+	                     $(this).prop('checked',true);		      
+	                                         });
+		      }	
+		      else
+		      {
+		      	 $('.deletegallery').each(function(){
+	                     $(this).prop('checked',false);		      
+	                                         });
+
+		      }
+   
+
+
+
+});
+
 });//eof of ready function
