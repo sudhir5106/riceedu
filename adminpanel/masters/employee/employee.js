@@ -398,7 +398,6 @@ $(document).ready(function(){
 				}
 			var formdata = new FormData();
 			formdata.append('type', "editEmployee");
-			
 			formdata.append('emp_image', image);
 			formdata.append('imageval', imageval);
 			formdata.append('emp-img', $('#emp-img').val());
@@ -438,7 +437,7 @@ $(document).ready(function(){
 			
 			if(x==1)
 			{
-				window.location.replace("index.php");				
+			  window.location.replace("index.php");				
 			}
 		}//eof if condition
 	});

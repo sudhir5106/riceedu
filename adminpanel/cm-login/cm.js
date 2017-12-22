@@ -523,18 +523,28 @@ $(document).ready(function(){
 	
 
  $(document).on('click',".deletegallery",function()
-   {   
+   {    var i=0;
+   	    var count=0;
+
                $('.deletegallery').each(function()
                {
+
                           if($(this).prop('checked') == true)		 
 		                   { 
-		                   	$('#selecctallgallery').prop('checked',true);
+		                     i++;
+				            }
+				            
+				            count++;
+
+                   });
+                           if(i==count)
+				            {
+				            	$('#selecctallgallery').prop('checked',true);	
 				            }
 				            else
 				            {
-				            	$('#selecctallgallery').prop('checked',false);	
+				            	 $('#selecctallgallery').prop('checked',false);
 				            }
-                           });
 	});       
 		      
 
@@ -548,7 +558,7 @@ $(document).ready(function(){
 		      if($(this).prop('checked') == true)		 
 		      {
 				  delete_id.push($(this).attr("id"));
-				  alert();
+				  
 				  i++;
 		      }
 	     });

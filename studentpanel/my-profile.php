@@ -24,7 +24,7 @@ WHERE Student_Id='".$_SESSION['sid']."'");
     <div class="title_left">
       <h3><i class="fa fa-user" aria-hidden="true"></i> My Profile</h3>
     </div>
-    <div class="text-right"> Admin Approval : <span class="<?php echo $GetStudentInfo[1]['Approval_Status']=='Pending'?'text-danger':'text-primary'?>"><strong><?php echo $GetStudentInfo[1]['Approval_Status']?></strong></span></div>
+    <div class="text-right">Profile : <span class="<?php echo $GetStudentInfo[1]['Approval_Status']=='Pending'?'text-danger':'text-primary'?>"><strong><?php echo $GetStudentInfo[1]['Approval_Status']; ?></strong></span> &nbsp;&nbsp;|&nbsp;&nbsp; Admin Approval : <span class="<?php echo $GetStudentInfo[1]['Approval_Status']=='Pending'?'text-danger':'text-primary'?>"><strong><?php echo $GetStudentInfo[1]['Approval_Status']?></strong></span></div>
   </div>
   
   <div class="row">

@@ -5,7 +5,7 @@ include(PATH_ADMIN_INCLUDE.'/header.php');
 $db = new DBConn();
 
 // get all list of students 
-$getstudent=$db->ExecuteQuery("SELECT Student_Id, DATE_FORMAT(Reg_Date,'%d-%m-%Y') AS Reg_Date, Application_No, Student_Code, Student_Name, Password,  Father_Name, Aadhaar_No, Course_Name, Mode, Session, CASE WHEN Mode='regular' THEN (Learning_Fee + Registration_Fee + Exam_Fee+Application_Fee) WHEN Mode='online' THEN (Learning_Fee + Registration_Fee + Exam_Fee+Application_Fee) WHEN Mode='private' THEN Exam_Fee+Application_Fee END AS Total_Fees, (SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id IN(SELECT Student_Id FROM student_master)) AS Paid_Amt, Address, Block_Name, District_Name, State_Name, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
+$getstudent=$db->ExecuteQuery("SELECT Student_Id, DATE_FORMAT(Reg_Date,'%d-%m-%Y') AS Reg_Date, Application_No, Student_Code, Student_Name, Password,  Father_Name, Aadhaar_No,Registration_No, Course_Name, Mode, Session, CASE WHEN Mode='regular' THEN (Learning_Fee + Registration_Fee + Exam_Fee+Application_Fee) WHEN Mode='online' THEN (Learning_Fee + Registration_Fee + Exam_Fee+Application_Fee) WHEN Mode='private' THEN Exam_Fee+Application_Fee END AS Total_Fees, (SELECT SUM(Paid_Amt) FROM fees_payment WHERE Student_Id IN(SELECT Student_Id FROM student_master)) AS Paid_Amt, Address, Block_Name, District_Name, State_Name, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
 
 FROM student_master st
 
@@ -46,7 +46,8 @@ $studentid[]= $s_id['Student_Id'];
                     <tr class="success">
                       <th>Sno.</th>
                       <th>App. No.</th>
-                      <th width="90">Reg. Dt.</th>                      
+                      <th width="90">Reg. Dt.</th>    
+                      <th width="90">Reg. NO.</th>                   
                       <th>Photo</th>
                       <th>Student Code</th>
                       <th width="100">Student Name</th>
@@ -84,6 +85,7 @@ $studentid[]= $s_id['Student_Id'];
                       <td><?php echo $i;?></td>
                       <td><?php echo $getstudentVal['Application_No']; ?></td>
                       <td><?php echo $getstudentVal['Reg_Date']; ?></td>
+                      <td><?php echo $getstudentVal['Registration_No']; ?></td>
                       <td><img width="50px;" src="<?php echo PATH_DATA_IMAGE ?>/student/thumb/<?php echo $getstudentVal['Photo'];?>" alt="" /></td>
                       <td><?php echo $getstudentVal['Student_Code'];?></td>
                       <td><?php echo $getstudentVal['Student_Name'];?></td>
