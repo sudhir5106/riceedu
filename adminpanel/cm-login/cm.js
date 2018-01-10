@@ -456,7 +456,7 @@ $(document).ready(function(){
 		
 		if (flag==true)
 		{
-
+            $("#loader").show();
              
 			 var formdata = new FormData();
 			 var totalFiles = document.getElementById("imageupload").files.length;

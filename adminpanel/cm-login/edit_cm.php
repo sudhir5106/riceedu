@@ -29,7 +29,9 @@ $getAllimage=$db->ExecuteQuery($sql_image);
 
 ?>
 <script type="text/javascript"  src="cm.js" ></script>
-
+<div id="loader">
+  <div class="loader-block"><i class="fa-li fa fa-spinner fa-spin spinloader"></i></div>
+</div>
 <div class="main">
   <div class="page-title">
     <div>

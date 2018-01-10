@@ -62,7 +62,7 @@ if($_POST['type']=="addStudent")
 	$path = ROOT."/data_images/student/";
 	$path1 = ROOT."/data_images/student/thumb/";	
 	
-	echo $name = $_FILES['file']['name'];
+	 $name = $_FILES['file']['name'];
 	$image=explode('.',$name);
 	$actual_image_name = time().'.'.$image[1]; // rename the file name
 	$tmp = $_FILES['file']['tmp_name'];
@@ -159,9 +159,10 @@ if($_POST['type']=="addStudent")
 		/////////////////////////////////////////////////////
 		// Query to insert the data into student_master table
 		/////////////////////////////////////////////////////
-		$res=mysql_query("INSERT INTO student_master (Reg_Date, Application_No, Student_Code, Password, Student_Name, DOB, Gender, Father_Name, Mother_Name, Religion, Caste, Phisical_Status, Aadhaar_No, Education, Course_Id, Mode, Session, About_Fee_Deposite, Block_Id, Address, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, CM_Id, Reference, Approval_Status,Acc_holder_name) 			
+		$res=mysql_query("INSERT INTO student_master (Reg_Date, Application_No, Student_Code, Password, Student_Name, DOB, Gender, Father_Name, Mother_Name, Religion, Caste, Phisical_Status, Aadhaar_No, Education, Course_Id, Mode, Session, About_Fee_Deposite, Block_Id, Address, Pincode, Contact_No, Email, Bank_Name, Account_No, Bank_Address, IFSC_Code, Photo, Signature, Gaurdian_Signature, CM_Id, Reference, Approval_Status,Acc_holder_name,Session_Year) 			
 			
-		VALUES (NOW(), ".$NewApplication_No.", ".$NewStudentCode.", '".$password."', '".$_REQUEST['student_name']."', '".$dob."', ".$_REQUEST['gender'].", '".$_REQUEST['father_name']."', '".$_REQUEST['mother_name']."', '".$_REQUEST['religion']."', '".$_REQUEST['caste']."', ".$_REQUEST['physical_status'].", '".$_REQUEST['aadhaar_no']."', '".$_REQUEST['education']."', ".$_REQUEST['course'].", '".$_REQUEST['mode']."', '".$_REQUEST['session']."', '".$_REQUEST['fee_deposit_detail']."', ".$_REQUEST['block'].", '".$_REQUEST['address']."', '".$_REQUEST['pincode']."', '".$_REQUEST['contact_no']."', '".$_REQUEST['email']."', '".$_REQUEST['bank_name']."', '".$_REQUEST['account_no']."', '".$_REQUEST['bank_address']."', '".$_REQUEST['ifsc_code']."', '".$actual_image_name."', '".$signimage_name."', '".$gaurdiansignimage_name."', ".$_SESSION['cmid'].", '".$_REQUEST['reference']."', 0,'".$_REQUEST['ac_holder_name']."')");
+		VALUES (NOW(), ".$NewApplication_No.", ".$NewStudentCode.", '".$password."', '".$_REQUEST['student_name']."', '".$dob."', ".$_REQUEST['gender'].", '".$_REQUEST['father_name']."', '".$_REQUEST['mother_name']."', '".$_REQUEST['religion']."', '".$_REQUEST['caste']."', ".$_REQUEST['physical_status'].", '".$_REQUEST['aadhaar_no']."', '".$_REQUEST['education']."', ".$_REQUEST['course'].", '".$_REQUEST['mode']."', '".$_REQUEST['session']."', '".$_REQUEST['fee_deposit_detail']."', ".$_REQUEST['block'].", '".$_REQUEST['address']."', '".$_REQUEST['pincode']."', '".$_REQUEST['contact_no']."', '".$_REQUEST['email']."', '".$_REQUEST['bank_name']."', '".$_REQUEST['account_no']."', '".$_REQUEST['bank_address']."', '".$_REQUEST['ifsc_code']."', '".$actual_image_name."', '".$signimage_name."', '".$gaurdiansignimage_name."', ".$_SESSION['cmid'].", '".$_REQUEST['reference']."', 0,'".$_REQUEST['ac_holder_name']."',
+		'".$_REQUEST['session_year']."')");
 		
 		
 		if(!$res)
@@ -289,11 +290,23 @@ if($_POST['type']=="editStudent")
 	/////////////////////////////////
 	// Code for student photo
 	/////////////////////////////////
-		
-	
-	 $name = $_FILES['file']['name'];
-	 $signname = $_FILES['student_sign']['name'];
-	 $signname2 = $_FILES['guardian_sign']['name'];
+		$name="";
+		$signname="";
+		$signname2="";
+	 if($_REQUEST['file_val']!="")
+	 {
+	 	$name = $_FILES['file']['name'];
+	 }
+	 if($_REQUEST['student_sign_val']!="")
+	 {
+	 	$signname = $_FILES['student_sign']['name'];
+	 }
+	 
+	 if($_REQUEST['guardian_sign_val']!="")
+	 {
+	 	$signname2 = $_FILES['guardian_sign']['name'];
+	 }
+	 
 	if($name!="")
 	{
 	$path = ROOT."/data_images/student/";
@@ -393,12 +406,12 @@ if($_POST['type']=="editStudent")
 	$tblfield=array('Student_Name','DOB','Gender','Father_Name','Mother_Name','Religion',
 	'Caste','Phisical_Status','Aadhaar_No','Education','Course_Id','Mode','Session','About_Fee_Deposite','Block_Id',
 	 'Address','Pincode', 'Contact_No','Email','Bank_Name','Account_No','Bank_Address','IFSC_Code',
-	 'Photo','Signature','Gaurdian_Signature','Reference','Acc_holder_name');			
+	 'Photo','Signature','Gaurdian_Signature','Reference','Acc_holder_name','Session_Year');			
 				
 	$tblvalues=array($_REQUEST['student_name'],$dob,$_REQUEST['gender'],$_REQUEST['father_name'],$_REQUEST['mother_name'],$_REQUEST['religion'],$_REQUEST['caste']
 	,$_REQUEST['physical_status'],$_REQUEST['aadhaar_no'],$_REQUEST['education'],$_REQUEST['course'],$_REQUEST['mode'],$_REQUEST['session'],$_REQUEST['fee_deposit_detail']
 	,$_REQUEST['block'],$_REQUEST['address'],$_REQUEST['pincode'],$_REQUEST['contact_no'],$_REQUEST['email'],$_REQUEST['bank_name'],$_REQUEST['account_no']
-	,$_REQUEST['bank_address'],$_REQUEST['ifsc_code'],$actual_image_name,$signimage_name,$gaurdiansignimage_name,$_REQUEST['reference'],$_REQUEST['ac_holder_name']);
+	,$_REQUEST['bank_address'],$_REQUEST['ifsc_code'],$actual_image_name,$signimage_name,$gaurdiansignimage_name,$_REQUEST['reference'],$_REQUEST['ac_holder_name'],$_REQUEST['session_year']);
 	
 	$condition="Student_Id=".$_POST['student_id'];
 	$res=$db->updateValue($tblname,$tblfield,$tblvalues,$condition);

@@ -234,6 +234,18 @@ $getCourse=$db->ExecuteQuery("SELECT * FROM course_master ");
                     </select>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="session">Session-Year <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <select id="session_year" name="session_year" class="form-control">
+                     <option value="">--- Select Session-Year ---</option>
+                     <?php for($i=2000;$i<=2220;$i++)
+                     { ?>
+                      <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                     <?php  } ?>
+                    </select>
+                  </div>
+                </div>
                 
                 <div class="form-group">
                   <label class="control-label col-sm-4 mandatory" for="fee_deposit_detail">Write About Fees Deposit In Future <span>*</span>:</label>

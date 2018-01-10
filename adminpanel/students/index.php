@@ -23,7 +23,15 @@ foreach($get_list as $s_id)
 $studentid[]= $s_id['Student_Id'];
 
 }
+}
+$student_document=$db->ExecuteQuery("SELECT * FROM student_document");
+if($student_document)
+{
+foreach($student_document as $student_document_id)
+{
+$studentid_docu[]= $student_document_id['Student_Id'];
 
+}
 }
 ?>
 <script type="text/javascript"  src="student.js" ></script>
@@ -79,6 +87,21 @@ $studentid[]= $s_id['Student_Id'];
                         }
                         else
                         {$payment_staus=0;}
+                     
+                         if(!empty($studentid_docu))
+                        {
+                        if(in_array($getstudentVal['Student_Id'],$studentid_docu))
+                        {
+                        
+                          $document=1;
+                        }
+                        else
+                        {
+                         $document=0;
+                        }
+                        }
+                        else
+                        {$document=0;}
 
                           ?>
                     <tr>
@@ -119,11 +142,34 @@ $studentid[]= $s_id['Student_Id'];
                       <button type="button" id="<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-success status">Approve</button>
                     <a href="view_pdf.php?k=<?php echo $getstudentVal['Student_Id']; ?>"> <button type="button" id="pdf-<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-default status">View PDF</button>
                       <?php } ?>
-                      </td>
-                      
+                      <?php if($document==1){ ?> <button type="button" id="docu-<?php echo $getstudentVal['Student_Id']; ?>" class="btn btn-xs btn-default document_view">View Document</button>
+                       <?php  } ?>
+                       </td>
                     </tr>
                     <?php $i++;} ?>
                   </tbody>
                 </table>
             </div>
 </div>
+ <!-- Modal -->
+                                                <div id="myModal" class="modal fade" role="dialog">
+                                                  <div class="modal-dialog empDialogBx">
+                                                
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                      <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Student Document</h4>
+                                                      </div>
+                                                      
+                                                      <div class="modal-body" id="student_docu_details">
+                                                        
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                      </div>
+                                                    </div>
+                                                
+                                                  </div>
+                                                </div>
+                                                <!-- Eof Modal -->

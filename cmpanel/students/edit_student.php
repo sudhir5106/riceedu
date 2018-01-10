@@ -7,7 +7,7 @@ $db = new DBConn();
 $getstudent=$db->ExecuteQuery("SELECT Student_Id, DATE_FORMAT(Reg_Date,'%d-%m-%Y') AS Reg_Date, DATE_FORMAT(DOB,'%d-%m-%Y') AS dob,
 Application_No, Student_Code, Student_Name, Password,Father_Name,Mother_Name, Aadhaar_No,Education,Course_Id, Mode,Session, Address,Pincode,
  Contact_No, Email, Bank_Name,Reference,Gender,Phisical_Status,Religion,Caste, Account_No,Block_Id,Bank_Address,About_Fee_Deposite,Bank_Address,Acc_holder_name,
- IFSC_Code, Photo, Signature, Gaurdian_Signature, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
+ IFSC_Code, Photo,Session_Year,Signature, Gaurdian_Signature, CASE WHEN Approval_Status=0 THEN 'Pending' WHEN Approval_Status=1 THEN 'Approved' WHEN Approval_Status=2 THEN 'Cancelled' END Approval_Status
 
 FROM student_master WHERE Student_Id =".$_REQUEST['id']);
 
@@ -53,7 +53,7 @@ $getCourse=$db->ExecuteQuery("SELECT * FROM course_master");
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-        	<form class="form-horizontal" role="form" id="insertStudent" method="post">
+        	<form class="form-horizontal" role="form" id="insertStudent_EDIT" method="post">
               <div>
                 <div class="form-group">
                   <label class="control-label col-sm-4 mandatory" for="reference">Reference :</label>
@@ -352,7 +352,18 @@ $getCourse=$db->ExecuteQuery("SELECT * FROM course_master");
                     </select>
                   </div>
                 </div>
-                
+                 <div class="form-group">
+                  <label class="control-label col-sm-4 mandatory" for="session">Session-Year <span>*</span>:</label>
+                  <div class="col-sm-3">
+                    <select id="session_year" name="session_year" class="form-control">
+                     <option value="">--- Select Session-Year  ---</option>
+                     <?php for($i=2000;$i<=2220;$i++)
+                     { ?>
+                      <option value="<?php echo $i; ?>" <?php if($getstudent[1]['Session_Year']==$i) {?> selected <?php } ?>><?php echo $i; ?></option>
+                     <?php  } ?>
+                    </select>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label class="control-label col-sm-4 mandatory" for="fee_deposit_detail">Write About Fees Deposit In Future <span>*</span>:</label>
                   <div class="col-sm-4">

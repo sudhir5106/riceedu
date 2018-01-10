@@ -225,4 +225,36 @@ if($_POST['type']=="editStudent")
 	
 	
 }
+
+////////////////////*****For Student Document******//////////////////////
+if($_POST['type']=="get_student_docu")
+{    $id=explode('-',$_REQUEST['student_id']);
+	$student_document=$db->ExecuteQuery("SELECT * FROM student_document WHERE Student_Id='".$id[1]."'");
+	
+?>
+	<div class="modalTxt">
+        
+        	<div class="col-sm-6"><Strong>Document Name</Strong></div>
+        <div class="col-sm-6">
+        <Strong>Document File</Strong>
+        </div>
+        <?php 
+         foreach($student_document as $val){?>
+         <div class="padding-left-zero col-sm-6" ><?php echo $val['Doc_Name']; ?></div>
+
+        <div class="padding-left-zero col-sm-6">
+        
+        <img width="50px;" src="<?php echo PATH_DATA_DOC ?>/student-doc/thumb/<?php echo $val['Doc_File'];?>" alt="" />
+         </div>
+        <?php  } ?>
+        <div class="clearfix"></div>
+
+      
+
+
+    </div>
+    <?php
+}
+
+////////////////////***********//////////////////////////////////////////
 ?>

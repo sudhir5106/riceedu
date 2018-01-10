@@ -152,7 +152,7 @@ if($_POST['type']=="getEmpDetails")
 	
 
 
-	$sql="SELECT DATE_FORMAT(DOJ,'%d-%m-%Y') AS DOJ, e.EMP_Code, e.EMP_Image, e.EMP_Name, e.EMP_Designation, b.Block_Name, d.District_Name, s.State_Name, e.EMP_Contact, e.EMP_Email
+	$sql="SELECT DATE_FORMAT(DOJ,'%d-%m-%Y') AS DOJ, e.EMP_Code, e.EMP_Image, e.EMP_Name, e.EMP_Designation, b.Block_Name, d.District_Name, s.State_Name, e.EMP_Contact, e.EMP_Email,e.Paymenr_Record,e.Perfromance
 
 FROM employee_master e 
 LEFT JOIN block_master b ON e.Block_Id = b.Block_Id
@@ -186,6 +186,19 @@ WHERE EMP_Code='".$_POST['emp_code']."'";
                 <div class="col-sm-8"><strong><?php echo $empInfo[1]['EMP_Designation'] ?></strong></div>
                 <div class="clearfix"></div>
             </div>
+
+
+            <div class="tblrow">
+            	<div class="col-sm-4 padding-left-zero">Advance Payment Record:</div>
+                <div class="col-sm-8"><strong><?php echo $empInfo[1]['Paymenr_Record'] ?></strong></div>
+                <div class="clearfix"></div>
+            </div> 
+            <div class="tblrow">
+            	<div class="col-sm-4 padding-left-zero">Working Performance:</div>
+                <div class="col-sm-8"><strong><?php echo $empInfo[1]['Perfromance'] ?></strong></div>
+                <div class="clearfix"></div>
+            </div> 
+
             <div class="tblrow">
             	<div class="col-sm-4 padding-left-zero">Contact No:</div>
                 <div class="col-sm-8"><strong><?php echo $empInfo[1]['EMP_Contact'] ?></strong></div>
