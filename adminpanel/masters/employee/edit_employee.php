@@ -82,14 +82,6 @@ $getBlocks=$db->ExecuteQuery("SELECT Block_Id, Block_Name FROM block_master WHER
            </div>
         </div>
 
-
-
-
-
-
-
-
-
         <div class="form-group">
           <label class="control-label col-sm-4 mandatory" for="emp_code">Employee Code <span>*</span>:</label>
           <div class="col-sm-5">
@@ -192,10 +184,7 @@ $getBlocks=$db->ExecuteQuery("SELECT Block_Id, Block_Name FROM block_master WHER
           <label class="control-label col-sm-4 mandatory" for="Advance_Payment_Record">Advance Payment Record <span>*</span>:</label>
           <div class="col-sm-3">
           <textarea  class="form-control input-sm txtarea" id="payment_record" name="payment_record" 
-          placeholder="Advance Payment Record">
-          <?php echo $getemployee[1]['Paymenr_Record']?>
-
-          </textarea>
+          placeholder="Advance Payment Record"><?php echo $getemployee[1]['Paymenr_Record']?></textarea>
             
           </div>
         </div>
@@ -203,9 +192,7 @@ $getBlocks=$db->ExecuteQuery("SELECT Block_Id, Block_Name FROM block_master WHER
           <label class="control-label col-sm-4 mandatory" for="Working_Performance">Working Performance <span>*</span>:</label>
           <div class="col-sm-3">
           <textarea  class="form-control input-sm txtarea" id="perfromance" name="perfromance" placeholder="Working Performance"
-           >
-           <?php echo $getemployee[1]['Perfromance'];?>
-          </textarea>
+           ><?php echo $getemployee[1]['Perfromance'];?></textarea>
           </div>
         </div>
         <div class="form-group">
